@@ -1,6 +1,5 @@
-# botortank
-
 Botortank's brain
+===
 
 Always be sure you're path is correct (try avoiding spaces or special french characters)
 
@@ -23,3 +22,6 @@ Once you've finished doing all your stuff,
 go to github repository and click on "compare and pull request" and write more details if needed.
 Anyone can comment your pull request, you can comment the whole work and even line by line.
 You can review the codes here to avoid **conflict** (more info about conflicts https://help.github.com/articles/resolving-a-merge-conflict-on-github/ )
+Once the pull request is validated, then all your changes will appear in the master branch.
+
+**That's all folks!**
