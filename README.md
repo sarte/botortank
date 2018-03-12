@@ -22,4 +22,4 @@ Once you've finished doing all your stuff,
 `git push origin <branch_name>`
 go to github repository and click on "compare and pull request" and write more details if needed.
 Anyone can comment your pull request, you can comment the whole work and even line by line.
-You can review the codes here to avoid **conflict** 
+You can review the codes here to avoid **conflict** (more info about conflicts https://help.github.com/articles/resolving-a-merge-conflict-on-github/ )
