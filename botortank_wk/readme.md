@@ -1,2 +1,2 @@
-Folder for ROS nodes
+Folder for ROS code
 ===
