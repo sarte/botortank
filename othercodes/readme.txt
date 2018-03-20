@@ -1,1 +1,0 @@
-this folders is for codes that are going to be transformed into ros nodes
