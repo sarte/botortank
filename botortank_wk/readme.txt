@@ -1,1 +1,0 @@
-this folders is for ROS nodes
