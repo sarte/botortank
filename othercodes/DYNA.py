@@ -18,25 +18,26 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(MyARM_ResetPin, GPIO.OUT)
 
-GPIO.output(MyARM_ResetPin, GPIO.HIGH)
-sleep(0.1)
-GPIO.output(MyARM_ResetPin, GPIO.LOW)
-sleep(0.1)
+#GPIO.output(MyARM_ResetPin, GPIO.HIGH)
+#sleep(0.1)
+#GPIO.output(MyARM_ResetPin, GPIO.LOW)
+#sleep(0.1)
 
+# det dynamixel ID
 ID_tri=0x05
 ID_bee=0x06
 ID_ball=0x01
 vit_tri=57
 
-#enable dynamixel
+# enable dynamixel
 def dynamixel_start(ID):
     instru_dyna(ID,0x05,0x03,0x18,0x01,0x01)
 
-#disable dynamixel
+# disable dynamixel
 def dynamixel_stop(ID):
     instru_dyna(ID,0x05,0x03,0x18,0x00,0x00)
 
-#envoie une instruction au dynamixel
+# envoie une instruction au dynamixel
 def instru_dyna(ID,LENGTH,INSTRU,P0,P1,P2):
 
     CHECK=(~(ID+LENGTH+INSTRU+P0+P1+P2)) & 0x000000FF
@@ -133,6 +134,7 @@ def ball_start():
     dynamixel_start(ID_ball)
     instru_dyna(ID_ball,0x05,0x03,0x20,0x00,0x02)
     dynamixel_stop(ID_ball)
+	
 #lance la séquence
 def ball():
     dynamixel_start(ID_ball)
@@ -140,19 +142,45 @@ def ball():
     instru_dyna(ID_ball,0x05,0x03,0x1E,0x80,0x00)
     sleep(3)
     instru_dyna(ID_ball,0x05,0x03,0x1E,0x00,0x03)
+	
+# stop all dynamixel
+def stop():
+	dynamixel_stop(ID_tri)
+	dynamixel_stop(ID_bee)
+	dynamixel_stop(ID_ball)
 
 
 
+# Message handler
+def CommandCallback(commandMessage):
+    command = commandMessage.data
+    if command == 'tri_start':
+        print('Enabling Tri')
+        tri_start()
+    elif command == 'tri_1':
+        print('Triage 1')
+        tri_1()
+    elif command == 'tri_2':
+        print('Triage 2')
+        tri_2()
+    elif command == 'bee_start':
+        print('Enabling Bee')
+        bee_start()
+	elif command == 'tri_2':
+        print('Deploying bee arm')
+        bee()	
+    elif command == 'stop':
+        print('Stopping')
+        stop()
+    else:
+        print('Unknown command, stopping instead')
+        stop()
 
+rospy.init_node('driver')
 
+rospy.Subscriber('command', String, CommandCallback)
 
-#
-#ToSPI = [0x8C, 0x00, 0x00, 0x00, 0x02]
-#FromSPI = MySPI_FPGA.xfer2(ToSPI)
-#ToSPI = [0x8C, 0x00, 0x00, 0x00, 0x00]
-#FromSPI = MySPI_FPGA.xfer2(ToSPI)
-#ToSPI = [0x8C, 0x00, 0x00, 0x00, 0x02]
-#FromSPI = MySPI_FPGA.xfer2(ToSPI)
-#ToSPI = [0x8C, 0x00, 0x00, 0x00, 0xD3]
-#FromSPI = MySPI_FPGA.xfer2(ToSPI)
-
+rospy.spin()
+print('Shutting down: stopping motors')
+StopMotors()
+GPIO.cleanup()
