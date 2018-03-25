@@ -176,11 +176,11 @@ def CommandCallback(commandMessage):
         print('Unknown command, stopping instead')
         stop()
 
-rospy.init_node('driver')
+rospy.init_node('dinamixel')
 
-rospy.Subscriber('command', String, CommandCallback)
+rospy.Subscriber('dina_cmd', String, CommandCallback)
 
 rospy.spin()
 print('Shutting down: stopping motors')
-StopMotors()
+stop()
 GPIO.cleanup()
