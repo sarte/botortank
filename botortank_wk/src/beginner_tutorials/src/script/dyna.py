@@ -1,27 +1,31 @@
+#!/usr/bin/env python
+
+
+import rospy
+from std_msgs.msg import String
+
 import RPi.GPIO as GPIO
-import time
-from time import sleep
-import spidev
-#import MyMotor
-#import Turret
 import MyMCP2515
-from ctypes import c_double
-from math import *
+import spidev
 
-MyARM_ResetPin = 19 # Pin 4 of connector = BCM19 = GPIO[1]
 
+#import time
+#from time import sleep
+
+# setup the SPI
 MySPI_FPGA = spidev.SpiDev()
 MySPI_FPGA.open(0,0)
 MySPI_FPGA.max_speed_hz = 500000
 
+# set the GPIO modes
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(MyARM_ResetPin, GPIO.OUT)
 
-#GPIO.output(MyARM_ResetPin, GPIO.HIGH)
-#sleep(0.1)
-#GPIO.output(MyARM_ResetPin, GPIO.LOW)
-#sleep(0.1)
+GPIO.output(MyARM_ResetPin, GPIO.HIGH)
+sleep(0.1)
+GPIO.output(MyARM_ResetPin, GPIO.LOW)
+sleep(0.1)
 
 # det dynamixel ID
 ID_tri=0x05
@@ -88,7 +92,7 @@ def tri_start():
     instru_dyna(ID_tri,0x05,0x03,0x20,0x00,0x02)
     dynamixel_stop(ID_tri)
 
-#lance la 1ere séquence de tri
+#lance la 1ere sequence de tri
 def tri_1():
     dynamixel_start(ID_tri)
     cnt=0
@@ -100,7 +104,7 @@ def tri_1():
         cnt+=1
     dynamixel_stop(ID_tri)
 
-#lance la 2e séquence de tri
+#lance la 2e sequence de tri
 def tri_2():
     dynamixel_start(ID_tri)
     cnt=0
@@ -121,7 +125,7 @@ def bee_start():
     dynamixel_start(ID_bee)
     instru_dyna(ID_bee,0x05,0x03,0x20,0x00,0x02)
     dynamixel_stop(ID_bee)
-#lance la séquence de l'abeille
+#lance la sequence de l'abeille
 def bee():
     dynamixel_start(ID_bee)
     sleep(0.3)
@@ -135,7 +139,7 @@ def ball_start():
     instru_dyna(ID_ball,0x05,0x03,0x20,0x00,0x02)
     dynamixel_stop(ID_ball)
 	
-#lance la séquence
+#lance la sequence
 def ball():
     dynamixel_start(ID_ball)
     sleep(0.3)
@@ -145,9 +149,9 @@ def ball():
 	
 # stop all dynamixel
 def stop():
-	dynamixel_stop(ID_tri)
-	dynamixel_stop(ID_bee)
-	dynamixel_stop(ID_ball)
+    dynamixel_stop(ID_tri)
+    dynamixel_stop(ID_bee)
+    dynamixel_stop(ID_ball)
 
 
 
@@ -166,7 +170,7 @@ def CommandCallback(commandMessage):
     elif command == 'bee_start':
         print('Enabling Bee')
         bee_start()
-	elif command == 'tri_2':
+    elif command == 'bee':
         print('Deploying bee arm')
         bee()	
     elif command == 'stop':
@@ -176,9 +180,9 @@ def CommandCallback(commandMessage):
         print('Unknown command, stopping instead')
         stop()
 
-rospy.init_node('dinamixel')
+rospy.init_node('dyna')
 
-rospy.Subscriber('dina_cmd', String, CommandCallback)
+rospy.Subscriber('command', String, CommandCallback)
 
 rospy.spin()
 print('Shutting down: stopping motors')
