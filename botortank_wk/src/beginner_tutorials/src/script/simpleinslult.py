@@ -13,5 +13,5 @@ def simpleinsult():
 	rospy.Subscriber("chatter", String, callback)
 	rospy.spin()
 	
-if __name__ == '__main__'
+if __name__ == '__main__':
 	simpleinsult()
