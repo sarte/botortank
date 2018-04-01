@@ -89,22 +89,58 @@ def sorting_start():
     disable(ID_sorting)
 
 
+# sorting dynamixel stop
+def sorting_stop():
+    enable(ID_sorting)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x00)
+    disable(ID_sorting)
+
+
 # 1st sorting sequence
 def sorting1():
     enable(ID_sorting)
-    cnt = 0
-    while cnt <= 8:
-        instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0xF0, 0x00)
-        sleep(0.3)
-        instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
-        sleep(0.7)
-        cnt += 1
+    # first ball
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0xF0, 0x00)
+    sleep(0.3)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
+    sleep(0.7)
+    # all other balls
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0xF0, 0x00)
+    sleep(0.3)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
+    sleep(0.7)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0xF0, 0x00)
+    sleep(0.3)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
+    sleep(0.7)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0xF0, 0x00)
+    sleep(0.3)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
+    sleep(0.7)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0xF0, 0x00)
+    sleep(0.3)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
+    sleep(0.7)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0xF0, 0x00)
+    sleep(0.3)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
+    sleep(0.7)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0xF0, 0x00)
+    sleep(0.3)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
+    sleep(0.7)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0xF0, 0x00)
+    sleep(0.3)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
+    sleep(0.7)
+
     disable(ID_sorting)
 
 
 # 2nd sorting sequence
 def sorting2():
     enable(ID_sorting)
+    # first two balls
     instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x10, 0x03)
     sleep(0.3)
     instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
@@ -113,7 +149,8 @@ def sorting2():
     sleep(0.3)
     instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
     sleep(0.7)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x10, 0x03)
+    # all other balls
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x03)
     sleep(0.3)
     instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
     sleep(0.7)
@@ -121,7 +158,7 @@ def sorting2():
     sleep(0.3)
     instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
     sleep(0.7)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x10, 0x03)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x03)
     sleep(0.3)
     instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
     sleep(0.7)
@@ -129,7 +166,7 @@ def sorting2():
     sleep(0.3)
     instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
     sleep(0.7)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x10, 0x03)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x03)
     sleep(0.3)
     instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
     sleep(0.7)
@@ -151,7 +188,7 @@ def bee_start():
 # bee sequence
 def bee():
     enable(ID_bee)
-    sleep(0.3)
+    sleep(1)
     instru_dyna(ID_bee, 0x05, 0x03, 0x1E, 0x00, 0x01)
     sleep(3)
     instru_dyna(ID_bee, 0x05, 0x03, 0x1E, 0x00, 0x02)
@@ -164,18 +201,19 @@ def stop():
 
 
 # Message handler
-def CommandCallback(commandMessage):
-    command = commandMessage.data
+def callback(data):
+    command = data.data
     if command == 'sorting1':
-        print('enabling sorting dynamixel and starting 1st sequence')
+        print('enabling sorting dynamixel \n starting 1st sequence')
         sorting_start()
         sorting1()
+        sorting_stop()
     elif command == 'sorting2':
-        print('enabling sorting dynamixel and starting 2nd sequence')
+        print('enabling sorting dynamixel \n starting 2nd sequence')
         sorting_start()
         sorting2()
     elif command == 'bee':
-        print('enabling bee dynamixel and starting bee sequence')
+        print('enabling bee dynamixel \n starting bee sequence')
         bee_start()
         bee()
     else:
@@ -187,7 +225,7 @@ def CommandCallback(commandMessage):
 def dynamixel():
     rospy.init_node('dynamixel', anonymous=True)
     print('node initiation: dynamixel')
-    rospy.Subscriber('dynamixel_cmd', String, CommandCallback)
+    rospy.Subscriber('dynamixel_cmd', String, callback)
     print('topic initiation: dynamixel_cmd')
     rospy.spin()
     print('Shutting down: disabling dynamixels')

@@ -4,9 +4,9 @@ import spidev
 import RPi.GPIO as GPIO
 from math import pi
 
-ADDRESS1= 0x708 #identifiant pour envoyer des données
+ADDRESS1= 0x708 #identifiant pour envoyer des donnees
 ADDRESS_RECEIVE1= 0x700 #identifiant pour recevoir
-ADDRESS2= 0x408 #identifiant pour envoyer des données
+ADDRESS2= 0x408 #identifiant pour envoyer des donnees
 ADDRESS_RECEIVE2= 0x400 #identifiant pour recevoir
 #duty cycle=0.5 so robot stay at rest
 DCL=0.5
@@ -84,9 +84,11 @@ def Motor_stop():
         CAN.DoSendMsg(ADDRESS1,[0x1E,0x70,0x30],3,0x00)
         CAN.DoSendMsg(ADDRESS2,[0x1E,0x70,0x30],3,0x00)
 
-#Duty Cycle Moteur 1, input de -100 à 100
+
+
+#Duty Cycle Moteur 1, input de -100 a 100
 def Motor_setDC1(Duty):
-        if(Duty>=100):
+        if Duty >= 100:
             DC10B=round(195*1023/200)
         elif(Duty<=-100):
             DC10B=round(5*1023/200)
@@ -99,7 +101,7 @@ def Motor_setDC1(Duty):
         CAN.DoSendMsg(ADDRESS1,[0x26,0xFF,MSB],3,0x00)
         sleep(0.01)
 
-#Duty Cycle Moteur 2, input de -100 à 100
+#Duty Cycle Moteur 2, input de -100 a 100
 def Motor_setDC2(Duty):
         if(Duty>=100):
             DC10B=round(195*1023/200)
@@ -114,7 +116,7 @@ def Motor_setDC2(Duty):
         CAN.DoSendMsg(ADDRESS1,[0x25,0xFF,MSB],3,0x00)
         sleep(0.01)
 
-#Duty Cycle Moteur 3, input de -100 à 100
+#Duty Cycle Moteur 3, input de -100 a 100
 def Motor_setDC3(Duty):
         if(Duty>=100):
             DC10B=round(195*1023/200)
@@ -129,7 +131,7 @@ def Motor_setDC3(Duty):
         CAN.DoSendMsg(ADDRESS2,[0x26,0xFF,MSB],3,0x00)
         sleep(0.01)
 
-#Duty Cycle Moteur 4, input de -100 à 100
+#Duty Cycle Moteur 4, input de -100 a 100
 def Motor_setDC4(Duty):
         if(Duty>=100):
             DC10B=round(195*1023/200)
