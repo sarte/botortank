@@ -4,8 +4,13 @@
 import rospy
 import time
 from time import sleep
+from math import sqrt
 from geometry_msgs.msg import Twist
 from bot.msg import *
+
+
+def norm(a,b):
+    return sqrt((a * a) + (b * b))
 
 
 def callback(cmd):
@@ -14,10 +19,11 @@ def callback(cmd):
     # rot_z = cmd.angular.z
     pub = rospy.Publisher('omega_ref', quad, queue_size=10)
     omega_ref = quad()
-    omega_ref.motor1 = vel_x + vel_y  # + rot_z
-    omega_ref.motor2 = vel_x - vel_y  # + rot_z
-    omega_ref.motor3 = vel_x + vel_y  # - rot_z
-    omega_ref.motor4 = vel_x - vel_y  # - rot_z
+    vel_norm = norm(vel_x, vel_y)
+    omega_ref.motor1 = ((vel_x + vel_y) / vel_norm)  # + rot_z
+    omega_ref.motor2 = ((vel_x - vel_y) / vel_norm)  # + rot_z
+    omega_ref.motor3 = ((vel_x + vel_y) / vel_norm)  # - rot_z
+    omega_ref.motor4 = ((vel_x - vel_y) / vel_norm) # - rot_z
     pub.publish(omega_ref)
     print(omega_ref)
 
