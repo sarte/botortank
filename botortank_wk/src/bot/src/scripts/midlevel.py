@@ -10,8 +10,8 @@ from bot.msg import *
 
 
 def norm(a,b):
-    return sqrt((a * a) + (b * b))
-
+    # return sqrt((a * a) + (b * b))
+    return 1
 
 def callback(cmd):
     vel_x = cmd.linear.x
@@ -23,7 +23,7 @@ def callback(cmd):
     omega_ref.motor1 = ((vel_x + vel_y) / vel_norm)  # + rot_z
     omega_ref.motor2 = ((vel_x - vel_y) / vel_norm)  # + rot_z
     omega_ref.motor3 = ((vel_x + vel_y) / vel_norm)  # - rot_z
-    omega_ref.motor4 = ((vel_x - vel_y) / vel_norm) # - rot_z
+    omega_ref.motor4 = ((vel_x - vel_y) / vel_norm)  # - rot_z
     pub.publish(omega_ref)
     print(omega_ref)
 
