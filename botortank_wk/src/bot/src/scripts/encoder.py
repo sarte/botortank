@@ -48,9 +48,9 @@ def Motor_getSpeed1():
     # print(FromSPI)            #we got a response on the last byte slot of FromSPI
     dirR = FromSPI[1] & 0x80
     if dirR:
-        direction = 1
-    else:
         direction = -1
+    else:
+        direction = 1
     NbClockbetweenTrans = ((FromSPI[1] & 0x7f) * 256 ** 3) + (FromSPI[2] * 256 ** 2) + (FromSPI[3] * 256) + FromSPI[4]
     if NbClockbetweenTrans != 0:
         wheel_speed = direction * 2 * pi / (9728 * NbClockbetweenTrans * 2e-8)
@@ -67,9 +67,9 @@ def Motor_getSpeed2():
     # print(FromSPI)            #we got a response on the last byte slot of FromSPI
     dirR = FromSPI[1] & 0x80
     if dirR:
-        direction = 1
-    else:
         direction = -1
+    else:
+        direction = 1
     NbClockbetweenTrans = ((FromSPI[1] & 0x7f) * 256 ** 3) + (FromSPI[2] * 256 ** 2) + (FromSPI[3] * 256) + FromSPI[4]
     if NbClockbetweenTrans != 0:
         wheel_speed = direction * 2 * pi / (9728 * NbClockbetweenTrans * 2e-8)
@@ -86,9 +86,9 @@ def Motor_getSpeed3():
     # print(FromSPI)            #we got a response on the last byte slot of FromSPI
     dirR = FromSPI[1] & 0x80
     if dirR:
-        direction = 1
-    else:
         direction = -1
+    else:
+        direction = 1
     NbClockbetweenTrans = ((FromSPI[1] & 0x7f) * 256 ** 3) + (FromSPI[2] * 256 ** 2) + (FromSPI[3] * 256) + FromSPI[4]
     if NbClockbetweenTrans != 0:
         wheel_speed = direction * 2 * pi / (9728 * NbClockbetweenTrans * 2e-8)
