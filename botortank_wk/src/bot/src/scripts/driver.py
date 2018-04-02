@@ -105,7 +105,7 @@ def motor_setDC1(Duty):
             DC10B = round(5 * 1023 / 200)
         else:
             DC10B = round((Duty * 0.9 + 100) * 1023 / 200)
-        # print(DC10B)
+        rospy.loginfo("duty 1 %s", DC10B)
         LSB = DC10B % 4
         # print(LSB)
         MSB = floor(DC10B / 4)
@@ -124,6 +124,7 @@ def motor_setDC2(Duty):
             DC10B = round(5 * 1023 / 200)
         else:
             DC10B = round((Duty * 0.9 + 100) * 1023 / 200)
+        rospy.loginfo("duty 2 %s", DC10B)
         LSB = DC10B % 4
         # print(LSB)
         MSB = DC10B / 4
@@ -142,6 +143,7 @@ def motor_setDC3(Duty):
             DC10B = round(5 * 1023 / 200)
         else:
             DC10B = round((Duty * 0.9 + 100) * 1023 / 200)
+        rospy.loginfo("duty 3 %s", DC10B)
         LSB = DC10B % 4
         # print(LSB)
         MSB = DC10B / 4
@@ -160,6 +162,7 @@ def motor_setDC4(Duty):
             DC10B = round(5 * 1023 / 200)
         else:
             DC10B = round((Duty * 0.9 + 100) * 1023 / 200)
+        rospy.loginfo("duty 4 %s", DC10B)
         LSB = DC10B % 4
         # print(LSB)
         MSB = DC10B / 4
@@ -239,20 +242,21 @@ def motor_setDC4(Duty):
 
 
 def callback(cmd):
-    while not rospy.is_shutdown():
-        motor_init()
-        motor_start()
-        motor_setDC1(cmd.motor1)
-        motor_setDC2(cmd.motor1)
-        motor_setDC3(cmd.motor1)
-        motor_setDC4(cmd.motor1)
-        motor_stop()
+    motor_init()
+    motor_start()
+    motor_setDC1(cmd.motor1)
+    motor_setDC2(cmd.motor2)
+    motor_setDC3(cmd.motor3)
+    motor_setDC4(cmd.motor4)
+    # sleep(0.5)
+    # motor_stop()
 
 
 def driver():
     rospy.init_node('driver', anonymous=True)
     # rospy.Subscriber("omega_ref", String, callback)
     rospy.Subscriber("omega_ref", quad, callback)
+    rate = rospy.Rate(1)
     rospy.spin()
 
 
