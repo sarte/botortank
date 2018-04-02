@@ -1,20 +1,21 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
+#include "bot/quad.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
 #include "CtrlStruct_gr5.h"
 
-void init_speed_controller(CtrlStruct* theCtrlStruct){
-
-    theCtrlStruct->theUserStruct->t_old = theCtrlStruct->theCtrlIn->t;
-    theCtrlStruct->theUserStruct->int_error_1 = 0;
-    theCtrlStruct->theUserStruct->int_error_2 = 0;
-    theCtrlStruct->theUserStruct->int_error_3 = 0;
-    theCtrlStruct->theUserStruct->int_error_4 = 0;
-
-}
+//void init_speed_controller(CtrlStruct* theCtrlStruct){
+//
+//    theCtrlStruct->theUserStruct->t_old = theCtrlStruct->theCtrlIn->t;
+//    theCtrlStruct->theUserStruct->int_error_1 = 0;
+//    theCtrlStruct->theUserStruct->int_error_2 = 0;
+//    theCtrlStruct->theUserStruct->int_error_3 = 0;
+//    theCtrlStruct->theUserStruct->int_error_4 = 0;
+//
+//}
 
 double *Kp_Ki_Computation(double overshoot, double time_response)
 {
@@ -111,10 +112,10 @@ void speedControllerCallback(CtrlStruct* theCtrlStruct, double* omega_ref){
 int main(int argc, char **argv) {
     ros::init(argc, argv, "speedcontroler");
     ros::NodeHandle n;
-    ros::Publisher pub = n.advertise<std_msgs::Float32>("voltage_ref", 1000);
-    ros::Rate loop_rate(10);
+    ros::Publisher pub = n.advertise<std_msgs::Float32>("omega_cmd", 1000);
+//    ros::Rate loop_rate(10);
 
-    while (ros::ok()) //ok() returns false when ctfl-C, or other node kicks it out, or all nodes $
+    while (ros::ok())
     {
 
         ros::Subscriber sub = n.subscribe("omega_ref", 1000, speedControllerCallback);
