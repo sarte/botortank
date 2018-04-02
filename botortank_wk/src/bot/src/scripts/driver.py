@@ -60,24 +60,27 @@ def motor_init():
         sleep(0.01)
         CAN.DoSendMsg(ADDRESS2, [0x22, 0xFF, TCON], 3, 0x00)
         sleep(0.01)
-#        motor_setDC1(0.5)
+        motor_setDC1(0)
         sleep(0.01)
-#        motor_setDC2(0.5)
+        motor_setDC2(0)
         sleep(0.01)
-#        motor_setDC3(0.5)
+        motor_setDC3(0)
         sleep(0.01)
-#        motor_setDC4(0.5)
+        motor_setDC4(0)
         sleep(0.01)
 
 
 # led ON, Frein OFF
 def motor_start():
+
         CAN.DoSendMsg(ADDRESS1, [0x1F, 0x40, 0x00], 3, 0x00)
         sleep(0.001)
         CAN.DoSendMsg(ADDRESS1, [0x1E, 0x70, 0x40], 3, 0x00)
+        sleep(0.001)
         CAN.DoSendMsg(ADDRESS2, [0x1F, 0x40, 0x00], 3, 0x00)
         sleep(0.001)
         CAN.DoSendMsg(ADDRESS2, [0x1E, 0x70, 0x40], 3, 0x00)
+        sleep(0.001)
 
 
 # led OFF, Frein ON
@@ -102,15 +105,14 @@ def motor_setDC1(Duty):
             DC10B = round(5 * 1023 / 200)
         else:
             DC10B = round((Duty * 0.9 + 100) * 1023 / 200)
-        print('decimal:')
-        print(DC10B)
-        print('\nbinary:')
-        print(DC10B)
-        LSB = 0b11111111  # bin(DC10B) & 0x03)
-        MSB = 0b11  # bun(DC10B) >> 2
-        CAN.DoSendMsg(ADDRESS1, [0x22, 0x03, LSB], 3, 0x00)
+        # print(DC10B)
+        LSB = DC10B % 4
+        # print(LSB)
+        MSB = floor(DC10B / 4)
+        # print(MSB)
+        CAN.DoSendMsg(ADDRESS1, [0x21, 0x03, int(LSB)], 3, 0x00)
         sleep(0.01)
-        CAN.DoSendMsg(ADDRESS1, [0x26, 0xFF, MSB], 3, 0x00)
+        CAN.DoSendMsg(ADDRESS1, [0x25, 0xFF, int(MSB)], 3, 0x00)
         sleep(0.01)
 
 
@@ -122,11 +124,13 @@ def motor_setDC2(Duty):
             DC10B = round(5 * 1023 / 200)
         else:
             DC10B = round((Duty * 0.9 + 100) * 1023 / 200)
-        LSB = DC10B & 0x03
-        MSB = DC10B >> 2
-        CAN.DoSendMsg(ADDRESS1, [0x21, 0x03, LSB], 3, 0x00)
+        LSB = DC10B % 4
+        # print(LSB)
+        MSB = DC10B / 4
+        # print(MSB)
+        CAN.DoSendMsg(ADDRESS1, [0x22, 0x03, int(LSB)], 3, 0x00)
         sleep(0.01)
-        CAN.DoSendMsg(ADDRESS1, [0x25, 0xFF, MSB], 3, 0x00)
+        CAN.DoSendMsg(ADDRESS1, [0x26, 0xFF, int(MSB)], 3, 0x00)
         sleep(0.01)
 
 
@@ -138,11 +142,13 @@ def motor_setDC3(Duty):
             DC10B = round(5 * 1023 / 200)
         else:
             DC10B = round((Duty * 0.9 + 100) * 1023 / 200)
-        LSB = DC10B & 0x03
-        MSB = DC10B >> 2
-        CAN.DoSendMsg(ADDRESS2, [0x22, 0x03, LSB], 3, 0x00)
+        LSB = DC10B % 4
+        # print(LSB)
+        MSB = DC10B / 4
+        # print(MSB)
+        CAN.DoSendMsg(ADDRESS2, [0x22, 0x03, int(LSB)], 3, 0x00)
         sleep(0.01)
-        CAN.DoSendMsg(ADDRESS2, [0x26, 0xFF, MSB], 3, 0x00)
+        CAN.DoSendMsg(ADDRESS2, [0x26, 0xFF, int(MSB)], 3, 0x00)
         sleep(0.01)
 
 
@@ -154,67 +160,99 @@ def motor_setDC4(Duty):
             DC10B = round(5 * 1023 / 200)
         else:
             DC10B = round((Duty * 0.9 + 100) * 1023 / 200)
-        LSB = DC10B & 0x03
-        MSB = DC10B >> 2
-        CAN.DoSendMsg(ADDRESS2, [0x21, 0x03, LSB], 3, 0x00)
+        LSB = DC10B % 4
+        # print(LSB)
+        MSB = DC10B / 4
+        # print(MSB)
+        CAN.DoSendMsg(ADDRESS2, [0x21, 0x03, int(LSB)], 3, 0x00)
         sleep(0.01)
-        CAN.DoSendMsg(ADDRESS2, [0x25, 0xFF, MSB], 3, 0x00)
+        CAN.DoSendMsg(ADDRESS2, [0x25, 0xFF, int(MSB)], 3, 0x00)
         sleep(0.01)
 
 
-# Message handler
+# # Message handler
+# def callback(cmd):
+#     command = cmd.data
+#     if command == 'forwards':
+#         print('initializing motors')
+#         motor_init()
+#         print('starting motors')
+#         motor_start()
+#         sleep(2.0)
+#         print('set motor1')
+#         motor_setDC1(10)
+#         sleep(2.0)
+#         print('set motor2')
+#         motor_setDC2(10)
+#         sleep(2.0)
+#         print('set motor3')
+#         motor_setDC3(10)
+#         sleep(2.0)
+#         print('set motor4')
+#         motor_setDC4(10)
+#         sleep(5.0)
+#         print('stopping motors')
+#         motor_stop()
+#     elif command == 'backwards':
+#         print('initializing motors')
+#         motor_init()
+#         print('starting motors')
+#         motor_start()
+#         sleep(2.0)
+#         print('moving forwards')
+#         motor_setDC1(10)
+#         motor_setDC2(10)
+#         motor_setDC3(10)
+#         motor_setDC4(10)
+#         sleep(3.0)
+#         print('stopping motors')
+#         motor_stop()
+#     elif command == 'test1':
+#         print('initializing motors')
+#         motor_init()
+#         sleep(0.1)
+#         print('starting motors')
+#         motor_start()
+#         sleep(2.0)
+#         print('motor1')
+#         motor_setDC1(10)
+#         sleep(2.0)
+#         print('motor2')
+#         motor_setDC2(20)
+#         sleep(2.0)
+#         print('motor3')
+#         motor_setDC3(30)
+#         sleep(2.0)
+#         print('motor4')
+#         motor_setDC4(40)
+#         sleep(2.0)
+#         print('stopping motors')
+#         motor_stop()
+#     elif command == 'stop':
+#         print('stopping motors')
+#         motor_stop()
+#     elif command == 'fuuuuck':
+#         CAN.DoSendMsg(ADDRESS1, [0x1E, 0x70, 0x30], 3, 0x00)
+#     else:
+#         print('Unknown command, stopping instead')
+#         motor_stop()
+
+
 def callback(cmd):
-    command = cmd.data
-    if command == 'forwards':
-        print('initializing motors')
-        motor_init()
-        sleep(1.0)
-        print('starting motors')
-        motor_start()
-        sleep(2.0)
-        print('set motor1')
-        motor_setDC1(10)
-        sleep(2.0)
-        print('set motor2')
-        motor_setDC2(10)
-        sleep(2.0)
-        print('set motor3')
-        motor_setDC3(10)
-        sleep(2.0)
-        print('set motor4')
-        motor_setDC4(10)
-        sleep(5.0)
-        print('stopping motors')
-        motor_stop()
-    elif command == 'backwards':
-        print('initializing and starting motors')
+    while not rospy.is_shutdown():
         motor_init()
         motor_start()
-        print('moving forwards')
-        motor_setDC1(10)
-        motor_setDC2(10)
-        motor_setDC3(10)
-        motor_setDC4(10)
-        sleep(3.0)
-        print('stopping motors')
-        motor_stop()
-    elif command == 'stop':
-        print('moving forwards')
-        motor_setDC1(0)
-        motor_setDC2(0)
-        motor_setDC3(0)
-        motor_setDC4(0)
-        sleep(3.0)
-        print('stopping motors')
-        motor_stop()
-    else:
-        print('Unknown command, stopping instead')
+        motor_setDC1(cmd.motor1)
+        motor_setDC2(cmd.motor1)
+        motor_setDC3(cmd.motor1)
+        motor_setDC4(cmd.motor1)
         motor_stop()
 
 
 def driver():
     rospy.init_node('driver', anonymous=True)
-    rospy.Subscriber("omega_ref", String, callback)
+    # rospy.Subscriber("omega_ref", String, callback)
+    rospy.Subscriber("omega_ref", quad, callback)
     rospy.spin()
 
 
