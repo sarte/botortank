@@ -34,7 +34,8 @@ def callback(cmd):
 
 def midlevel():
     rospy.init_node('midlevel', anonymous=True)
-    rospy.Subscriber('velocity_ref', Twist, callback)
+    # rospy.Subscriber('velocity_ref', Twist, callback)
+    rospy.Subscriber('cmd_vel', Twist, callback)
     rospy.spin()
 
 

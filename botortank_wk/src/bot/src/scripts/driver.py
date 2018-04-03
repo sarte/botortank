@@ -248,7 +248,7 @@ def callback(cmd):
     motor_setDC2(cmd.motor2)
     motor_setDC3(cmd.motor3)
     motor_setDC4(cmd.motor4)
-    sleep(3.0)
+    sleep(0.1)
     motor_stop()
 
 
