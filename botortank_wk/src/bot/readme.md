@@ -4,11 +4,11 @@ BOT
 This is the main brain of botortank, everything happens here!
 
 1. To get something useful just open one terminal and type:
-´roslaunch bot bot_openloop.launch´
+`roslaunch bot bot_openloop.launch`
 
 2. Now, open another terminal and put the velocity command you want
-´rostopic pub -l /velocity_ref geometry_msgs/Twist '[1, 0, 0]' '[0, 0, 0]'´
-_NB_: The message
+`rostopic pub -l /velocity_ref geometry_msgs/Twist '[1, 0, 0]' '[0, 0, 0]'`
+_NB_: The message is in Twist format, take a look [here](http://docs.ros.org/api/geometry_msgs/html/msg/Twist.html) to understand better
 
 3. To confirm active nodes, topics, subscriptions, publishers:
-´rostopic list -v´
+`rostopic list -v`
