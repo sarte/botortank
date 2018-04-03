@@ -70,10 +70,11 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   geometry_msgs#   std_msgs
-# )
+ generate_messages(
+   DEPENDENCIES
+   geometry_msgs   
+   std_msgs
+ )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -204,6 +205,7 @@ add_executable(compteur src/compteur.cpp)
 target_link_libraries(compteur ${catkin_LIBRARIES})
 add_dependencies(compteur bot_generate_messages_cpp)
 
-#add_executable(structure src/structure.cpp)
-#target_link_libraries(structure ${catkin_LIBRARIES})
-#add_dependencies(structure bot_generate_messages_cpp)
+add_executable(Odometry src/Odometry.cpp)
+target_link_libraries(Odometry ${catkin_LIBRARIES})
+add_dependencies(Odometry bot_generate_messages_cpp)
+
