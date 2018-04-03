@@ -242,21 +242,23 @@ def motor_setDC4(Duty):
 
 
 def callback(cmd):
-    motor_init()
-    motor_start()
+    rate = rospy.Rate(1000)
+    # motor_init()
+    # motor_start()
     motor_setDC1(cmd.motor1)
     motor_setDC2(cmd.motor2)
     motor_setDC3(cmd.motor3)
     motor_setDC4(cmd.motor4)
-    sleep(0.1)
-    motor_stop()
+    rate.sleep()
+    # motor_stop()
 
 
 def driver():
     rospy.init_node('driver', anonymous=True)
     # rospy.Subscriber("omega_ref", String, callback)
     rospy.Subscriber("omega_ref", quad, callback)
-    rate = rospy.Rate(1)
+    motor_init()
+    motor_start()
     rospy.spin()
 
 
