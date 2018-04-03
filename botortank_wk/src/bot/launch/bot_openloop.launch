@@ -1,0 +1,4 @@
+<launch>
+	<node name="midlevel" pkg="bot" type="midlevel.py" />
+	<node name="driver" pkg="bot" type="driver.py" />
+</launch>
