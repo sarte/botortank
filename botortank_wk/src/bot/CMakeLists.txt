@@ -199,3 +199,11 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+add_executable(compteur src/compteur.cpp)
+target_link_libraries(compteur ${catkin_LIBRARIES})
+add_dependencies(compteur bot_generate_messages_cpp)
+
+#add_executable(structure src/structure.cpp)
+#target_link_libraries(structure ${catkin_LIBRARIES})
+#add_dependencies(structure bot_generate_messages_cpp)
