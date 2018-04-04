@@ -5,5 +5,5 @@
 	<node name="teleop_twist_joy" pkg="teleop_twist_joy" type="teleop_node" />
 	<node name="teleop2midlevel" pkg="bot" type="teleop2midlevel.py" />
 	<node name="encoder" pkg="bot" type="encoder.py" />
-	<node name="Odometry" pkg="bot" type="Odometry" />
+	<node name="odometry" pkg="bot" type="odometry" />
 </launch>

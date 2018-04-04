@@ -53,6 +53,7 @@ find_package(catkin REQUIRED COMPONENTS
    FILES
 #   Message1.msg
    quad.msg
+   tetra.msg
  )
 
 ## Generate services in the 'srv' folder
@@ -201,9 +202,9 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(Odometry src/Odometry.cpp)
-target_link_libraries(Odometry ${catkin_LIBRARIES})
-add_dependencies(Odometry bot_generate_messages_cpp)
+add_executable(odometry src/odometry.cpp)
+target_link_libraries(odometry ${catkin_LIBRARIES})
+add_dependencies(odometry bot_generate_messages_cpp)
 
 add_executable(speedcontroler src/speedcontroler.cpp)
 target_link_libraries(speedcontroler ${catkin_LIBRARIES})

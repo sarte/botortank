@@ -9,8 +9,8 @@
 #define Kp 0.03
 #define Ki 0.052
 
+ros::Time old_time(0.0);
 Struct* cvs;
-ros::Time old_time = ros::Time::now();
 double omega_ref_1 = 0;
 double omega_ref_2 = 0;
 double omega_ref_3 = 0;
@@ -62,11 +62,13 @@ void speedControllerCallback(const bot::quad& omega_mes){
     int_error_2 = cvs->int_error_2;
     int_error_3 = cvs->int_error_3;
     int_error_4 = cvs->int_error_4; //right speed integration error
-    dt = (current_time.toSec()-old_time.toSec());
+    dt = (current_time-old_time).toSec();
+    printf("dt = %f",dt);
     int_error_1 += dt*error_1;
     int_error_2 += dt*error_2;
     int_error_3 += dt*error_3;
     int_error_4 += dt*error_4;
+    old_time = current_time;
     cvs->int_error_1 = int_error_1;
     cvs->int_error_2 = int_error_2;
     cvs->int_error_3 = int_error_3;
@@ -75,6 +77,7 @@ void speedControllerCallback(const bot::quad& omega_mes){
     v2 = Kp*error_2 + Ki*int_error_2; // voltage command in [-24;24]
     v3 = Kp*error_3 + Ki*int_error_3; // voltage command in [-24;24]
     v4 = Kp*error_4 + Ki*int_error_4; // voltage command in [-24;24]
+    printf("v1 = %f",v1);
     if (v1 > 0.9*24)
         v1 = 0.9*24;
     if (v1 < -0.9*24)
@@ -100,16 +103,16 @@ void speedControllerCallback(const bot::quad& omega_mes){
 
 
     cvs->wheel_commands1 = v1;
+    printf("command1 = %f\n",cvs->wheel_commands1);
     cvs->wheel_commands2 = v2;
     cvs->wheel_commands3 = v3;
     cvs->wheel_commands4 = v4;
-    old_time = current_time;
 
 }
 
 int main(int argc, char **argv) {
     Struct* cvs;
-    ros::init(argc, argv, "speedcontroller");
+    ros::init(argc, argv, "speedcontroler");
     ros::NodeHandle n;
     ros::NodeHandle n1;
     ros::NodeHandle n2;
