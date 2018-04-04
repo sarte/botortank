@@ -18,7 +18,7 @@ def callback(cmd):
     vel_x = cmd.linear.x
     vel_y = cmd.linear.y
     rot_z = cmd.angular.z
-    pub = rospy.Publisher('omega_ref', quad, queue_size=10)
+    pub = rospy.Publisher('omega_ref', quad, queue_size=1)
     omega_ref = quad()
     vel_norm = norm(vel_x, vel_y)
     omega_ref.motor1 = ((vel_x + vel_y) / vel_norm) + rot_z
