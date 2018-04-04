@@ -10,29 +10,38 @@
 #define wheel_distance 0.225
 
 ros::Time old_time(0.0);
-double omega=0;
-double vitesseX=0;
-double vitesseY=0;
-double dtheta=0;
-double dx=0;
-double dy=0;
-double dt=0;
+
+//double omega=0.0;
+//double vitesseX=0.0;
+//double vitesseY=0.0;
+//double dtheta=0.0;
+//double dx=0.0;
+//double dy=0.0;
+
+double dt=0.0;
+double v1=0.0;
+double v2=0.0;
+double v3=0.0;
+double v4=0.0;
+
 void odom(const bot::quad& omega_mes)
 {
    ros::Time current_time = ros::Time::now();
+   
    double v1=omega_mes.motor1*wheel_radius;
    double v2=omega_mes.motor2*wheel_radius;
    double v3=omega_mes.motor3*wheel_radius;
    double v4=omega_mes.motor4*wheel_radius;
 
-   omega=(v1+v2-v3-v4)/4;
-   vitesseX=(v1+v2+v3+v4)/4;
-   vitesseY=(v1-v2+v3-v4)/4;
+   
    dt=(current_time-old_time).toSec();
-   dtheta=omega*dt;
-   dx=vitesseX*dt;
-   dy=vitesseY*dt;
+   
    old_time=current_time;
+   
+   printf("temps = %f\n",dt);
+     
+   
+   
 //cvs->X+=1;
 //	CtrlIn *ivs;
 //	CtrlOut *ovs;
@@ -85,22 +94,33 @@ int main(int argc, char **argv) {
     double x=0;
     double y=0;
     double theta=0;
+	
     geometry_msgs::Twist loc;
 
     while (ros::ok())
     {
+		double omega = (v1+v2-v3-v4)/4;
+		double vitesseX = (v1+v2+v3+v4)/4;
+		double vitesseY = (v1-v2+v3-v4)/4;
+		double dtheta = omega*dt;
+		double dx = vitesseX*dt;
+		double dy = vitesseY*dt;
+		
         x+=dx;
         y+=dy;
         theta+=dtheta;
+		
         if(theta>M_PI){
 		theta -= 2*M_PI;
 	    }
 	    else if(theta<(-M_PI)){
 		theta += 2*M_PI;
 	    }
+		
         loc.linear.x=x;
         loc.linear.y=y;
         loc.angular.z=theta;
+		
         pub.publish(loc); //here is the actual broadcast
         ros::spinOnce(); //important to call the callbacks
         loop_rate.sleep(); //puts node tu sleep to complete the 10Hz cycle

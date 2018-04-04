@@ -256,7 +256,7 @@ def callback(cmd):
 def driver():
     rospy.init_node('driver', anonymous=True)
     # rospy.Subscriber("omega_ref", String, callback)
-    rospy.Subscriber("omega_ref", quad, callback)
+    rospy.Subscriber("omega_cmd", quad, callback)
     motor_init()
     motor_start()
     rospy.spin()

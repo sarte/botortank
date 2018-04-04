@@ -201,11 +201,11 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(compteur src/compteur.cpp)
-target_link_libraries(compteur ${catkin_LIBRARIES})
-add_dependencies(compteur bot_generate_messages_cpp)
-
 add_executable(Odometry src/Odometry.cpp)
 target_link_libraries(Odometry ${catkin_LIBRARIES})
 add_dependencies(Odometry bot_generate_messages_cpp)
+
+add_executable(speedcontroler src/speedcontroler.cpp)
+target_link_libraries(speedcontroler ${catkin_LIBRARIES})
+add_dependencies(speedcontroler bot_generate_messages_cpp)
 

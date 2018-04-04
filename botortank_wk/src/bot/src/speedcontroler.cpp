@@ -5,77 +5,72 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
-#include "CtrlStruct_gr5.h"
+#include "structure.h"
+#define Kp 0.03
+#define Ki 0.052
 
-void init_speed_controller(CtrlStruct* theCtrlStruct){
+Struct* cvs;
+ros::Time old_time = ros::Time::now();
+double omega_ref_1 = 0;
+double omega_ref_2 = 0;
+double omega_ref_3 = 0;
+double omega_ref_4 = 0;
+double omega_1 = 0;
+double omega_2 = 0;
+double omega_3 = 0;
+double omega_4 = 0;
+double error_1 = 0;
+double error_2 = 0;
+double error_3 = 0;
+double error_4 = 0;
+double int_error_1 = 0;
+double int_error_2 = 0;
+double int_error_3 = 0;
+double int_error_4 = 0;
+double ratio = 19;
+double dt = 0;
 
-    theCtrlStruct->theUserStruct->t_old = theCtrlStruct->theCtrlIn->t;
-    theCtrlStruct->theUserStruct->int_error_1 = 0;
-    theCtrlStruct->theUserStruct->int_error_2 = 0;
-    theCtrlStruct->theUserStruct->int_error_3 = 0;
-    theCtrlStruct->theUserStruct->int_error_4 = 0;
-
-}
-
-double *Kp_Ki_Computation(double overshoot, double time_response)
+void refCallback(const bot::quad& omega_ref)
 {
-    double *output = (double*) malloc(sizeof(double)*2);
-
-    double Ra =5.84; // resistance de l'induit
-    double La=(0.560e-3); // inductance de l'induit
-    double kphi=37.83e-3;
-    double J=0.58e-6;
-    double Jrobot = 1.33e-5;
-    double Kv=1.75e-5;
-    double K = 1;
-
-    double t_mechanical = (Jrobot)/Kv; // mechanical time constant
-    double xsi = sqrt((log(overshoot)*log(overshoot))/((M_PI*M_PI)+ log(overshoot)*log(overshoot)));
-    double wn = 4/(xsi*time_response);
-    double Ki = ((wn*wn)*Kv*Ra*t_mechanical)/(K*kphi);
-    double Kp =((2*xsi*wn)*(Ra*Kv*t_mechanical) - Ra*Kv)/(K*kphi);
-
-    output[0] = Kp; // 14 is the reduction ratio
-    output[1] = Ki;
-    return output;
-
+    omega_ref_1 = omega_ref.motor1 * ratio; // right motor reference speed
+    omega_ref_2 = omega_ref.motor2 * ratio;
+    omega_ref_3 = omega_ref.motor3 * ratio;
+    omega_ref_4 = omega_ref.motor4 * ratio;
 }
 
-void speedControllerCallback(CtrlStruct* theCtrlStruct, double* omega_ref){
+void speedControllerCallback(const bot::quad& omega_mes){
 
-    double* out= Kp_Ki_Computation(0.05,0.02);
-    double Kp = out[0]; // a recalculer
-    double Ki = out[1]; // a recalculer
-    double ratio = 19;
+    ros::Time current_time = ros::Time::now();
+
     //double vsat = 24;
     //double isat = 0.78;
     double v1, v2, v3, v4;
+
+    omega_1 = omega_mes.motor1 * ratio; // left motor current speed
+    omega_2 = omega_mes.motor2 * ratio;
+    omega_3 = omega_mes.motor3 * ratio;
+    omega_4 = omega_mes.motor4 * ratio;
     /*CtrlIn *in = cvs->inputs;
     CtrlOut *out = cvs->outputs;*/
-    double omega_ref_1 = omega_ref[ID_1] * ratio; // right motor reference speed
-    double omega_ref_2 = omega_ref[ID_2] * ratio;
-    double omega_ref_3 = omega_ref[ID_3] * ratio;
-    double omega_ref_4 = omega_ref[ID_4] * ratio; // left motor reference speed
-    double omega_1 = theCtrlStruct->theCtrlIn->wheel_1_speed * ratio; // left motor current speed
-    double omega_2 = theCtrlStruct->theCtrlIn->wheel_2_speed * ratio;
-    double omega_3 = theCtrlStruct->theCtrlIn->wheel_3_speed * ratio;
-    double omega_4 = theCtrlStruct->theCtrlIn->wheel_4_speed * ratio; // right motor current speed
-    double error_1 = omega_ref_1 - omega_1; // left speed error
-    double error_2 = omega_ref_2 - omega_2;
-    double error_3 = omega_ref_3 - omega_3;
-    double error_4 = omega_ref_4 - omega_4; // right speed error
-    double int_error_1 = theCtrlStruct->theUserStruct->int_error_1; //left speed integrarion error
-    double int_error_2 = theCtrlStruct->theUserStruct->int_error_2;
-    double int_error_3 = theCtrlStruct->theUserStruct->int_error_3;
-    double int_error_4 = theCtrlStruct->theUserStruct->int_error_4; //right speed integration error
-    int_error_1 += 0.01*error_1;
-    int_error_2 += 0.01*error_2;
-    int_error_3 += 0.01*error_3;
-    int_error_4 += 0.01*error_4;
-    theCtrlStruct->theUserStruct->int_error_1 = int_error_1;
-    theCtrlStruct->theUserStruct->int_error_2 = int_error_2;
-    theCtrlStruct->theUserStruct->int_error_3 = int_error_3;
-    theCtrlStruct->theUserStruct->int_error_4 = int_error_4;
+    // left motor reference speed
+     // right motor current speed
+    error_1 = omega_ref_1 - omega_1; // left speed error
+    error_2 = omega_ref_2 - omega_2;
+    error_3 = omega_ref_3 - omega_3;
+    error_4 = omega_ref_4 - omega_4; // right speed error
+    int_error_1 = cvs->int_error_1; //left speed integrarion error
+    int_error_2 = cvs->int_error_2;
+    int_error_3 = cvs->int_error_3;
+    int_error_4 = cvs->int_error_4; //right speed integration error
+    dt = (current_time.toSec()-old_time.toSec());
+    int_error_1 += dt*error_1;
+    int_error_2 += dt*error_2;
+    int_error_3 += dt*error_3;
+    int_error_4 += dt*error_4;
+    cvs->int_error_1 = int_error_1;
+    cvs->int_error_2 = int_error_2;
+    cvs->int_error_3 = int_error_3;
+    cvs->int_error_4 = int_error_4;
     v1 = Kp*error_1 + Ki*int_error_1; // voltage command in [-24;24]
     v2 = Kp*error_2 + Ki*int_error_2; // voltage command in [-24;24]
     v3 = Kp*error_3 + Ki*int_error_3; // voltage command in [-24;24]
@@ -102,28 +97,38 @@ void speedControllerCallback(CtrlStruct* theCtrlStruct, double* omega_ref){
     v3 = 1000*v3/(24*9);
     v4 = 1000*v4/(24*9);
 
-    theCtrlStruct->theCtrlOut->wheel_commands[ID_1] = v1;
-    theCtrlStruct->theCtrlOut->wheel_commands[ID_2] = v2;
-    theCtrlStruct->theCtrlOut->wheel_commands[ID_3] = v3;
-    theCtrlStruct->theCtrlOut->wheel_commands[ID_4] = v4;
+
+
+    cvs->wheel_commands1 = v1;
+    cvs->wheel_commands2 = v2;
+    cvs->wheel_commands3 = v3;
+    cvs->wheel_commands4 = v4;
+    old_time = current_time;
 
 }
 
 int main(int argc, char **argv) {
-    ros::init(argc, argv, "speedcontroler");
+    Struct* cvs;
+    ros::init(argc, argv, "speedcontroller");
     ros::NodeHandle n;
-    ros::Publisher pub = n.advertise<std_msgs::Float32>("omega_cmd", 1000);
-    ros::Rate loop_rate(10);
+    ros::NodeHandle n1;
+    ros::NodeHandle n2;
+    ros::Subscriber sub1 = n1.subscribe("omega_ref", 1000, speedControllerCallback);
+    ros::Subscriber sub2 = n2.subscribe("omega_mes", 1000, speedControllerCallback);
+    ros::Publisher pub = n.advertise<bot::quad>("omega_cmd", 1000);
+    ros::Rate loop_rate(100);
+    bot::quad command;
 
     while (ros::ok())
     {
 
-        ros::Subscriber sub = n.subscribe("omega_ref", 1000, speedControllerCallback);
-        ros::Subscriber sub = n.subscribe("omega_mes", 1000, speedControllerCallback);
-        std_msgs::Float voltage_ref;
-        chatter_pub.publish(voltage_ref); //here is the actual broadcast
-        ros::spinOnce(); //important to call the callbacks
-        loop_rate.sleep(); //puts node tu sleep to complete the 10Hz cycle
+        command.motor1 = cvs->wheel_commands1;
+        command.motor2 = cvs->wheel_commands2;
+        command.motor3 = cvs->wheel_commands3;
+        command.motor4 = cvs->wheel_commands4;
+        pub.publish(command);
+        ros::spinOnce();
+        loop_rate.sleep();
 
     }
 
