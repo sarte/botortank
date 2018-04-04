@@ -53,6 +53,7 @@ find_package(catkin REQUIRED COMPONENTS
    FILES
 #   Message1.msg
    quad.msg
+   tetra.msg
  )
 
 ## Generate services in the 'srv' folder
