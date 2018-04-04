@@ -7,7 +7,7 @@ from geometry_msgs.msg import Twist
 def callback(msg):
     pub = rospy.Publisher('velocity_ref', Twist, queue_size=1)
     newvel = Twist()
-    reductionratio = 0.5
+    reductionratio = 1
     newvel.linear.x = reductionratio * 100 * msg.linear.x
     newvel.linear.y = reductionratio * 100 * msg.linear.y
     newvel.linear.z = reductionratio * 100 * msg.linear.z

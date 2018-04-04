@@ -7,8 +7,8 @@ from geometry_msgs.msg import Twist
 from bot.msg import *
 
 def callback(joy_cmd):
-    pub = rospy.Publisher('velocity_ref', Twist, queue_size=10)
-    rate = rospy.Rate(10)
+    pub = rospy.Publisher('velocity_ref', Twist, queue_size=1)
+    rate = rospy.Rate(1000)
     while not rospy.is_shutdown():
         vel_cmd = Twist()
         joy_cmd.axes.1 = vel_cmd.linear.x
