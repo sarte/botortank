@@ -1,0 +1,8 @@
+prefix=/home/botortank/botortank_ws/devel
+
+Name: bot
+Description: Description of bot
+Version: 0.0.0
+Cflags: -I/home/botortank/botortank_ws/devel/include
+Libs: -L/home/botortank/botortank_ws/devel/lib 
+Requires: 
