@@ -99,13 +99,13 @@ int main(int argc, char **argv) {
 
     while (!(ros::isShuttingDown()))
     {
-		double omega = (v1+v2-v3-v4)/4;
+		double omega = (v1+v2-v3-v4)/4/0.238;
 		double vitesseX = (v1+v2+v3+v4)/4;
 		double vitesseY = (v1-v2+v3-v4)/4;
 		double dtheta = omega*dt;
-		double dx = vitesseX*dt;
-		double dy = vitesseY*dt;
-		
+		double dx = vitesseX*cos(theta)*dt-vitesseY*sin(theta)*dt;
+		double dy = vitesseY*cos(theta)*dt+vitesseX*sin(theta)*dt;
+
         x+=dx;
         y+=dy;
         theta+=dtheta;

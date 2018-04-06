@@ -117,9 +117,9 @@ def Motor_getSpeed4():
 
 
 def encoder():
-    pub = rospy.Publisher('omega_mes', quad, queue_size=10)
+    pub = rospy.Publisher('omega_mes', quad, queue_size=1)
     rospy.init_node('encoder', anonymous=True)
-    rate = rospy.Rate(100)
+    rate = rospy.Rate(1000)
     omega_mes = quad()
     while not rospy.is_shutdown():
         omega_mes.motor1 = Motor_getSpeed1()
