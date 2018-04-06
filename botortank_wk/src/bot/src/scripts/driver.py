@@ -246,9 +246,13 @@ def callback(cmd):
     # motor_init()
     # motor_start()
     motor_setDC1(cmd.motor1)
+    sleep(0.01)
     motor_setDC2(cmd.motor2)
+    sleep(0.01)
     motor_setDC3(cmd.motor3)
+    sleep(0.01)
     motor_setDC4(cmd.motor4)
+    sleep(0.01)
     rate.sleep()
     # motor_stop()
 
@@ -258,7 +262,9 @@ def driver():
     # rospy.Subscriber("omega_ref", String, callback)
     rospy.Subscriber("omega_cmd", quad, callback)
     motor_init()
+    sleep(0.01)
     motor_start()
+    sleep(0.01)
     rospy.spin()
 
 

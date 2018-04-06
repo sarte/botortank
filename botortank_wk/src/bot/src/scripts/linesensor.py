@@ -41,16 +41,16 @@ def follow():
     ToSPI = [0x8f,0x00,0x00,0x00,0x00]
     FromSPI = MySPI_FPGA.xfer2(ToSPI)
     F34 = (FromSPI[1] & 0x0f)*256+FromSPI[2]
-    # print(F1)
+    # print(F34)
     F23 = (FromSPI[3] & 0x0f)*256+FromSPI[4]
-    # print(F0)
+    # print(F23)
     ToSPI = [0x9f,0x00,0x00,0x00,0x00]
     FromSPI = MySPI_FPGA.xfer2(ToSPI)
     F12 = (FromSPI[1] & 0x0f)*256+FromSPI[2]
-    # print(F3)
+    # print(F12)
     F41 = (FromSPI[3] & 0x0f)*256+FromSPI[4]
-    # print(F2)
-    # add the threshold!
+    # print(F41)
+    th = 1000
     sens.a = F12 > th
     sens.b = F23 > th
     sens.c = F34 > th
@@ -58,14 +58,14 @@ def follow():
     return sens
 
 
-
-
 def linesensor():
-    pub = rospy.Publisher('blackline', tetra, queue_size=10)  # chose logical topic to get 0 and 1 as a normal answer ;)
+    pub = rospy.Publisher('blackline', tetra, queue_size=1)
     rospy.init_node('linesensor', anonymous=True)
-    rate = rospy.Rate(100)
+    rate = rospy.Rate(1)
     line = tetra()
+    adc_start()
     while not rospy.is_shutdown():
+        # rospy.loginfo('nice and easy cowboy')
         line = follow()
         pub.publish(line)
         rate.sleep()
