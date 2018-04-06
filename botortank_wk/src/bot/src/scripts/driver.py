@@ -15,6 +15,7 @@ from std_msgs.msg import String
 from bot.msg import *
 
 
+
 ADDRESS1 = 0x708  # identifiant pour envoyer des donnees
 ADDRESS_RECEIVE1 = 0x700  # identifiant pour recevoir
 ADDRESS2 = 0x408  # identifiant pour envoyer des donnees
@@ -242,14 +243,28 @@ def motor_setDC4(Duty):
 
 
 def callback(cmd):
-    rate = rospy.Rate(1000)
+    global cm1
+    global cm2
+    global cm3
+    global cm4
+    cm1 = cmd.motor1
+    cm2 = cmd.motor2
+    cm3 = cmd.motor3
+    cm4 = cmd.motor4
+    #rate = rospy.Rate(1000)
     # motor_init()
     # motor_start()
-    motor_setDC1(cmd.motor1)
-    motor_setDC2(cmd.motor2)
-    motor_setDC3(cmd.motor3)
-    motor_setDC4(cmd.motor4)
-    rate.sleep()
+
+    #print(cm4)
+   # motor_setDC1(cmd.motor1)
+#    sleep(0.01)
+    #motor_setDC2(cmd.motor2)
+#    sleep(0.01)
+   # motor_setDC3(cmd.motor3)
+#    sleep(0.01)
+   # motor_setDC4(cmd.motor4)
+#    sleep(0.01)
+#    rate.sleep()
     # motor_stop()
 
 
@@ -257,9 +272,25 @@ def driver():
     rospy.init_node('driver', anonymous=True)
     # rospy.Subscriber("omega_ref", String, callback)
     rospy.Subscriber("omega_cmd", quad, callback)
+    rate = rospy.Rate(100)
     motor_init()
+    sleep(0.01)
     motor_start()
+    sleep(0.01)
+    while not rospy.is_shutdown():
+        motor_setDC1(cm1)
+        sleep(0.01)
+        motor_setDC2(cm2)
+        sleep(0.01)
+        motor_setDC3(cm3)
+        sleep(0.01)
+        motor_setDC4(cm4)
+        sleep(0.01)
+        rate.sleep()
+    
     rospy.spin()
+
+    motor_stop()
 
 
 if __name__ == '__main__':
