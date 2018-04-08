@@ -5,4 +5,6 @@
 	<node name="teleop_twist_joy" pkg="teleop_twist_joy" type="teleop_node" />
 	<node name="teleop2midlevel" pkg="bot" type="teleop2midlevel.py" />
 	<node name="encoder" pkg="bot" type="encoder.py" />
+	<node name="odometry" pkg="bot" type="odometry" />
+	<node name="speedcontroler" pkg="bot" type="speedcontroler" />
 </launch>

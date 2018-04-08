@@ -10,8 +10,10 @@ from bot.msg import *
 
 
 def norm(a,b):
-    # return sqrt((a * a) + (b * b))
-    return 1
+    # if a * b != 0:
+    #     return sqrt((a * a) + (b * b))
+    # else:
+        return 1
 
 
 def callback(cmd):
