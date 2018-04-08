@@ -10,15 +10,17 @@ from bot.msg import *
 
 
 def norm(a,b):
-    # return sqrt((a * a) + (b * b))
-    return 1
+    # if a * b != 0:
+    #     return sqrt((a * a) + (b * b))
+    # else:
+        return 1
 
 
 def callback(cmd):
     vel_x = cmd.linear.x
     vel_y = cmd.linear.y
     rot_z = cmd.angular.z
-    pub = rospy.Publisher('omega_ref', quad, queue_size=1)
+    pub = rospy.Publisher('omega_ref', quad, queue_size=10)
     omega_ref = quad()
     vel_norm = norm(vel_x, vel_y)
     omega_ref.motor1 = ((vel_x + vel_y) / vel_norm) + rot_z

@@ -1,0 +1,10 @@
+<launch>
+	<node name="joy_node" pkg="joy" type="joy_node" />
+	<node name="teleop_twist_joy" pkg="teleop_twist_joy" type="teleop_node" />
+	<node name="teleop2midlevel" pkg="bot" type="teleop2midlevel.py" />
+	<node name="encoder" pkg="bot" type="encoder.py" />
+	<node name="midlevel" pkg="bot" type="midlevel.py" />
+	<node name="speedcontroler" pkg="bot" type="speedcontroler" />
+	<node name="driver" pkg="bot" type="driver.py" />
+
+</launch>
