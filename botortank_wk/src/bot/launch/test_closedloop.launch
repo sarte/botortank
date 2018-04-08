@@ -1,0 +1,5 @@
+<launch>
+	<node name="encoder" pkg="bot" type="encoder.py" />
+	<node name="speedcontroler" pkg="bot" type="speedcontroler" />
+	<node name="driver" pkg="bot" type="driver.py" />
+</launch>
