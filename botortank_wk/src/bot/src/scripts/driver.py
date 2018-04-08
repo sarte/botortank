@@ -15,7 +15,6 @@ from std_msgs.msg import String
 from bot.msg import *
 
 
-
 ADDRESS1 = 0x708  # identifiant pour envoyer des donnees
 ADDRESS_RECEIVE1 = 0x700  # identifiant pour recevoir
 ADDRESS2 = 0x408  # identifiant pour envoyer des donnees
@@ -40,6 +39,10 @@ sleep(0.1)
 GPIO.output(MyARM_ResetPin, GPIO.LOW)
 sleep(0.1)
 
+cm1 = 0
+cm2 = 0
+cm3 = 0
+cm4 = 0
 
 # motor initialization
 def motor_init():
@@ -251,32 +254,33 @@ def callback(cmd):
     cm2 = cmd.motor2
     cm3 = cmd.motor3
     cm4 = cmd.motor4
-    #rate = rospy.Rate(1000)
-    # motor_init()
-    # motor_start()
 
-    #print(cm4)
-   # motor_setDC1(cmd.motor1)
-#    sleep(0.01)
-    #motor_setDC2(cmd.motor2)
-#    sleep(0.01)
-   # motor_setDC3(cmd.motor3)
-#    sleep(0.01)
-   # motor_setDC4(cmd.motor4)
-#    sleep(0.01)
-#    rate.sleep()
+    # rate = rospy.Rate(1000)
+    # motor_init()
+    # # motor_start()
+    #
+    # print(cm4)
+    # motor_setDC1(cmd.motor1)
+    # sleep(0.01)
+    # motor_setDC2(cmd.motor2)
+    # sleep(0.01)
+    # motor_setDC3(cmd.motor3)
+    # sleep(0.01)
+    # motor_setDC4(cmd.motor4)
+    # sleep(0.01)
+    # rate.sleep()
     # motor_stop()
 
 
 def driver():
     rospy.init_node('driver', anonymous=True)
     # rospy.Subscriber("omega_ref", String, callback)
-    rospy.Subscriber("omega_cmd", quad, callback)
-    rate = rospy.Rate(100)
+    rospy.Subscriber("omega_cmd", quad, callback, queue_size=10)
     motor_init()
     sleep(0.01)
     motor_start()
     sleep(0.01)
+    rate = rospy.Rate(100)
     while not rospy.is_shutdown():
         motor_setDC1(cm1)
         sleep(0.01)
@@ -287,9 +291,7 @@ def driver():
         motor_setDC4(cm4)
         sleep(0.01)
         rate.sleep()
-    
     rospy.spin()
-
     motor_stop()
 
 

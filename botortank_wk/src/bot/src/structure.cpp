@@ -15,6 +15,7 @@ Struct* init_Struct()
 	cvs->wheel_commands2 = 0;
 	cvs->wheel_commands3 = 0;
 	cvs->wheel_commands4 = 0;
+    return cvs;
 
 }
 

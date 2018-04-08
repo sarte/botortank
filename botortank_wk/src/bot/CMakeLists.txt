@@ -51,8 +51,8 @@ find_package(catkin REQUIRED COMPONENTS
 # Generate messages in the 'msg' folder
  add_message_files(
    FILES
+#   Message1.msg
    quad.msg
-   tetra.msg
  )
 
 ## Generate services in the 'srv' folder
@@ -208,4 +208,8 @@ add_dependencies(odometry bot_generate_messages_cpp)
 add_executable(speedcontroler src/speedcontroler.cpp)
 target_link_libraries(speedcontroler ${catkin_LIBRARIES})
 add_dependencies(speedcontroler bot_generate_messages_cpp)
+
+# add_executable(essaidouble src/essaidouble.cpp)
+# target_link_libraries(essaidouble ${catkin_LIBRARIES})
+# add_dependencies(essaidouble bot_generate_messages_cpp)
 

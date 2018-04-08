@@ -29,6 +29,7 @@ sleep(0.1)
 
 ID_sorting = 0x01
 ID_bee = 0x06
+ID_ball=0x02
 sorting_speed = 57
 
 
@@ -194,10 +195,20 @@ def bee():
     instru_dyna(ID_bee, 0x05, 0x03, 0x1E, 0x00, 0x02)
 
 
+def ball():
+    enable(ID_ball)
+    sleep(0.1)
+    instru_dyna(0x02,0x05,0x03,0x20,0x00,0x03)
+    sleep(10)
+    disable(ID_ball)
+
+
+
 # stop everything
 def stop():
     disable(ID_bee)
     disable(ID_sorting)
+    disable(ID_ball)
 
 
 # Message handler
@@ -216,6 +227,9 @@ def callback(data):
         print('enabling bee dynamixel \n starting bee sequence')
         bee_start()
         bee()
+    elif command == 'ball':
+        print('starting ball sequence')
+        ball()
     else:
         print('Unknown command, stopping instead')
         stop()
