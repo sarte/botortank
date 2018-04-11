@@ -9,7 +9,7 @@ import time
 from time import sleep
 from ctypes import c_double
 from math import *
-from std_msgs.msg import String
+from std_msgs.msg import Int8
 
 
 MyARM_ResetPin = 19  # Pin 4 of connector = BCM19 = GPIO[1]
@@ -29,7 +29,7 @@ sleep(0.1)
 
 ID_sorting = 0x01
 ID_bee = 0x06
-ID_ball=0x02
+ID_ball = 0x02
 sorting_speed = 57
 
 
@@ -90,11 +90,11 @@ def sorting_start():
     disable(ID_sorting)
 
 
-# sorting dynamixel stop
-def sorting_stop():
-    enable(ID_sorting)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x00)
-    disable(ID_sorting)
+# # sorting dynamixel stop
+# def sorting_stop():
+#     enable(ID_sorting)
+#     instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x00)
+#     disable(ID_sorting)
 
 
 # 1st sorting sequence
@@ -190,9 +190,10 @@ def bee_start():
 def bee():
     enable(ID_bee)
     sleep(1)
-    instru_dyna(ID_bee, 0x05, 0x03, 0x1E, 0x00, 0x01)
-    sleep(3)
+    instru_dyna(ID_bee, 0x05, 0x03, 0x1E, 0x66, 0x02)
+    sleep(6)
     instru_dyna(ID_bee, 0x05, 0x03, 0x1E, 0x00, 0x02)
+
 
 
 def ball():
@@ -201,7 +202,6 @@ def ball():
     instru_dyna(0x02,0x05,0x03,0x20,0x00,0x03)
     sleep(10)
     disable(ID_ball)
-
 
 
 # stop everything
@@ -214,38 +214,44 @@ def stop():
 # Message handler
 def callback(data):
     command = data.data
-    if command == 'sorting1':
+    pub = rospy.Publisher('dyna_feedback', Int8, queue_size=1)
+    feedback = 0
+    if command == 1:  #'sorting1':
         print('enabling sorting dynamixel \n starting 1st sequence')
         sorting_start()
         sorting1()
-        sorting_stop()
-    elif command == 'sorting2':
+        feedback = 1
+    elif command == 2:  #'sorting2':
         print('enabling sorting dynamixel \n starting 2nd sequence')
         sorting_start()
         sorting2()
-    elif command == 'bee':
+        feedback = 2
+    elif command == 3:  #'bee':
         print('enabling bee dynamixel \n starting bee sequence')
         bee_start()
         bee()
-    elif command == 'ball':
+        feedback = 3
+    elif command == 4:  #'ball':
         print('starting ball sequence')
+        instru_dyna(ID_ball, 0x05, 0x03, 0x20, 0x00, 0x01)
         ball()
+        feedback = 4
     else:
         print('Unknown command, stopping instead')
-        stop()
+    stop()
+    pub.publish(feedback)
 
 
 # the node definition itself
 def dynamixel():
     rospy.init_node('dynamixel', anonymous=True)
     print('node initiation: dynamixel')
-    rospy.Subscriber('dynamixel_cmd', String, callback)
+    rospy.Subscriber('dynamixel_cmd', Int8, callback)
     print('topic initiation: dynamixel_cmd')
     rospy.spin()
     print('Shutting down: disabling dynamixels')
     stop()
     GPIO.cleanup()
-
 
 
 if __name__ == '__main__':

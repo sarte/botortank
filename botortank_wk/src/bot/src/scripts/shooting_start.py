@@ -14,6 +14,7 @@ from std_msgs.msg import String
 # from geometry_msgs.msg import Twist
 from bot.msg import *
 
+CAN = MyMCP2515.MCP2515()
 MyARM_ResetPin = 19  # Pin 4 of connector = BCM19 = GPIO[1]
 
 MySPI_FPGA = spidev.SpiDev()
@@ -28,27 +29,27 @@ GPIO.output(MyARM_ResetPin, GPIO.HIGH)
 sleep(0.1)
 GPIO.output(MyARM_ResetPin, GPIO.LOW)
 sleep(0.1)
+start=1;
+
+def callback(enable):
+    global start;
+    start=enable;
 
 
-def startrecup():
-    ToSPI:[0x0f,0x00,0x00,0x00,0x00]
-    FromSPI = MySPI_FPGA.xfer2(ToSPI)
-    start=(FromSPI[1] & 0x80)>>7
-    return start
-
-
-def start():
-    pub = rospy.Publisher('start', Bool, queue_size=10)
-    rospy.init_node('startrecup', anonymous=True)
-    rate = rospy.Rate(100)
+def shooting_start():
+    rospy.init_node('shooting', anonymous=True)
+    # rospy.Subscriber("omega_ref", String, callback)
+    rospy.Subscriber("shoot_enable", Bool, callback, queue_size=1)
+    rate= rospy.Rate(100)
     while not rospy.is_shutdown():
-        start = startrecup()
-        pub.publish(start)
-        rate.sleep()
-
+        ToSPI=[0xAA,0x00,0x00,0x00,enable]
+        FromSPI = MySPI_FPGA.xfer2(ToSPI)
+    rospy.spin()
+    ToSPI=[0xAA,0x00,0x00,0x00,0x01]
+    FromSPI = MySPI_FPGA.xfer2(ToSPI)
 
 if __name__ == '__main__':
     try:
-        start()
+        driver()
     except rospy.ROSInterruptException:
         pass

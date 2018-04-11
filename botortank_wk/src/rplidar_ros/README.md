@@ -38,12 +38,3 @@ RPLidar frame
 =====================================================================
 RPLidar frame must be broadcasted according to picture shown in
 rplidar-frame.png
-
-How to run rplidar ros package
-=====================================================================
-
-Check the authority of rplidar's serial-port :
-
-ls -l /dev |grep ttyUSB
-
-sudo chmod 666 /dev/ttyUSB0

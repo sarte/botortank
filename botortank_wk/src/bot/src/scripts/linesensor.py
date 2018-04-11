@@ -61,7 +61,7 @@ def follow():
 def linesensor():
     pub = rospy.Publisher('blackline', tetra, queue_size=1)
     rospy.init_node('linesensor', anonymous=True)
-    rate = rospy.Rate(1)
+    rate = rospy.Rate(100)
     line = tetra()
     adc_start()
     while not rospy.is_shutdown():
