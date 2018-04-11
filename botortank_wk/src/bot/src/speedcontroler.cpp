@@ -6,8 +6,8 @@
 #include <math.h>
 #include <time.h>
 //#include "structure.h"
-#define Kp 0.03//6.20286471355455//0.316039698735464//0.3//0.03
-#define Ki 0.052//15663.5814742697//5.5203351563618//0.52//0.052
+//#define Kp //100//0.03//6.20286471355455//0.316039698735464//0.3//0.03
+//#define Ki  //0.142897881346661//0//0.052//0.052//15663.5814742697//5.5203351563618//0.52//0.052
 double omega_ref_1 = 0;
 double omega_ref_2 = 0;
 double omega_ref_3 = 0;
@@ -89,7 +89,7 @@ void PIcontroller(Struct* cvs)
     double error_2 = omega_ref_2 - omega_2;
     double error_3 = omega_ref_3 - omega_3;
     double error_4 = omega_ref_4 - omega_4; // right speed error
-    printf("error_4 = %f",error_4);
+    printf("\n error_4 = %f",error_4);
     double int_error_1 = cvs->int_error_1; //left speed integrarion error
     double int_error_2 = cvs->int_error_2;
     double int_error_3 = cvs->int_error_3;
@@ -101,7 +101,7 @@ void PIcontroller(Struct* cvs)
     int_error_2 += dt*error_2;
     int_error_3 += dt*error_3;
     int_error_4 += dt*error_4;
-    printf("int_error_4 = %f",int_error_4);
+    printf("\n int_error_4 = %f",int_error_4);
     old_time = current_time;
     cvs->int_error_1 = int_error_1;
     cvs->int_error_2 = int_error_2;
@@ -109,11 +109,11 @@ void PIcontroller(Struct* cvs)
     cvs->int_error_4 = int_error_4;
     
     //printf("int_error_1 = %f\n",cvs->int_error_1);
-    double v1 = Kp*error_1 + Ki*int_error_1; // voltage command in [-24;24]
-    double v2 = Kp*error_2 + Ki*int_error_2; // voltage command in [-24;24]
-    double v3 = Kp*error_3 + Ki*int_error_3; // voltage command in [-24;24]
-    double v4 = Kp*error_4 + Ki*int_error_4; // voltage command in [-24;24]
-    printf("v4 = %f\n",v4);
+    double v1 = 0.02*error_1 + 0.1*int_error_1; // voltage command in [-24;24]
+    double v2 = 0.02*error_2 + 0.1*int_error_2; // voltage command in [-24;24]
+    double v3 = 0.02*error_3 + 0.1*int_error_3; // voltage command in [-24;24]
+    double v4 = 0.02*error_4 + 0.1*int_error_4; // voltage command in [-24;24]
+    printf("\n v4 = %f",v4);
     if (v1 > 0.9*24)
         v1 = 0.9*24;
     if (v1 < -0.9*24)
@@ -148,6 +148,7 @@ void PIcontroller(Struct* cvs)
     cvs->wheel_commands2 = v2;
     cvs->wheel_commands3 = v3;
     cvs->wheel_commands4 = v4;
+    printf("\n wheel_command1 = %f",cvs->wheel_commands1);
 }
 
 
@@ -171,6 +172,7 @@ int main(int argc, char **argv) {
         command.motor2 = cvs->wheel_commands2;
         command.motor3 = cvs->wheel_commands3;
         command.motor4 = cvs->wheel_commands4;
+        
         pub.publish(command);
         ros::spinOnce();
         loop_rate.sleep();

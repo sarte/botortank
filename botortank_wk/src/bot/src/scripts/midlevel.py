@@ -6,8 +6,14 @@ import time
 from time import sleep
 from math import sqrt
 from geometry_msgs.msg import Twist
+from std_msgs.msg import Int8
 from bot.msg import *
 
+vel_x = 0
+vel_y = 0
+rot_z = 0
+move=0
+rotation=0
 
 def norm(a,b):
     # if a * b != 0:
@@ -17,26 +23,74 @@ def norm(a,b):
 
 
 def callback(cmd):
+    global vel_x
+    global vel_y
+    global rot_z
     vel_x = cmd.linear.x
     vel_y = cmd.linear.y
     rot_z = cmd.angular.z
-    pub = rospy.Publisher('omega_ref', quad, queue_size=10)
-    omega_ref = quad()
-    vel_norm = norm(vel_x, vel_y)
-    omega_ref.motor1 = ((vel_x + vel_y) / vel_norm) + rot_z
-    omega_ref.motor2 = ((vel_x - vel_y) / vel_norm) + rot_z
-    omega_ref.motor3 = ((vel_x + vel_y) / vel_norm) - rot_z
-    omega_ref.motor4 = ((vel_x - vel_y) / vel_norm) - rot_z
-    pub.publish(omega_ref)
-    rospy.loginfo("omega motor 1 %s", omega_ref.motor1)
-    rospy.loginfo("omega motor 2 %s", omega_ref.motor2)
-    rospy.loginfo("omega motor 3 %s", omega_ref.motor3)
-    rospy.loginfo("omega motor 4 %s", omega_ref.motor4)
 
+def callback_move(cmd):
+    global move
+    move=cmd.data
+
+def callback_rotation(cmd):
+    global rotation
+    rotation=cmd.data
 
 def midlevel():
     rospy.init_node('midlevel', anonymous=True)
     rospy.Subscriber('velocity_ref', Twist, callback)
+    rospy.Subscriber('move',Int8,callback_move)
+    rospy.Subscriber('enable_rotation',Int8,callback_rotation)
+    pub = rospy.Publisher('omega_ref', quad, queue_size=1)
+    omega_ref = quad()
+    rate = rospy.Rate(100)
+    while not rospy.is_shutdown():
+        if(!move):
+            omega_ref.motor1 = 0
+            omega_ref.motor2 = 0
+            omega.ref.motor3 = 0
+            omega_ref.motor4 = 0
+        else if(move == 1):
+            vel_norm = norm(vel_x, vel_y)
+            omega_ref.motor1 = ((vel_x + vel_y) / vel_norm) + rot_z
+            omega_ref.motor2 = ((vel_x - vel_y) / vel_norm) + rot_z
+            omega_ref.motor3 = ((vel_x + vel_y) / vel_norm) - rot_z
+            omega_ref.motor4 = ((vel_x - vel_y) / vel_norm) - rot_z
+        else if(move==2):
+            omega_ref.motor1 =  rotation*4
+            omega_ref.motor2 =  rotation*4
+            omega_ref.motor3 =  -rotation*4
+            omega_ref.motor4 =  -rotation*4
+        else if (move==3):
+            omega_ref.motor1 =  2
+            omega_ref.motor2 =  2
+            omega_ref.motor3 =  2
+            omega_ref.motor4 =  2
+        else if(move==4):
+            omega_ref.motor1 =  -2
+            omega_ref.motor2 =  -2
+            omega_ref.motor3 =  -2
+            omega_ref.motor4 =  -2
+        else if(move==5):#gauche
+            omega_ref.motor1 =  2
+            omega_ref.motor2 =  -2
+            omega_ref.motor3 =  2
+            omega_ref.motor4 =  -2
+        else if(move==6):#droite
+            omega_ref.motor1 =  -2
+            omega_ref.motor2 =  2
+            omega_ref.motor3 =  -2
+            omega_ref.motor4 =  2
+
+        pub.publish(omega_ref)
+        rate.sleep()
+        rospy.loginfo("omega motor 1 %s", omega_ref.motor1)
+        rospy.loginfo("omega motor 2 %s", omega_ref.motor2)
+        rospy.loginfo("omega motor 3 %s", omega_ref.motor3)
+        rospy.loginfo("omega motor 4 %s", omega_ref.motor4)
+
     # rospy.Subscriber('cmd_vel', Twist, callback)
     rospy.spin()
 

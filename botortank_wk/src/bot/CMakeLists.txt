@@ -53,6 +53,7 @@ find_package(catkin REQUIRED COMPONENTS
    FILES
 #   Message1.msg
    quad.msg
+   tetra.msg
  )
 
 ## Generate services in the 'srv' folder
@@ -201,15 +202,34 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(odometry src/odometry.cpp)
-target_link_libraries(odometry ${catkin_LIBRARIES})
-add_dependencies(odometry bot_generate_messages_cpp)
+#add_executable(odometry src/odometry.cpp)
+#target_link_libraries(odometry ${catkin_LIBRARIES})
+#add_dependencies(odometry bot_generate_messages_cpp)
 
 add_executable(speedcontroler src/speedcontroler.cpp)
 target_link_libraries(speedcontroler ${catkin_LIBRARIES})
 add_dependencies(speedcontroler bot_generate_messages_cpp)
 
+#add_executable(attraction src/attraction.cpp)
+#target_link_libraries(attraction ${catkin_LIBRARIES})
+#add_dependencies(attraction bot_generate_messages_cpp)
+
+#add_executable(lidar src/lidar.cpp)
+#target_link_libraries(lidar ${catkin_LIBRARIES})
+#add_dependencies(lidar bot_generate_messages_cpp)
+
+add_executable(opponent src/opponent.cpp)
+target_link_libraries(opponent ${catkin_LIBRARIES})
+add_dependencies(opponent bot_generate_messages_cpp)
+
+# add_executable(repulsive src/repulsive.cpp)
+# target_link_libraries(repulsive ${catkin_LIBRARIES})
+# add_dependencies(repulsive bot_generate_messages_cpp)
+
 # add_executable(essaidouble src/essaidouble.cpp)
 # target_link_libraries(essaidouble ${catkin_LIBRARIES})
 # add_dependencies(essaidouble bot_generate_messages_cpp)
 
+add_executable(fsm_homologation src/fsm_homologation.cpp)
+target_link_libraries(fsm_homologation ${catkin_LIBRARIES})
+add_dependencies(fsm_homologation bot_generate_messages_cpp)

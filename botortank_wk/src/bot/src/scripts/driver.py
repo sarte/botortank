@@ -275,7 +275,7 @@ def callback(cmd):
 def driver():
     rospy.init_node('driver', anonymous=True)
     # rospy.Subscriber("omega_ref", String, callback)
-    rospy.Subscriber("omega_cmd", quad, callback, queue_size=10)
+    rospy.Subscriber("omega_cmd", quad, callback, queue_size=1)
     motor_init()
     sleep(0.01)
     motor_start()
@@ -283,13 +283,9 @@ def driver():
     rate = rospy.Rate(100)
     while not rospy.is_shutdown():
         motor_setDC1(cm1)
-        sleep(0.01)
         motor_setDC2(cm2)
-        sleep(0.01)
         motor_setDC3(cm3)
-        sleep(0.01)
         motor_setDC4(cm4)
-        sleep(0.01)
         rate.sleep()
     rospy.spin()
     motor_stop()
