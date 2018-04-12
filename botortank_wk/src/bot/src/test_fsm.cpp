@@ -2,8 +2,10 @@
 #include "sensor_msgs/LaserScan.h"
 #include "std_msgs/String.h"
 #include "std_msgs/Bool.h"
+#include "std_msgs/Int8.h"
 #include "geometry_msgs/Twist.h"
 #include "bot/quad.h"
+#include "bot/tetra.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -16,19 +18,27 @@ using namespace std;
 
 #define RAD2DEG(x) ((x)*180./M_PI)
 
-bool team;
+bool team ;
 double pos_X =0;
 double pos_Y = 0;
 double pos_theta = 0;
+double pos_X_G =0;
+double pos_Y_G =0;
+double pos_theta_G=0;
+double pos_X_O=0;
+double pos_Y_O=0;
+double pos_theta_O=0;
 double dist = 69;
 double deltaX = 0;
 double deltaY = 0;
 int t=0;
 int flagstart;
+int start = 0;
 int feedback;
 int dyna=0;
 int enable_shooting=0;
 int follow=0;
+int cnt=0;
 //string feedback;
 //string dyna;
 
@@ -37,7 +47,7 @@ int follow=0;
 
 typedef enum States
 {
-	STANDBY, START, DOMO1, DOMO2, BALL1, BALL2, BALL3, BALL4, GO_SHOOT, TURN_SHOOT, SHOOT, GO_BEE, TURN_BEE, BEE, PUSH_BEE
+	STANDBY, START, DOMO1, DOMO2, BALL1, BALL2, BALL3, BALL4, GO_SHOOT, TURN_SHOOT, SHOOT, GO_BEE1,GO_BEE2, TURN_BEE, BEE, PUSH_BEE
 	//STANDBY, START, CAL_X, CAL_Y, HOME, TARG, VIA1, VIA2
 } States;
 
@@ -65,7 +75,8 @@ Struct* init_Struct()
 	cvs->targetX = 0;
 	cvs->targetY = 0;
 	cvs->move = 0;
-	cvs->enable_rotation=0;//0 tournepas,1positif,-1 negatif
+	cvs->enable_rotation=0;
+	cvs->team=0;
 
     // cvs->int_error_1 = 0;
     // cvs->int_error_2 = 0;
@@ -100,21 +111,28 @@ void free_Struct(Struct *cvs)
 
 
 
-void Callback_team(const bot::Bool& teamdata)
+void Callback_team(const std_msgs::Bool& teamdata)
 {
     team = teamdata.data;
 }
 
 
-void Callback_lidar(const geometry_msgs::Pose2D& localisation_lidar)
+void Callback_lidar_g(const geometry_msgs::Pose2D& localisation_lidar)
 {
-    pos_X = localisation_lidar.x;
-    pos_Y = localisation_lidar.y;
-    pos_theta = localisation_lidar.theta;
+    pos_X_G = localisation_lidar.x;
+    pos_Y_G = localisation_lidar.y;
+    pos_theta_G = localisation_lidar.theta;
+}
+
+void Callback_lidar_o(const geometry_msgs::Pose2D& localisation_lidar)
+{
+    pos_X_O = localisation_lidar.x;
+    pos_Y_O = localisation_lidar.y;
+    pos_theta_O = localisation_lidar.theta;
 }
 
 
-void Callback_feedback(const std_msgs::String& dyna_feedback)
+void Callback_feedback(const std_msgs::Int8& dyna_feedback)
 {
     feedback = dyna_feedback.data;
 
@@ -124,6 +142,11 @@ void Callback_feedback(const std_msgs::String& dyna_feedback)
 void Callback_follow(const bot::tetra& blackline)
 {
     follow= (blackline.a || blackline.b || blackline.c || blackline.d) ;
+}
+
+void Callback_start(const std_msgs::Bool& startdata)
+{
+    start=startdata.data;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -136,6 +159,17 @@ void FSM(Struct* cvs)
         cvs->state= START;
 
     }
+    if (cvs->team){
+        pos_X= pos_X_O;
+		pos_Y=pos_Y_O;
+		pos_theta=pos_theta_G;
+
+    }
+    else{
+        pos_X=pos_X_G;
+        pos_Y=pos_Y_G;
+        pos_theta=pos_theta_G;
+    }
     if(t>9800)
     {
         cvs->prevstate = cvs->state;
@@ -146,18 +180,20 @@ void FSM(Struct* cvs)
 		case STANDBY:
         printf("STANDBY\n");
 
-			speedX = 0;
-			speedY = 0;
+
+            cvs->move=0;
             cvs->prevstate = cvs->state;
             cvs->state = STANDBY;
         break;
 
 
 		case START:
+        printf("START\n");
 			//choose team
 			//nextstate
 			if(team == 1){
 				cvs->team = 1;
+
 			}
 			else{
 				cvs->team = 0;
@@ -170,94 +206,69 @@ void FSM(Struct* cvs)
 			break;
 
 		case DOMO1:
+        //printf("DOMO1\n");
 
             if(cvs->team){
-                cvs->targetX = ;
-                cvs->targetY = ;
+                cvs->move =6 ;
             }
             else{
-                cvs->targetX = ;
-                cvs->targetY = ;
+                cvs->move =6 ;
             }
 
-			if(follow){
+			if(follow&& t>500){
 
 				cvs->move = 0;
 				cvs->prevstate = cvs->state;
 				cvs->state = DOMO2;
 			}
-			else{
-				cvs->move = 1;
-			}
+
 			t++;
 
 			break;
 
 		case DOMO2://reecrire en fonction du temps
+        //printf("DOMO2\n");
 
-			cvs->targetX = ;
-			cvs->targetY = ;
+			cnt++;
 
-			if(pos_X < -0.85){
+			if(cnt > 100){
 
-				cvs->move = 0;
+				cvs->move=0;
 				cvs->prevstate = cvs->state;
 				cvs->state = GO_BEE1;
 			}
 			else{
-
-				cvs->move = 1;
+                if(team){
+                    cvs->move=4;
+                }
+                else{
+                    cvs->move=3;
+                }
 			}
+
 			t++;
 
 			break;
 
         case GO_BEE1:
+        //printf("BEE1\n");
 
 			if(cvs->team){
-                cvs->targetX = ;
-                cvs->targetY = ;
+                
+                cvs->targetX =0.6 ;
+                cvs->targetY =0 ;
 			}
 
-			else(){
-                cvs->targetX = ;
-                cvs->targetY = ;
-			}
-
-
-			deltaX = cvs->targetX - pos_X;
-			deltaY = cvs->targetY - pos_Y;
-			dist = sqrt(deltaX*deltaX + deltaY*deltaY);
-
-			if(dist<0.03){
-
-				cvs->move = 0;
-				cvs->prevstate = cvs->state;
-				cvs->state = GO_BEE2;
-			}
 			else{
-
-				cvs->move = 1;
-			}
-			t++;
-
-			break;
-
-        case GO_BEE2:
-
-			if(cvs->team){
-                cvs->targetX = ;
-                cvs->targetY = ;
-			}
-
-			else(){
-                cvs->targetX = ;
-                cvs->targetY = ;
+                cvs->targetX = -0.6;
+                cvs->targetY = 0;
+                printf("targetX = %f targetY = %f\n",cvs->targetX,cvs->targetY);
 			}
 
 
 			deltaX = cvs->targetX - pos_X;
 			deltaY = cvs->targetY - pos_Y;
+            printf("deltaX = %f deltaY = %f\n",deltaX,deltaY);
 			dist = sqrt(deltaX*deltaX + deltaY*deltaY);
 
 			if(dist<0.03){
@@ -269,36 +280,82 @@ void FSM(Struct* cvs)
 			else{
 
 				cvs->move = 1;
+                printf("MOVE\n");
 			}
 			t++;
 
 			break;
 
-		case TURN_BEE;
+        case GO_BEE2:
+        printf("BEE2\n");
 
 			if(cvs->team){
-                cvs->enable_rotation=;
-			}
-			else{
-                cvs->enable_rotation=;
+                cvs->targetX =1.3 ;
+                cvs->targetY =-0.8 ;
 			}
 
-			if(angle <   && angle >   ){
+			else{
+                cvs->targetX =-1.3 ;
+                cvs->targetY = -0.8;
+			}
+
+
+			deltaX = cvs->targetX - pos_X;
+			deltaY = cvs->targetY - pos_Y;
+			dist = sqrt(deltaX*deltaX + deltaY*deltaY);
+
+			if(dist<0.03){
 
 				cvs->move = 0;
 				cvs->prevstate = cvs->state;
-				cvs->state = BEE;
-				cvs->enable_rotation=0;
+				cvs->state = STANDBY;
 			}
 			else{
 
+				cvs->move = 1;
+			}
+			t++;
+
+			break;
+
+        case TURN_BEE:
+        printf("TURN_BEE\n");
+
+			if(cvs->team){
+                cvs->enable_rotation=1;
+                if(pos_theta <-178   ||  pos_theta > 178  ){
+
+                    cvs->move = 0;
+                    cvs->prevstate = cvs->state;
+                    cvs->state = GO_BEE2;
+                    cvs->enable_rotation=0;
+                }
+                else{
+
+                    cvs->move = 2;
+                }
+			}
+			else{
+                cvs->enable_rotation=-1;
+
+                if(pos_theta <2   &&  pos_theta > -2  ){
+
+                    cvs->move = 0;
+                    cvs->prevstate = cvs->state;
+                    cvs->state = GO_BEE2;
+				cvs->enable_rotation=0;
+                }
+                else{
+
 				cvs->move = 2;
+                }
 			}
 			t++;
 
 			break;
 
 		case BEE:
+        printf("BEE\n");
 
 			dyna = 3;
 			cvs->prevstate = cvs->state;
@@ -307,16 +364,17 @@ void FSM(Struct* cvs)
 
 			break;
 
-		case PUSH_BEE;
+        case PUSH_BEE:
+        printf("PUSH_BEE\n");
 
 			dyna=0;
 			if(team){
-                cvs->targetX = ;
-                cvs->targetY = ;
+                cvs->targetX =0 ;
+                cvs->targetY = 0;
 			}
 			else{
-                cvs->targetX = ;
-                cvs->targetY = ;
+                cvs->targetX = 0;
+                cvs->targetY = 0;
 			}
 
 			deltaX = cvs->targetX - pos_X;
@@ -340,12 +398,12 @@ void FSM(Struct* cvs)
 		case BALL1:
 
 			if(team){
-                cvs->targetX = ;
-                cvs->targetY = ;
+                cvs->targetX = 0;
+                cvs->targetY = 0;
 			}
 			else{
-                cvs->targetX = ;
-                cvs->targetY = ;
+                cvs->targetX = 0;
+                cvs->targetY = 0;
 			}
 
 			deltaX = cvs->targetX - pos_X;
@@ -369,12 +427,12 @@ void FSM(Struct* cvs)
 		case BALL2:
 
 			if(team){
-                cvs->targetX = ;
-                cvs->targetY = ;
+                cvs->targetX = 0;
+                cvs->targetY = 0;
 			}
 			else{
-                cvs->targetX = ;
-                cvs->targetY = ;
+                cvs->targetX = 0;
+                cvs->targetY = 0;
 			}
 
 			deltaX = cvs->targetX - pos_X;
@@ -396,8 +454,8 @@ void FSM(Struct* cvs)
 
 		case BALL3:
 
-			cvs->targetX = ;
-			cvs->targetY = ;
+			cvs->targetX = 0;
+			cvs->targetY =0 ;
 
 			deltaX = cvs->targetX - pos_X;
 			deltaY = cvs->targetY - pos_Y;
@@ -417,7 +475,7 @@ void FSM(Struct* cvs)
 
 			break;
 
-		case BALL4;
+        case BALL4:
 
 			dyna = 4; //ball;
 
@@ -434,12 +492,12 @@ void FSM(Struct* cvs)
 		case GO_SHOOT:
 
 			if(team){
-                cvs->targetX = ;
-                cvs->targetY = ;
+                cvs->targetX =0 ;
+                cvs->targetY = 0;
 			}
 			else{
-                cvs->targetX = ;
-                cvs->targetY = ;
+                cvs->targetX = 0;
+                cvs->targetY = 0;
 			}
 
 			deltaX = cvs->targetX - pos_X;
@@ -463,13 +521,13 @@ void FSM(Struct* cvs)
 		case TURN_SHOOT:
 
 			if(cvs->team){
-                cvs->enable_rotation=;
+                cvs->enable_rotation=0;
 			}
 			else{
-                cvs->enable_rotation=;
+                cvs->enable_rotation=0;
 			}
 
-			if(angle <   && angle >   ){
+			if(pos_theta < 90  && pos_theta > 90  ){
 
 				cvs->move = 0;
 				cvs->prevstate = cvs->state;
@@ -513,17 +571,18 @@ int main(int argc, char **argv) {
     ros::init(argc, argv, "test_fsm");
     ros::NodeHandle n;
     //ros::Subscriber sub1 = n.subscribe("team", 1, Callback_team);
-    ros::Subscriber sub1 = n.subscribe("localisation_lidar", 1, Callback_lidar);
+    ros::Subscriber sub1 = n.subscribe("origin_green", 1, Callback_lidar_g);
+    ros::Subscriber sub5 = n.subscribe("origin_orange",1,Callback_lidar_o);
     ros::Subscriber sub2 = n.subscribe("dyna_feedback", 1, Callback_feedback);
     ros::Subscriber sub3 = n.subscribe("blackline", 1, Callback_follow);
     ros::Subscriber sub4 = n.subscribe("team", 1, Callback_team);
-    //ros::Subscriber sub2 = n.subscribe("opponent", 1, Callback_follow);
+    ros::Subscriber sub6 = n.subscribe("start", 1, Callback_start);
 
     ros::Publisher pub1 = n.advertise<std_msgs::Int8>("move", 1);
 	ros::Publisher pub2 = n.advertise<geometry_msgs::Pose2D>("target", 1);
     ros::Publisher pub3 = n.advertise<std_msgs::Int8>("enable_rotation", 1);
     ros::Publisher pub4 = n.advertise<std_msgs::Int8>("dynamixel_cmd", 1);
-    ros::Publisher pub5 = n.advertise<bot::Bool>("shoot_enable",1);
+    ros::Publisher pub5 = n.advertise<std_msgs::Bool>("shoot_enable",1);
 
 
 
@@ -533,7 +592,7 @@ int main(int argc, char **argv) {
     std_msgs::Int8 move;
     std_msgs::Int8 enable_rotation;
     std_msgs::Int8 dynamixel_cmd;
-    bot::Bool shoot_enable;
+    std_msgs::Bool shoot_enable;
 
 
 

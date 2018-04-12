@@ -73,7 +73,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate added messages and services with any dependencies listed here
  generate_messages(
    DEPENDENCIES
-   geometry_msgs   
+   geometry_msgs
    std_msgs
  )
 
@@ -210,9 +210,9 @@ add_executable(speedcontroler src/speedcontroler.cpp)
 target_link_libraries(speedcontroler ${catkin_LIBRARIES})
 add_dependencies(speedcontroler bot_generate_messages_cpp)
 
-#add_executable(attraction src/attraction.cpp)
-#target_link_libraries(attraction ${catkin_LIBRARIES})
-#add_dependencies(attraction bot_generate_messages_cpp)
+add_executable(attraction src/attraction.cpp)
+target_link_libraries(attraction ${catkin_LIBRARIES})
+add_dependencies(attraction bot_generate_messages_cpp)
 
 #add_executable(lidar src/lidar.cpp)
 #target_link_libraries(lidar ${catkin_LIBRARIES})
@@ -222,9 +222,9 @@ add_executable(opponent src/opponent.cpp)
 target_link_libraries(opponent ${catkin_LIBRARIES})
 add_dependencies(opponent bot_generate_messages_cpp)
 
-# add_executable(repulsive src/repulsive.cpp)
-# target_link_libraries(repulsive ${catkin_LIBRARIES})
-# add_dependencies(repulsive bot_generate_messages_cpp)
+add_executable(repulsive src/repulsive.cpp)
+target_link_libraries(repulsive ${catkin_LIBRARIES})
+add_dependencies(repulsive bot_generate_messages_cpp)
 
 # add_executable(essaidouble src/essaidouble.cpp)
 # target_link_libraries(essaidouble ${catkin_LIBRARIES})
@@ -233,3 +233,11 @@ add_dependencies(opponent bot_generate_messages_cpp)
 add_executable(fsm_homologation src/fsm_homologation.cpp)
 target_link_libraries(fsm_homologation ${catkin_LIBRARIES})
 add_dependencies(fsm_homologation bot_generate_messages_cpp)
+
+add_executable(test_fsm src/test_fsm.cpp)
+target_link_libraries(test_fsm ${catkin_LIBRARIES})
+add_dependencies(test_fsm bot_generate_messages_cpp)
+
+add_executable(trajectory src/trajectory.cpp)
+target_link_libraries(trajectory ${catkin_LIBRARIES})
+add_dependencies(trajectory bot_generate_messages_cpp)

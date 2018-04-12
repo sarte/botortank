@@ -10,7 +10,7 @@ from time import sleep
 from ctypes import c_double
 from math import *
 from math import pi
-from std_msgs.msg import String
+from std_msgs.msg import *
 # from geometry_msgs.msg import Twist
 from bot.msg import *
 
@@ -50,6 +50,6 @@ def shooting_start():
 
 if __name__ == '__main__':
     try:
-        driver()
+        shooting_start()
     except rospy.ROSInterruptException:
         pass
