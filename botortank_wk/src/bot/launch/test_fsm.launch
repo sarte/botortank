@@ -1,0 +1,8 @@
+<launch>
+	<node name="driver" pkg="bot" type="driver.py" />
+	<node name="encoder" pkg="bot" type="encoder.py" />
+	<node name="speedcontroler" pkg="bot" type="speedcontroler" />
+    <node name="midlevel" pkg="bot" type="midlevel.py" />
+    <node name="fsm_homologation" pkg="bot" type="fsm_homologation" />
+    <node name="linesensor" pkg="bot" type="linesensor.py" />
+</launch>

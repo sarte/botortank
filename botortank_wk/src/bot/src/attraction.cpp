@@ -26,7 +26,7 @@ void Callback1(const geometry_msgs::Pose2D& localisation_lidar)
 	Y = localisation_lidar.y;
 	theta = localisation_lidar.theta;
 }
-void Callback2(const geometry_msgs::Point& target)
+void Callback2(const geometry_msgs::Pose2D& target)
 {
 	number1 = target.x;
 	number2 = target.y;
@@ -56,7 +56,7 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "attraction");
     ros::NodeHandle n;
-    ros::Subscriber sub1 = n.subscribe("localisation_lidar", 10, Callback1);
+    ros::Subscriber sub1 = n.subscribe("origin_green", 10, Callback1);
     ros::Subscriber sub2 = n.subscribe("target", 10, Callback2);
     ros::Publisher pub = n.advertise<geometry_msgs::Point>("force_att",1);
     ros::Rate loop_rate(100);

@@ -1,0 +1,16 @@
+<launch>
+	<include file="$(find rplidar_ros)/launch/rplidar.launch" />
+	<include file="$(find rplidar_ros)/launch/hectormapping.launch" />
+	<node name="encoder" pkg="bot" type="encoder.py" />
+	<node name="midlevel" pkg="bot" type="midlevel.py" />
+	<node name="speedcontroler" pkg="bot" type="speedcontroler" />
+	<node name="driver" pkg="bot" type="driver.py" />
+	<node name="trajectory" pkg="bot" type="trajectory" />
+	<node name="repulsive" pkg="bot" type="repulsive" />
+	<node name="attraction" pkg="bot" type="attraction" />
+	<node name="dynamixel" pkg="bot" type="dynamixel.py" />
+	<node name="linesensor" pkg="bot" type="linesensor.py" />
+	<node name="referenceframe" pkg="bot" type="referenceframe.py" />
+	<!--- <node name="shooting_start" pkg="bot" type="shooting_start.py" /> -->
+	<node name="test_fsm" pkg="bot" type="test_fsm" />
+</launch>
