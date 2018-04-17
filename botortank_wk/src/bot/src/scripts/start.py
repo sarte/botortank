@@ -10,7 +10,7 @@ from time import sleep
 from ctypes import c_double
 from math import *
 from math import pi
-from std_msgs.msg import String
+from std_msgs.msg import *
 # from geometry_msgs.msg import Twist
 from bot.msg import *
 
@@ -31,15 +31,15 @@ sleep(0.1)
 
 
 def startrecup():
-    ToSPI:[0x0f,0x00,0x00,0x00,0x00]
+    ToSPI=[0x0f,0x00,0x00,0x00,0x00]
     FromSPI = MySPI_FPGA.xfer2(ToSPI)
     start=(FromSPI[1] & 0x80)>>7
     return start
 
 
 def start():
-    pub = rospy.Publisher('start', Bool, queue_size=10)
     rospy.init_node('startrecup', anonymous=True)
+    pub = rospy.Publisher('start', Bool, queue_size=10)
     rate = rospy.Rate(100)
     while not rospy.is_shutdown():
         start = startrecup()

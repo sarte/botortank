@@ -18,7 +18,7 @@ using namespace std;
 
 #define RAD2DEG(x) ((x)*180./M_PI)
 
-bool team ;
+int team;
 double pos_X =0;
 double pos_Y = 0;
 double pos_theta = 0;
@@ -32,13 +32,15 @@ double dist = 69;
 double deltaX = 0;
 double deltaY = 0;
 int t=0;
-int flagstart;
+int flagstart=0;
 int start = 0;
 int feedback;
 int dyna=0;
 int enable_shooting=0;
 int follow=0;
 int cnt=0;
+int message_stop=0;
+int message_stop_homo=0;
 //string feedback;
 //string dyna;
 
@@ -111,11 +113,21 @@ void free_Struct(Struct *cvs)
 
 
 
-void Callback_team(const std_msgs::Bool& teamdata)
+// void Callback_team(const std_msgs::Bool& teamdata)
+// {
+//    team = teamdata.data;
+// }
+
+
+void Callback_opp_homo(const std_msgs::Int8& message)
 {
-    team = teamdata.data;
+    message_stop_homo = message.data;
 }
 
+void Callback_opp(const std_msgs::Int8& message)
+{
+    message_stop = message.data;
+}
 
 void Callback_lidar_g(const geometry_msgs::Pose2D& localisation_lidar)
 {
@@ -153,28 +165,29 @@ void Callback_start(const std_msgs::Bool& startdata)
 
 void FSM(Struct* cvs)
 {
-    if(start == 1 && !flagstart)
+    if(start==1 && !flagstart)
     {
         flagstart=1;
         cvs->state= START;
 
     }
-    if (cvs->team){
-        pos_X= pos_X_O;
-		pos_Y=pos_Y_O;
-		pos_theta=pos_theta_G;
+     if (team){
+         pos_X= pos_X_O;
+		 pos_Y=pos_Y_O;
+		 pos_theta=pos_theta_G;
 
-    }
-    else{
-        pos_X=pos_X_G;
-        pos_Y=pos_Y_G;
-        pos_theta=pos_theta_G;
-    }
-    if(t>9800)
-    {
-        cvs->prevstate = cvs->state;
-        cvs->state = STANDBY;
-    }
+
+     }
+     else{
+         pos_X=pos_X_G;
+         pos_Y=pos_Y_G;
+         pos_theta=pos_theta_G;
+     }
+     if(t>9800)
+     {
+         cvs->prevstate = cvs->state;
+         cvs->state = STANDBY;
+     }
 	switch(cvs->state){
 
 		case STANDBY:
@@ -187,39 +200,45 @@ void FSM(Struct* cvs)
         break;
 
 
-		case START:
-        printf("START\n");
-			//choose team
-			//nextstate
-			if(team == 1){
-				cvs->team = 1;
+		 case START:
+			 //choose team
+			 //nextstate
+			 if(team == 1){
+				 cvs->team = 1;
+
+			 }
+			 else{
+				 cvs->team = 0;
+			 }
+
+			 cvs->prevstate = cvs->state;
+			 cvs->state = DOMO1;
+			 t++;
+
+			 break;
+
+		case DOMO1:
+
+			if(message_stop == 1){
+
+				cvs->move =0;
 
 			}
 			else{
-				cvs->team = 0;
-			}
 
-			cvs->prevstate = cvs->state;
-			cvs->state = DOMO1;
-			t++;
+				if(cvs->team){
+					cvs->move =6 ;
+				}
+				else{
+					cvs->move =6 ;
+				}
 
-			break;
+				if(follow&& t>500){
 
-		case DOMO1:
-        //printf("DOMO1\n");
-
-            if(cvs->team){
-                cvs->move =6 ;
-            }
-            else{
-                cvs->move =6 ;
-            }
-
-			if(follow&& t>500){
-
-				cvs->move = 0;
-				cvs->prevstate = cvs->state;
-				cvs->state = DOMO2;
+					cvs->move = 0;
+					cvs->prevstate = cvs->state;
+					cvs->state = DOMO2;
+				}
 			}
 
 			t++;
@@ -227,11 +246,10 @@ void FSM(Struct* cvs)
 			break;
 
 		case DOMO2://reecrire en fonction du temps
-        //printf("DOMO2\n");
 
 			cnt++;
 
-			if(cnt > 100){
+			if(cnt > 200){
 
 				cvs->move=0;
 				cvs->prevstate = cvs->state;
@@ -251,43 +269,43 @@ void FSM(Struct* cvs)
 			break;
 
         case GO_BEE1:
-        //printf("BEE1\n");
 
-			if(cvs->team){
-                
-                cvs->targetX =0.6 ;
-                cvs->targetY =0 ;
-			}
-
-			else{
-                cvs->targetX = -0.6;
-                cvs->targetY = 0;
-                printf("targetX = %f targetY = %f\n",cvs->targetX,cvs->targetY);
-			}
-
-
-			deltaX = cvs->targetX - pos_X;
-			deltaY = cvs->targetY - pos_Y;
-            printf("deltaX = %f deltaY = %f\n",deltaX,deltaY);
-			dist = sqrt(deltaX*deltaX + deltaY*deltaY);
-
-			if(dist<0.03){
+			if(message_stop == 1){
 
 				cvs->move = 0;
-				cvs->prevstate = cvs->state;
-				cvs->state = TURN_BEE;
+
 			}
 			else{
 
-				cvs->move = 1;
-                printf("MOVE\n");
+				if(cvs->team){
+					cvs->move=3;
+				}
+
+				else{
+					cvs->move = 4;
+				}
+
+
+				//deltaX = cvs->targetX - pos_X;
+				//deltaY = cvs->targetY - pos_Y;
+				//dist = sqrt(deltaX*deltaX + deltaY*deltaY);
+				cnt++;
+
+				if(cnt>800){
+
+					cvs->move = 0;
+					cnt=0;
+					cvs->prevstate = cvs->state;
+					cvs->state = STANDBY;
+				}
 			}
+
 			t++;
 
 			break;
 
+
         case GO_BEE2:
-        printf("BEE2\n");
 
 			if(cvs->team){
                 cvs->targetX =1.3 ;
@@ -319,7 +337,6 @@ void FSM(Struct* cvs)
 			break;
 
         case TURN_BEE:
-        printf("TURN_BEE\n");
 
 			if(cvs->team){
                 cvs->enable_rotation=1;
@@ -355,7 +372,6 @@ void FSM(Struct* cvs)
 			break;
 
 		case BEE:
-        printf("BEE\n");
 
 			dyna = 3;
 			cvs->prevstate = cvs->state;
@@ -365,7 +381,6 @@ void FSM(Struct* cvs)
 			break;
 
         case PUSH_BEE:
-        printf("PUSH_BEE\n");
 
 			dyna=0;
 			if(team){
@@ -520,7 +535,7 @@ void FSM(Struct* cvs)
 
 		case TURN_SHOOT:
 
-			if(cvs->team){
+			if(team){
                 cvs->enable_rotation=0;
 			}
 			else{
@@ -568,21 +583,29 @@ void FSM(Struct* cvs)
 int main(int argc, char **argv) {
     Struct* cvs;
     cvs = init_Struct();
-    ros::init(argc, argv, "test_fsm");
+    ros::init(argc, argv, "test_fsm_forward_domo");
     ros::NodeHandle n;
     //ros::Subscriber sub1 = n.subscribe("team", 1, Callback_team);
     ros::Subscriber sub1 = n.subscribe("origin_green", 1, Callback_lidar_g);
     ros::Subscriber sub5 = n.subscribe("origin_orange",1,Callback_lidar_o);
     ros::Subscriber sub2 = n.subscribe("dyna_feedback", 1, Callback_feedback);
     ros::Subscriber sub3 = n.subscribe("blackline", 1, Callback_follow);
-    ros::Subscriber sub4 = n.subscribe("team", 1, Callback_team);
+    // ros::Subscriber sub4 = n.subscribe("team", 1, Callback_team); // ->now in parameter :)
     ros::Subscriber sub6 = n.subscribe("start", 1, Callback_start);
+    ros::Subscriber sub7 = n.subscribe("opponent_homo", 1, Callback_opp_homo);
+    ros::Subscriber sub8= n.subscribe("message_opp", 1, Callback_opp);
+
 
     ros::Publisher pub1 = n.advertise<std_msgs::Int8>("move", 1);
 	ros::Publisher pub2 = n.advertise<geometry_msgs::Pose2D>("target", 1);
     ros::Publisher pub3 = n.advertise<std_msgs::Int8>("enable_rotation", 1);
     ros::Publisher pub4 = n.advertise<std_msgs::Int8>("dynamixel_cmd", 1);
     ros::Publisher pub5 = n.advertise<std_msgs::Bool>("shoot_enable",1);
+
+
+    n.getParam("/test_param/isTeamOrange", team);
+    ROS_INFO("The team is Orange: %i", team);
+
 
 
 

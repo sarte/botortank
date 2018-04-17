@@ -18,7 +18,7 @@ using namespace std;
 
 #define RAD2DEG(x) ((x)*180./M_PI)
 
-bool team ;
+bool team;
 double pos_X =0;
 double pos_Y = 0;
 double pos_theta = 0;
@@ -32,13 +32,19 @@ double dist = 69;
 double deltaX = 0;
 double deltaY = 0;
 int t=0;
-int flagstart;
+int flagstart=0;
 int start = 0;
 int feedback;
 int dyna=0;
 int enable_shooting=0;
 int follow=0;
 int cnt=0;
+int cnt2=0;
+int message_stop=0;
+int message_stop_homo=0;
+int flagdyna3=0;
+int flagdyna5=0;
+
 //string feedback;
 //string dyna;
 
@@ -47,7 +53,7 @@ int cnt=0;
 
 typedef enum States
 {
-	STANDBY, START, DOMO1, DOMO2, BALL1, BALL2, BALL3, BALL4, GO_SHOOT, TURN_SHOOT, SHOOT, GO_BEE1,GO_BEE2, TURN_BEE, BEE, PUSH_BEE
+	STANDBY, START, DOMO1, DOMO2, BALL1, BALL2, BALL3, BALL4, GO_SHOOT, TURN_SHOOT, SHOOT, GO_BEE1,GO_BEE2, TURN_BEE, BEE_UP,BEE_DOWN, PUSH_BEE, CAL1, CAL2
 	//STANDBY, START, CAL_X, CAL_Y, HOME, TARG, VIA1, VIA2
 } States;
 
@@ -117,6 +123,11 @@ void Callback_team(const std_msgs::Bool& teamdata)
 }
 
 
+void Callback_opp(const std_msgs::Int8& message)
+{
+    message_stop = message.data;
+}
+
 void Callback_lidar_g(const geometry_msgs::Pose2D& localisation_lidar)
 {
     pos_X_G = localisation_lidar.x;
@@ -153,28 +164,28 @@ void Callback_start(const std_msgs::Bool& startdata)
 
 void FSM(Struct* cvs)
 {
-    if(start == 1 && !flagstart)
+    if(start==1 && !flagstart)
     {
         flagstart=1;
         cvs->state= START;
 
     }
-    if (cvs->team){
-        pos_X= pos_X_O;
-		pos_Y=pos_Y_O;
-		pos_theta=pos_theta_G;
+     if (cvs->team){
+         pos_X= pos_X_O;
+		 pos_Y=pos_Y_O;
+		 pos_theta=pos_theta_G;
 
-    }
-    else{
-        pos_X=pos_X_G;
-        pos_Y=pos_Y_G;
-        pos_theta=pos_theta_G;
-    }
-    if(t>9800)
-    {
-        cvs->prevstate = cvs->state;
-        cvs->state = STANDBY;
-    }
+     }
+     else{
+         pos_X=pos_X_G;
+         pos_Y=pos_Y_G;
+         pos_theta=pos_theta_G;
+     }
+     if(t>9800)
+     {
+         cvs->prevstate = cvs->state;
+         cvs->state = STANDBY;
+     }
 	switch(cvs->state){
 
 		case STANDBY:
@@ -187,39 +198,45 @@ void FSM(Struct* cvs)
         break;
 
 
-		case START:
-        printf("START\n");
-			//choose team
-			//nextstate
-			if(team == 1){
-				cvs->team = 1;
+		 case START:
+			 //choose team
+			 //nextstate
+			 if(team == 1){
+				 cvs->team = 1;
+
+			 }
+			 else{
+				 cvs->team = 0;
+			 }
+
+			 cvs->prevstate = cvs->state;
+			 cvs->state = DOMO1;
+			 t++;
+
+			 break;
+
+		case DOMO1:
+
+			if(message_stop == 1){
+
+				cvs->move =0;
 
 			}
 			else{
-				cvs->team = 0;
-			}
 
-			cvs->prevstate = cvs->state;
-			cvs->state = DOMO1;
-			t++;
+				if(cvs->team){
+					cvs->move =6 ;
+				}
+				else{
+					cvs->move =6 ;
+				}
 
-			break;
+				if(follow&& t>300){
 
-		case DOMO1:
-        //printf("DOMO1\n");
-
-            if(cvs->team){
-                cvs->move =6 ;
-            }
-            else{
-                cvs->move =6 ;
-            }
-
-			if(follow&& t>500){
-
-				cvs->move = 0;
-				cvs->prevstate = cvs->state;
-				cvs->state = DOMO2;
+					cvs->move = 0;
+					cvs->prevstate = cvs->state;
+					cvs->state = DOMO2;
+				}
 			}
 
 			t++;
@@ -227,11 +244,10 @@ void FSM(Struct* cvs)
 			break;
 
 		case DOMO2://reecrire en fonction du temps
-        //printf("DOMO2\n");
 
 			cnt++;
 
-			if(cnt > 100){
+			if(cnt > 150){
 
 				cvs->move=0;
 				cvs->prevstate = cvs->state;
@@ -239,10 +255,10 @@ void FSM(Struct* cvs)
 			}
 			else{
                 if(team){
-                    cvs->move=4;
+                    cvs->move=11;
                 }
                 else{
-                    cvs->move=3;
+                    cvs->move=12;
                 }
 			}
 
@@ -251,80 +267,154 @@ void FSM(Struct* cvs)
 			break;
 
         case GO_BEE1:
-        //printf("BEE1\n");
 
-			if(cvs->team){
-                
-                cvs->targetX =0.6 ;
-                cvs->targetY =0 ;
-			}
-
-			else{
-                cvs->targetX = -0.6;
-                cvs->targetY = 0;
-                printf("targetX = %f targetY = %f\n",cvs->targetX,cvs->targetY);
-			}
-
-
-			deltaX = cvs->targetX - pos_X;
-			deltaY = cvs->targetY - pos_Y;
-            printf("deltaX = %f deltaY = %f\n",deltaX,deltaY);
-			dist = sqrt(deltaX*deltaX + deltaY*deltaY);
-
-			if(dist<0.03){
+			if(message_stop == 1){
 
 				cvs->move = 0;
-				cvs->prevstate = cvs->state;
-				cvs->state = TURN_BEE;
+
 			}
 			else{
 
-				cvs->move = 1;
-                printf("MOVE\n");
+				if(cvs->team){
+					cvs->move=3;
+				}
+
+				else{
+					cvs->move = 4;
+				}
+
+
+				//deltaX = cvs->targetX - pos_X;
+				//deltaY = cvs->targetY - pos_Y;
+				//dist = sqrt(deltaX*deltaX + deltaY*deltaY);
+				cnt++;
+
+				if(cnt>570){
+
+					cvs->move = 0;
+					cnt=0;
+					cvs->prevstate = cvs->state;
+					cvs->state = TURN_BEE;
+				}
 			}
+
 			t++;
 
 			break;
 
+
         case GO_BEE2:
-        printf("BEE2\n");
-
-			if(cvs->team){
-                cvs->targetX =1.3 ;
-                cvs->targetY =-0.8 ;
-			}
-
-			else{
-                cvs->targetX =-1.3 ;
-                cvs->targetY = -0.8;
-			}
-
-
-			deltaX = cvs->targetX - pos_X;
-			deltaY = cvs->targetY - pos_Y;
-			dist = sqrt(deltaX*deltaX + deltaY*deltaY);
-
-			if(dist<0.03){
+            if(message_stop == 1){
 
 				cvs->move = 0;
-				cvs->prevstate = cvs->state;
-				cvs->state = STANDBY;
-			}
-			else{
 
-				cvs->move = 1;
 			}
+            else{
+
+                if(cvs->team){
+                    cvs->move=9;
+
+                }
+
+                else{
+                    cvs->move =10 ;
+                }
+
+
+			//deltaX = cvs->targetX - pos_X;
+			//deltaY = cvs->targetY - pos_Y;
+			//dist = sqrt(deltaX*deltaX + deltaY*deltaY);
+
+                if(cnt>1500){
+
+                    cvs->move = 0;
+                    cnt=0;
+                    cvs->prevstate = cvs->state;
+                    cvs->state = CAL1;
+                }
+                cnt++;
+            }
+			t++;
+
+			break;
+			
+		case CAL1:
+            if(message_stop == 1){
+
+				cvs->move = 0;
+
+			}
+            else{
+
+                if(cvs->team){
+                    cvs->move=3;
+
+                }
+
+                else{
+                    cvs->move =4 ;
+                }
+
+
+			//deltaX = cvs->targetX - pos_X;
+			//deltaY = cvs->targetY - pos_Y;
+			//dist = sqrt(deltaX*deltaX + deltaY*deltaY);
+
+                if(cnt>70){
+
+                    cvs->move = 0;
+                    cnt=0;
+                    cvs->prevstate = cvs->state;
+                    cvs->state = CAL2;
+                }
+                cnt++;
+            }
+			t++;
+
+			break;
+			
+		case CAL2:
+            if(message_stop == 1){
+
+				cvs->move = 0;
+
+			}
+            else{
+
+                if(cvs->team){
+                    cvs->move=6;
+
+                }
+
+                else{
+                    cvs->move =6 ;
+                }
+
+
+			//deltaX = cvs->targetX - pos_X;
+			//deltaY = cvs->targetY - pos_Y;
+			//dist = sqrt(deltaX*deltaX + deltaY*deltaY);
+
+                if(cnt>70){
+
+                    cvs->move = 0;
+                    cnt=0;
+                    cvs->prevstate = cvs->state;
+                    cvs->state = BEE_UP;
+                }
+                cnt++;
+            }
 			t++;
 
 			break;
 
         case TURN_BEE:
-        printf("TURN_BEE\n");
 
 			if(cvs->team){
                 cvs->enable_rotation=1;
-                if(pos_theta <-178   ||  pos_theta > 178  ){
+                if(cnt>315){
 
+                    cnt=0;
                     cvs->move = 0;
                     cvs->prevstate = cvs->state;
                     cvs->state = GO_BEE2;
@@ -338,9 +428,10 @@ void FSM(Struct* cvs)
 			else{
                 cvs->enable_rotation=-1;
 
-                if(pos_theta <2   &&  pos_theta > -2  ){
+                if(cnt>315 ){
 
                     cvs->move = 0;
+                    cnt=0;
                     cvs->prevstate = cvs->state;
                     cvs->state = GO_BEE2;
 				cvs->enable_rotation=0;
@@ -350,105 +441,140 @@ void FSM(Struct* cvs)
 				cvs->move = 2;
                 }
 			}
+			cnt++;
 			t++;
 
 			break;
 
-		case BEE:
-        printf("BEE\n");
-
-			dyna = 3;
-			cvs->prevstate = cvs->state;
-            cvs->state = PUSH_BEE;
+		case BEE_UP:
+	
+			if(cnt > 200){
+				if(!flagdyna3){
+				dyna = 3;
+				flagdyna3 =0;
+				
+					// if(cnt2>200){
+						// flagdyna3=1;
+						// cnt2 = 0;
+					// }
+				
+				}
+				if(feedback == 3){
+				cvs->prevstate = cvs->state;
+				cvs->state = PUSH_BEE;
+				cnt=0;
+				}
+			}
+			cnt++;
 			t++; //bee
 
 			break;
 
         case PUSH_BEE:
-        printf("PUSH_BEE\n");
-
+			
+			
 			dyna=0;
 			if(team){
-                cvs->targetX =0 ;
-                cvs->targetY = 0;
+                cvs->move = 4;
 			}
 			else{
-                cvs->targetX = 0;
-                cvs->targetY = 0;
+                cvs->move = 3;
 			}
 
-			deltaX = cvs->targetX - pos_X;
-			deltaY = cvs->targetY - pos_Y;
-			dist = sqrt(deltaX*deltaX + deltaY*deltaY);
+			//deltaX = cvs->targetX - pos_X;
+			//deltaY = cvs->targetY - pos_Y;
+			//dist = sqrt(deltaX*deltaX + deltaY*deltaY);
 
-			if(dist<0.03){
+			if(cnt>250){
 
 				cvs->move = 0;
+				cnt=0;
 				cvs->prevstate = cvs->state;
-				cvs->state = STANDBY;
+				cvs->state = BALL1;
 			}
-			else{
 
-				cvs->move = 1;
-			}
 			t++;
+			cnt++;
 
 			break;
 
+        case BEE_DOWN:
+
+            if(!flagdyna5){
+			dyna = 5;
+			flagdyna5=1;
+            }
+			if(feedback==5){
+                dyna=0;
+                cvs->prevstate = cvs->state;
+                cvs->state = PUSH_BEE;
+			}
+			t++; //bee
+
+			break;
+
+
 		case BALL1:
 
-			if(team){
-                cvs->targetX = 0;
-                cvs->targetY = 0;
-			}
-			else{
-                cvs->targetX = 0;
-                cvs->targetY = 0;
-			}
-
-			deltaX = cvs->targetX - pos_X;
-			deltaY = cvs->targetY - pos_Y;
-			dist = sqrt(deltaX*deltaX + deltaY*deltaY);
-
-			if(dist < 0.03){
+            if(message_stop == 1){
 
 				cvs->move = 0;
-				cvs->prevstate = cvs->state;
-				cvs->state = BALL2;
-			}
-			else{
 
-				cvs->move = 1;
 			}
+            else{
+                if(team){
+                    cvs->move = 3;
+                }
+                else{
+                    cvs->move = 4;
+                }
+
+//                deltaX = cvs->targetX - pos_X;
+//                deltaY = cvs->targetY - pos_Y;
+//                dist = sqrt(deltaX*deltaX + deltaY*deltaY);
+
+                if(cnt > 100){
+
+				cvs->move = 0;
+				cnt=0;
+				cvs->prevstate = cvs->state;
+				cvs->state = STANDBY;
+                }
+
+			}
+			cnt++;
 			t++;
 
 			break;
 
 		case BALL2:
 
-			if(team){
-                cvs->targetX = 0;
-                cvs->targetY = 0;
-			}
-			else{
-                cvs->targetX = 0;
-                cvs->targetY = 0;
-			}
-
-			deltaX = cvs->targetX - pos_X;
-			deltaY = cvs->targetY - pos_Y;
-			dist = sqrt(deltaX*deltaX + deltaY*deltaY);
-
-			if(dist < 0.03){
+			if(message_stop == 1){
 
 				cvs->move = 0;
-				cvs->prevstate = cvs->state;
-				cvs->state = BALL3;
 			}
 			else{
 
-				cvs->move = 1;
+				if(team){
+					cvs->move = 6;
+				}
+				else{
+					cvs->move = 6;
+				}
+
+				// deltaX = cvs->targetX - pos_X;
+				// deltaY = cvs->targetY - pos_Y;
+				// dist = sqrt(deltaX*deltaX + deltaY*deltaY);
+
+				if(cnt > 650){
+
+					cvs->move = 0;
+					cvs->prevstate = cvs->state;
+					cvs->state = STANDBY;
+				}
 			}
+
+
 			t++;
 			break;
 
@@ -568,7 +694,7 @@ void FSM(Struct* cvs)
 int main(int argc, char **argv) {
     Struct* cvs;
     cvs = init_Struct();
-    ros::init(argc, argv, "test_fsm");
+    ros::init(argc, argv, "fsm_hardcore");
     ros::NodeHandle n;
     //ros::Subscriber sub1 = n.subscribe("team", 1, Callback_team);
     ros::Subscriber sub1 = n.subscribe("origin_green", 1, Callback_lidar_g);
@@ -577,11 +703,13 @@ int main(int argc, char **argv) {
     ros::Subscriber sub3 = n.subscribe("blackline", 1, Callback_follow);
     ros::Subscriber sub4 = n.subscribe("team", 1, Callback_team);
     ros::Subscriber sub6 = n.subscribe("start", 1, Callback_start);
+    ros::Subscriber sub8= n.subscribe("message_opp", 1, Callback_opp);
+
 
     ros::Publisher pub1 = n.advertise<std_msgs::Int8>("move", 1);
 	ros::Publisher pub2 = n.advertise<geometry_msgs::Pose2D>("target", 1);
     ros::Publisher pub3 = n.advertise<std_msgs::Int8>("enable_rotation", 1);
-    ros::Publisher pub4 = n.advertise<std_msgs::Int8>("dynamixel_cmd", 1);
+    ros::Publisher pub4 = n.advertise<std_msgs::Int8>("dynamixel_cmd", 10);
     ros::Publisher pub5 = n.advertise<std_msgs::Bool>("shoot_enable",1);
 
 
@@ -621,3 +749,4 @@ int main(int argc, char **argv) {
     return 0;
     free_Struct(cvs);
 }
+

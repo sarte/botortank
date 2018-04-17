@@ -65,25 +65,55 @@ def midlevel():
             omega_ref.motor3 =  -rotation*4
             omega_ref.motor4 =  -rotation*4
         elif (move==3):
-            omega_ref.motor1 =  4
-            omega_ref.motor2 =  4
-            omega_ref.motor3 =  4
-            omega_ref.motor4 =  4
+            omega_ref.motor1 =  6
+            omega_ref.motor2 =  6
+            omega_ref.motor3 =  6
+            omega_ref.motor4 =  6
         elif(move==4):
-            omega_ref.motor1 =  -4
-            omega_ref.motor2 =  -4
-            omega_ref.motor3 =  -4
-            omega_ref.motor4 =  -4
+            omega_ref.motor1 =  -6
+            omega_ref.motor2 =  -6
+            omega_ref.motor3 =  -6
+            omega_ref.motor4 =  -6
         elif(move==5):#gauche
-            omega_ref.motor1 =  4
-            omega_ref.motor2 =  -4
-            omega_ref.motor3 =  4
-            omega_ref.motor4 =  -4
+            omega_ref.motor1 =  6
+            omega_ref.motor2 =  -6
+            omega_ref.motor3 =  6
+            omega_ref.motor4 =  -6
         elif(move==6):#droite
+            omega_ref.motor1 =  -6
+            omega_ref.motor2 =  6
+            omega_ref.motor3 =  -6
+            omega_ref.motor4 =  6
+        elif(move==7):#2vers4
+            omega_ref.motor1 =  6
+            omega_ref.motor2 =  0
+            omega_ref.motor3 =  6
+            omega_ref.motor4 =  0
+        elif(move==8):#1vers3
+            omega_ref.motor1 =  0
+            omega_ref.motor2 =  -6
+            omega_ref.motor3 =  0
+            omega_ref.motor4 =  -6
+        elif(move==9):#3vers1
+            omega_ref.motor1 =  0
+            omega_ref.motor2 =  6
+            omega_ref.motor3 =  0
+            omega_ref.motor4 =  6
+        elif(move==10):#4vers2
+            omega_ref.motor1 =  -6
+            omega_ref.motor2 =  0
+            omega_ref.motor3 =  -6
+            omega_ref.motor4 =  0
+        elif(move==11):#domo
             omega_ref.motor1 =  -4
-            omega_ref.motor2 =  4
+            omega_ref.motor2 =  -4
             omega_ref.motor3 =  -4
-            omega_ref.motor4 =  4
+            omega_ref.motor4 =  -4
+        elif(move==12):#domo
+            omega_ref.motor1 = 4
+            omega_ref.motor2 = 4
+            omega_ref.motor3 = 4
+            omega_ref.motor4 = 4
 
         pub.publish(omega_ref)
         rate.sleep()

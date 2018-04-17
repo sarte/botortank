@@ -1,0 +1,20 @@
+<launch>
+
+	<node name="fsm_hardcore" pkg="bot" type="fsm_hardcore" />
+
+	<include file="$(find rplidar_ros)/launch/rplidar.launch" />
+	<include file="$(find rplidar_ros)/launch/hectormapping.launch" />
+	<node name="referenceframe" pkg="bot" type="referenceframe.py" />
+	
+	<node name="start" pkg="bot" type="start.py" />
+	<node name="driver" pkg="bot" type="driver.py" />
+	<node name="encoder" pkg="bot" type="encoder.py" />
+	<node name="speedcontroler" pkg="bot" type="speedcontroler" />
+    <node name="midlevel" pkg="bot" type="midlevel.py" />
+	
+    <node name="linesensor" pkg="bot" type="linesensor.py" />
+    <node name="opponent" pkg="bot" type="opponent" />
+	
+    <node name="dynamixel" pkg="bot" type="dynamixel.py" output="screen" />	
+	
+</launch>

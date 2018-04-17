@@ -26,8 +26,8 @@ sleep(0.1)
 GPIO.output(MyARM_ResetPin, GPIO.LOW)
 sleep(0.1)
 
-ID_sorting = 0x01
-ID_bee = 0x06
+ID_bee = 0x01
+ID_sorting = 0x06
 ID_ball = 0x02
 sorting_speed = 57
 command = 0
@@ -158,7 +158,7 @@ def bee_init():
 # bee sequence
 def bee_up():
     sleep(0.1)
-    instru_dyna(ID_bee, 0x05, 0x03, 0x1E, 0x66, 0x02)
+    instru_dyna(ID_bee, 0x05, 0x03, 0x1E, 0xaa, 0x02)
 
 
 def bee_down():
@@ -183,25 +183,21 @@ def stop():
 def callback(data):
     global command
     command = data.data
+    rospy.loginfo(command)
 
 
 # the node definition itself
-def dynamixel():
+def dynamixel2():
     rospy.init_node('dynamixel', anonymous=True)
     # print('node initiation: dynamixel')
-    rospy.Subscriber('dynamixel_cmd', Int8, callback, queue_size=1000)
+    rospy.Subscriber('dynamixel_cmd', Int8, callback, queue_size=1)
     # print('topic initiation: dynamixel_cmd')
     pub = rospy.Publisher('dyna_feedback', Int8, queue_size=1)
-    # enable(ID_bee)
-    # sleep(0.01)
-    # bee_init()
-    # sleep(0.01)
-    # bee_up()
-    # sleep(10)
-    # bee_down()
-    # sleep(0.1)
-    # disable(ID_bee)
-    rate = rospy.Rate(100)
+    rate = rospy.Rate(1)
+    enable(ID_bee)
+    sleep(0.1)
+    bee_init()
+    sleep(0.1)
     while not rospy.is_shutdown():
         feedback = 0
         if command == 1:  # 'sorting1':
@@ -229,20 +225,20 @@ def dynamixel():
             feedback = 2
             pub.publish(feedback)
         elif command == 3:  # 'bee':
-            rospy.loginfo('blow me')
-            enable(ID_bee)
-            sleep(0.1)
-            bee_init()
-            sleep(0.1)
+            # rospy.loginfo('blow me')
             bee_up()
-            sleep(10)
+            sleep(0.1)
+            feedback = 3
+            sleep(0.1)
+            pub.publish(feedback)
+            sleep(15)
             bee_down()
             sleep(0.1)
-            disable(ID_bee)
-            rospy.loginfo('no, blow me')
+            # disable(ID_bee)
+            # rospy.loginfo('no, blow me')
             # print('enabling bee \n starting bee')
-            feedback = 3
-            pub.publish(feedback)
+            # feedback = 3
+            # pub.publish(feedback)
         elif command == 4:  # 'ball':
             # print('starting ball sequence')
             enable(ID_ball)
@@ -252,9 +248,10 @@ def dynamixel():
             feedback = 4
             pub.publish(feedback)
         else:
-            print('Unknown command, stopping instead')	
+            # print('Unknown command, stopping instead')
+            rospy.loginfo('nothing')
             stop()
-        rate.sleep()
+            # rate.sleep()
     print('Shutting down: disabling dynamixels')
     stop()
     GPIO.cleanup()
@@ -262,6 +259,6 @@ def dynamixel():
 
 if __name__ == '__main__':
     try:
-        dynamixel()
+        dynamixel2()
     except rospy.ROSInterruptException:
         pass

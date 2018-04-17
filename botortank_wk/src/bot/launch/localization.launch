@@ -3,7 +3,5 @@
 	<include file="$(find rplidar_ros)/launch/rplidar.launch" />
 	<include file="$(find rplidar_ros)/launch/hectormapping.launch" />
 	<node name="referenceframe" pkg="bot" type="referenceframe.py" />
-    <node name="opponent" pkg="bot" type="opponent" output="screen" />
-	<include file="$(find bot)/launch/test_fsm.launch" />	
-    <node name="test_fsm_forward_domo" pkg="bot" type="test_fsm_forward_domo" />
+	
 </launch>

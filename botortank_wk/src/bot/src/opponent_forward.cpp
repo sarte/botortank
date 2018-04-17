@@ -48,9 +48,6 @@
 #include <math.h>
 #include <time.h>
 
-#include <iostream>
-#include <fstream>
-
 #define RAD2DEG(x) ((x)*180./M_PI)
 
 double dist1_opp = 0;
@@ -73,12 +70,11 @@ double Thetao = 0;
 bool teamchoice;
 int stop = 0;
 float scan_opp[360][2];
+int mvt;
+
 //float scan_opp2[360][2];
 //float scan_filter[360][2];
 int size = 0;
-int insideCallabck = 0;
-int insideOpponent = 0;
-int flag2written = 0;
 //int size = 0;
 //int deg90minus = 0;
 //int deg90plus = 0;
@@ -129,35 +125,30 @@ void free_Struct(Struct *cvs)
 */
 
 
-void teamCallback(const std_msgs::Bool& team){
-    teamchoice = team.data;
+void teamCallback(const std_msgs::Int8& move){
+    mvt = move.data;
 }
 
-void greenCallback(const geometry_msgs::Pose2D& pose){
-    Xg = pose.x;
-    Yg = pose.y;
-    Thetag = pose.theta;
-}
-void orangeCallback(const geometry_msgs::Pose2D& pose){
-    Xo = pose.x;
-    Yo = pose.y;
-    Thetao = pose.theta;
-}
+// void greenCallback(const geometry_msgs::Pose2D& pose){
+    // Xg = pose.x;
+    // Yg = pose.y;
+    // Thetag = pose.theta;
+// }
+// void orangeCallback(const geometry_msgs::Pose2D& pose){
+    // Xo = pose.x;
+    // Yo = pose.y;
+    // Thetao = pose.theta;
+// }
 
 void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
 {
-	if(flag2written == 0){
     //printf("Je commence\n");
     int count = scan->scan_time / scan->time_increment;
 	int cnt = 0;
 	int f_edge = 0;
 	int r_edge = 0;
-    insideCallabck += 1;
-	size = 0;
-    printf("In scan %i\n",count);
-    std::fstream fichier;
-    fichier.open("brut.txt",std::fstream::app|std::fstream::out);
 
+	size = 0;
 
 
     for(int i = 0; i < count; i++) {
@@ -166,94 +157,47 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
 
         float degree = RAD2DEG(scan->angle_min + scan->angle_increment * i);
 
-        //if(scan->ranges[i] < 0.5  && scan->ranges[i] > 0.16){
-		if(scan->ranges[i] < 0.5){
+        if(scan->ranges[i] < 0.5  && scan->ranges[i] > 0.16){
+
             scan_opp[size][0] = degree;
             scan_opp[size][1] = scan->ranges[i];
-            printf("call back distance = %f angle = %f,distance2 = %f angle2 = %f %i\n",scan->ranges[i],degree,scan_opp[size][0],scan_opp[size][1],insideCallabck);
             size++;
-            fichier << "t:" << degree << " d:" << scan->ranges[i] << " \n";
         }
     }
-
-    fichier.close();
-	flag2written = 1;
-	}
-
 }
 
 
 void opponent_filter(){
 
-	if(flag2written == 1){
+    if(mvt = 3){ //orange
 
-		std::fstream fichier;
-    fichier.open("semi_brut.txt",std::fstream::app|std::fstream::out);
-
-	for(int i = 0; i < size; i++) {
-
-       fichier << "t:" << scan_opp[i][0] << " d:" << scan_opp[i][1] << " \n";
-
-    }
-	 fichier.close();
-    double myAngle;
-    double myDist;
-    double myShift = Thetao*M_PI/180;
-    double myShift2 =  Thetag*M_PI/180;
-
-    if(teamchoice){ //orange
-        stop = 0;
         iter = 0;
-        insideOpponent +=1;
-        printf("size = %i\n",size);
-        //printf("In opponent\n");
-        std::fstream fichier;
-        fichier.open("map.txt",std::fstream::app|std::fstream::out);
 
-
-        Thetao = Thetao*M_PI/180;
         for(int j = 0; j<size ; j++){
-            //print("in the if")
-            //scan_opp[j][0] = double  (scan_opp[j][0]/180.0)*M_PI;
-            //printf("before distance = %f angle = %f Thetao = %f  %i\n",scan_opp[j][1],scan_opp[j][0],Thetao,insideOpponent);
-            myAngle = scan_opp[j][0]*M_PI/180.0;
-            myDist = scan_opp[j][1];
-            //Thetao = double (Thetao/180)*M_PI;
 
-            X = Xo + (scan_opp[j][1]*cos(myShift+myAngle));
-            Y = Yo + (scan_opp[j][1]*sin(myShift+myAngle));
-            //printf("Xo = %f Yo = %f\n",Xo,Yo);
-             //printf("X = %f Y = %f\n",X,Y);
-            //printf(" after distance = %f angle = %f Thetao = %f \n",scan_opp[j][1],scan_opp[j][0],Thetao);
-            fichier << "X:" << X << " Y:" << Y << " \n";
-            if((X<1.35)&&(X>-1.35)&&(Y<0.85)&&(Y>-0.70)){
+            //X = Xo + (scan_opp[j][1]*cos(Thetao+scan_opp[j][0]));
+            //Y = Yo + (scan_opp[j][1]*cos(Thetao+scan_opp[j][0]));
 
+            if(scan_opp[j][0] < -90 || scan_opp[j][0] > 90){
 
                 //scan_opp2[iter][1] = scan_opp[j][1];
                 //scan_opp2[iter][0] = scan_opp[j][0];
                 iter++;
-                //printf(" iter = %i %f %f\n",iter,X,Y);
-                fichier << "Xi:" << X << " Yi:" << Y << " \n";
 
             }
 
-
         }
-        fichier.close();
     }
     else
     {
-        stop = 0;
         iter = 0;
 
         for(int j = 0; j<size ; j++){
-            myAngle = scan_opp[j][0]*M_PI/180.0;
-            myDist = scan_opp[j][1];
 
-            X = Xg + (scan_opp[j][1]*cos(myShift2+myAngle));
-            Y = Yg + (scan_opp[j][1]*sin(myShift2+myAngle));
+            //X = Xg + (scan_opp[j][1]*cos(Thetag+scan_opp[j][0]));
+            //Y = Yg + (scan_opp[j][1]*cos(Thetag+scan_opp[j][0]));
 
-            if((X<1.35)&&(X>-1.35)&&(Y<0.85)&&(Y>-0.70)){
+            if(scan_opp[j][0] > -90 && scan_opp[j][0] < 90){
 
                 //scan_opp2[iter][1] = scan_opp[j][1];
                 //scan_opp2[iter][0] = scan_opp[j][0];
@@ -263,13 +207,10 @@ void opponent_filter(){
         }
     }
 
-    if(iter > 5){
+    if(iter > 3){
 
         stop = 1;
     }
-
-	flag2written =0;
-	}
 
 }
 
@@ -282,16 +223,16 @@ void opponent_filter(){
 int main(int argc, char **argv)
 {
 
-    ros::init(argc, argv, "opponent");
+    ros::init(argc, argv, "opponent_forward");
     ros::NodeHandle n;
 
     ros::Subscriber sub = n.subscribe("scan", 1, scanCallback);
-    ros::Subscriber sub2 = n.subscribe("origin_green",1,greenCallback);
-    ros::Subscriber sub3 = n.subscribe("origin_orange",1,orangeCallback);
-    ros::Subscriber sub4 = n.subscribe("team",1,teamCallback);
+    //ros::Subscriber sub2 = n.subscribe("origin_green",1,greenCallback);
+    //ros::Subscriber sub3 = n.subscribe("origin_orange",1,orangeCallback);
+    ros::Subscriber sub4 = n.subscribe("move",1,teamCallback);
 
     //ros::Publisher pub = n.advertise<bot::quad>("opponent",1);
-    ros::Publisher pub2 = n.advertise<std_msgs::Int8>("message_opp",1);
+    ros::Publisher pub2 = n.advertise<std_msgs::Int8>("message_opp2",1);
 
 	//bot::quad opponent;
     std_msgs::Int8 message_opp;
