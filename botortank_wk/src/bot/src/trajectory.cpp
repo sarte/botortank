@@ -91,8 +91,8 @@ int main(int argc, char **argv)
     while(ros::ok())
     {
         trajectory();
-        velocity_ref.linear.x = velocityY;
-		velocity_ref.linear.y = -velocityX;
+        velocity_ref.linear.x = velocityX;
+		velocity_ref.linear.y = velocityY;
         pub.publish(velocity_ref);
         ros::spinOnce();
         loop_rate.sleep();

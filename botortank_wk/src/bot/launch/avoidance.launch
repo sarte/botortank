@@ -1,0 +1,6 @@
+<launch>	
+    <node name="linesensor" pkg="bot" type="linesensor.py" />
+    <node name="opponent" pkg="bot" type="opponent" output="screen" />
+    <node name="fsm_hardcore" pkg="bot" type="fsm_hardcore" />
+	
+</launch>
