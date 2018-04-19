@@ -54,7 +54,6 @@ def orange(pose):
     bot_pose_orange.theta = pose.theta + c
     pubo = rospy.Publisher('origin_orange', Pose2D, queue_size=1)
     pubo.publish(bot_pose_orange)
-    rospy.loginfo(pubo)
 
 
 def callback(cmd):
@@ -79,6 +78,7 @@ def referenceframe():
         out.y = cmdy
         out.theta = cmdtheta
         pub.publish(out)
+        rospy.loginfo("From starting point: x= %f y=%f theta=%f", out.x, out.y, out.theta)
         green(out)
         orange(out)
         rate.sleep()
