@@ -10,6 +10,6 @@
     <node name="linesensor" pkg="bot" type="linesensor.py" />
 	<node name="referenceframe" pkg="bot" type="referenceframe.py" />
     <node name="opponent" pkg="bot" type="opponent" />
-    <node name="test_param" pkg="bot" type="test_param" output="screen"/> <!-- ici normalement fsm_forward_domo_jenesaispasquoideplus -->
+    <node name="test_fsm_forward_domo" pkg="bot" type="test_fsm_forward_domo" />
 	
 </launch>

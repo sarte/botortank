@@ -45,7 +45,7 @@ def midlevel():
     rospy.Subscriber('enable_rotation',Int8,callback_rotation)
     pub = rospy.Publisher('omega_ref', quad, queue_size=1)
     omega_ref = quad()
-    rate = rospy.Rate(100)
+    rate = rospy.Rate(1)
     while not rospy.is_shutdown():
         print(move)
         if(move == 0):

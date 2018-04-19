@@ -53,23 +53,13 @@ void trajectory()
     //if(enable_move == 1){
 		
 		ftotX = force_att_X + force_rep_X;
-		ftotY =  force_att_Y + force_rep_Y;
+		ftotY = force_att_Y + force_rep_Y;
         
         velocityX = k1*ftotX;
         velocityY = k2*ftotY;
-		
-        if(velocityX > 10){
-            velocityX = 10;
-        }
-        if(velocityX < -10) {
-            velocityX = -10;
-        }
-        if(velocityY > 10){
-            velocityY = 10;
-        }
-        if(velocityY < -10) {
-            velocityY = -10;
-        }
+
+        velocityX = std::min(std::max(velocityX, -15.0), 15.0); //saturation
+        velocityY = std::min(std::max(velocityY, -15.0), 15.0); //saturation
 		
 		
 	//}

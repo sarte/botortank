@@ -22,7 +22,7 @@ double deltaX = 0;
 double deltaY = 0;
 double dist = 0;
 double angle = 0; // angle force in ref frame
-double xsi = 10;
+double xsi = 5;//10;
 bool team;
 double X = 0;
 double Y = 0;
@@ -54,18 +54,20 @@ void forceatt()
     if(team){
         X = Xo;
         Y = Yo;
-        theta = thetao;
+        theta = thetao*M_PI/180;
     }
     else {
         X = Xg;
         Y = Yg;
-        theta = thetag;
+        theta = thetag*M_PI/180;
     }
     deltaX = number1 - X;
 	deltaY = number2 - Y;
+    printf("deltaX = %f deltaY = %f",deltaX,deltaY);
 	
-	dist = sqrt(deltaX*deltaX + deltaY*deltaY);
+	dist = sqrt((deltaX*deltaX) + (deltaY*deltaY));
 	angle = atan(deltaY/deltaX);
+    printf("distance = %f angle = %f\n",dist,angle*180/M_PI);
 	
 	if(deltaX<0 && deltaY>0 && angle<0)
 	{
@@ -73,19 +75,19 @@ void forceatt()
 	}
 	if(deltaX<0 && deltaY<0 && angle>0)
 	{
-		angle -= M_PI;
+        angle -= M_PI;
 	}
 	
-	forceX = xsi*dist*cos(angle-theta);
-	forceY = xsi*dist*sin(angle-theta);
+	forceX = -xsi*dist*cos(angle-theta);
+	forceY = -xsi*dist*sin(angle-theta);
 	
 }
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "attraction");
     ros::NodeHandle n;
-    ros::Subscriber sub1 = n.subscribe("origin_green", 10, Callbackgreen);
-    ros::Subscriber sub3 = n.subscribe("origin_orange", 10, Callbackorange);
+    ros::Subscriber sub1 = n.subscribe("origin_green", 1, Callbackgreen);
+    ros::Subscriber sub3 = n.subscribe("origin_orange", 1, Callbackorange);
     ros::Subscriber sub4 = n.subscribe("team", 1, Callbackteam);
     ros::Subscriber sub2 = n.subscribe("target", 10, Callback2);
     ros::Publisher pub = n.advertise<geometry_msgs::Point>("force_att",1);
