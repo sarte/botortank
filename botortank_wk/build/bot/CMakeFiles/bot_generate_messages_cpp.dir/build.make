@@ -53,23 +53,31 @@ CMAKE_BINARY_DIR = /home/botortank/botortank_ws/build
 # Include the progress variables for this target.
 include bot/CMakeFiles/bot_generate_messages_cpp.dir/progress.make
 
+bot/CMakeFiles/bot_generate_messages_cpp: /home/botortank/botortank_ws/devel/include/bot/lidar_array.h
 bot/CMakeFiles/bot_generate_messages_cpp: /home/botortank/botortank_ws/devel/include/bot/tetra.h
 bot/CMakeFiles/bot_generate_messages_cpp: /home/botortank/botortank_ws/devel/include/bot/quad.h
 
 
+/home/botortank/botortank_ws/devel/include/bot/lidar_array.h: /opt/ros/kinetic/lib/gencpp/gen_cpp.py
+/home/botortank/botortank_ws/devel/include/bot/lidar_array.h: /home/botortank/botortank_ws/src/bot/msg/lidar_array.msg
+/home/botortank/botortank_ws/devel/include/bot/lidar_array.h: /opt/ros/kinetic/share/gencpp/msg.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code from bot/lidar_array.msg"
+	cd /home/botortank/botortank_ws/src/bot && /home/botortank/botortank_ws/build/catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/botortank/botortank_ws/src/bot/msg/lidar_array.msg -Ibot:/home/botortank/botortank_ws/src/bot/msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p bot -o /home/botortank/botortank_ws/devel/include/bot -e /opt/ros/kinetic/share/gencpp/cmake/..
+
 /home/botortank/botortank_ws/devel/include/bot/tetra.h: /opt/ros/kinetic/lib/gencpp/gen_cpp.py
 /home/botortank/botortank_ws/devel/include/bot/tetra.h: /home/botortank/botortank_ws/src/bot/msg/tetra.msg
 /home/botortank/botortank_ws/devel/include/bot/tetra.h: /opt/ros/kinetic/share/gencpp/msg.h.template
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code from bot/tetra.msg"
-	cd /home/botortank/botortank_ws/build/bot && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/botortank/botortank_ws/src/bot/msg/tetra.msg -Ibot:/home/botortank/botortank_ws/src/bot/msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p bot -o /home/botortank/botortank_ws/devel/include/bot -e /opt/ros/kinetic/share/gencpp/cmake/..
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating C++ code from bot/tetra.msg"
+	cd /home/botortank/botortank_ws/src/bot && /home/botortank/botortank_ws/build/catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/botortank/botortank_ws/src/bot/msg/tetra.msg -Ibot:/home/botortank/botortank_ws/src/bot/msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p bot -o /home/botortank/botortank_ws/devel/include/bot -e /opt/ros/kinetic/share/gencpp/cmake/..
 
 /home/botortank/botortank_ws/devel/include/bot/quad.h: /opt/ros/kinetic/lib/gencpp/gen_cpp.py
 /home/botortank/botortank_ws/devel/include/bot/quad.h: /home/botortank/botortank_ws/src/bot/msg/quad.msg
 /home/botortank/botortank_ws/devel/include/bot/quad.h: /opt/ros/kinetic/share/gencpp/msg.h.template
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating C++ code from bot/quad.msg"
-	cd /home/botortank/botortank_ws/build/bot && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/botortank/botortank_ws/src/bot/msg/quad.msg -Ibot:/home/botortank/botortank_ws/src/bot/msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p bot -o /home/botortank/botortank_ws/devel/include/bot -e /opt/ros/kinetic/share/gencpp/cmake/..
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating C++ code from bot/quad.msg"
+	cd /home/botortank/botortank_ws/src/bot && /home/botortank/botortank_ws/build/catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/botortank/botortank_ws/src/bot/msg/quad.msg -Ibot:/home/botortank/botortank_ws/src/bot/msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p bot -o /home/botortank/botortank_ws/devel/include/bot -e /opt/ros/kinetic/share/gencpp/cmake/..
 
 bot_generate_messages_cpp: bot/CMakeFiles/bot_generate_messages_cpp
+bot_generate_messages_cpp: /home/botortank/botortank_ws/devel/include/bot/lidar_array.h
 bot_generate_messages_cpp: /home/botortank/botortank_ws/devel/include/bot/tetra.h
 bot_generate_messages_cpp: /home/botortank/botortank_ws/devel/include/bot/quad.h
 bot_generate_messages_cpp: bot/CMakeFiles/bot_generate_messages_cpp.dir/build.make

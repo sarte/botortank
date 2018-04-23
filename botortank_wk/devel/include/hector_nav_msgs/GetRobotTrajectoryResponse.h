@@ -40,6 +40,7 @@ struct GetRobotTrajectoryResponse_
 
 
 
+
   typedef boost::shared_ptr< ::hector_nav_msgs::GetRobotTrajectoryResponse_<ContainerAllocator> > Ptr;
   typedef boost::shared_ptr< ::hector_nav_msgs::GetRobotTrajectoryResponse_<ContainerAllocator> const> ConstPtr;
 

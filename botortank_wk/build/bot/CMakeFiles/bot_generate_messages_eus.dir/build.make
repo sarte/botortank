@@ -53,26 +53,33 @@ CMAKE_BINARY_DIR = /home/botortank/botortank_ws/build
 # Include the progress variables for this target.
 include bot/CMakeFiles/bot_generate_messages_eus.dir/progress.make
 
+bot/CMakeFiles/bot_generate_messages_eus: /home/botortank/botortank_ws/devel/share/roseus/ros/bot/msg/lidar_array.l
 bot/CMakeFiles/bot_generate_messages_eus: /home/botortank/botortank_ws/devel/share/roseus/ros/bot/msg/tetra.l
 bot/CMakeFiles/bot_generate_messages_eus: /home/botortank/botortank_ws/devel/share/roseus/ros/bot/msg/quad.l
 bot/CMakeFiles/bot_generate_messages_eus: /home/botortank/botortank_ws/devel/share/roseus/ros/bot/manifest.l
 
 
+/home/botortank/botortank_ws/devel/share/roseus/ros/bot/msg/lidar_array.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
+/home/botortank/botortank_ws/devel/share/roseus/ros/bot/msg/lidar_array.l: /home/botortank/botortank_ws/src/bot/msg/lidar_array.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from bot/lidar_array.msg"
+	cd /home/botortank/botortank_ws/build/bot && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/botortank/botortank_ws/src/bot/msg/lidar_array.msg -Ibot:/home/botortank/botortank_ws/src/bot/msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p bot -o /home/botortank/botortank_ws/devel/share/roseus/ros/bot/msg
+
 /home/botortank/botortank_ws/devel/share/roseus/ros/bot/msg/tetra.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
 /home/botortank/botortank_ws/devel/share/roseus/ros/bot/msg/tetra.l: /home/botortank/botortank_ws/src/bot/msg/tetra.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from bot/tetra.msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from bot/tetra.msg"
 	cd /home/botortank/botortank_ws/build/bot && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/botortank/botortank_ws/src/bot/msg/tetra.msg -Ibot:/home/botortank/botortank_ws/src/bot/msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p bot -o /home/botortank/botortank_ws/devel/share/roseus/ros/bot/msg
 
 /home/botortank/botortank_ws/devel/share/roseus/ros/bot/msg/quad.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
 /home/botortank/botortank_ws/devel/share/roseus/ros/bot/msg/quad.l: /home/botortank/botortank_ws/src/bot/msg/quad.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from bot/quad.msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp code from bot/quad.msg"
 	cd /home/botortank/botortank_ws/build/bot && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/botortank/botortank_ws/src/bot/msg/quad.msg -Ibot:/home/botortank/botortank_ws/src/bot/msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p bot -o /home/botortank/botortank_ws/devel/share/roseus/ros/bot/msg
 
 /home/botortank/botortank_ws/devel/share/roseus/ros/bot/manifest.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp manifest code for bot"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating EusLisp manifest code for bot"
 	cd /home/botortank/botortank_ws/build/bot && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py -m -o /home/botortank/botortank_ws/devel/share/roseus/ros/bot bot geometry_msgs std_msgs
 
 bot_generate_messages_eus: bot/CMakeFiles/bot_generate_messages_eus
+bot_generate_messages_eus: /home/botortank/botortank_ws/devel/share/roseus/ros/bot/msg/lidar_array.l
 bot_generate_messages_eus: /home/botortank/botortank_ws/devel/share/roseus/ros/bot/msg/tetra.l
 bot_generate_messages_eus: /home/botortank/botortank_ws/devel/share/roseus/ros/bot/msg/quad.l
 bot_generate_messages_eus: /home/botortank/botortank_ws/devel/share/roseus/ros/bot/manifest.l

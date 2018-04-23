@@ -166,6 +166,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+bot/CMakeFiles/attraction.dir/rule:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f CMakeFiles/Makefile2 bot/CMakeFiles/attraction.dir/rule
+.PHONY : bot/CMakeFiles/attraction.dir/rule
+
+# Convenience name for target.
+attraction: bot/CMakeFiles/attraction.dir/rule
+
+.PHONY : attraction
+
+# fast build rule for target.
+attraction/fast:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/attraction.dir/build.make bot/CMakeFiles/attraction.dir/build
+.PHONY : attraction/fast
+
+# Convenience name for target.
 bot/CMakeFiles/speedcontroler.dir/rule:
 	cd /home/botortank/botortank_ws/build && $(MAKE) -f CMakeFiles/Makefile2 bot/CMakeFiles/speedcontroler.dir/rule
 .PHONY : bot/CMakeFiles/speedcontroler.dir/rule
@@ -194,6 +209,21 @@ bot_genpy: bot/CMakeFiles/bot_genpy.dir/rule
 bot_genpy/fast:
 	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/bot_genpy.dir/build.make bot/CMakeFiles/bot_genpy.dir/build
 .PHONY : bot_genpy/fast
+
+# Convenience name for target.
+bot/CMakeFiles/bot_generate_messages_py.dir/rule:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f CMakeFiles/Makefile2 bot/CMakeFiles/bot_generate_messages_py.dir/rule
+.PHONY : bot/CMakeFiles/bot_generate_messages_py.dir/rule
+
+# Convenience name for target.
+bot_generate_messages_py: bot/CMakeFiles/bot_generate_messages_py.dir/rule
+
+.PHONY : bot_generate_messages_py
+
+# fast build rule for target.
+bot_generate_messages_py/fast:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/bot_generate_messages_py.dir/build.make bot/CMakeFiles/bot_generate_messages_py.dir/build
+.PHONY : bot_generate_messages_py/fast
 
 # Convenience name for target.
 bot/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
@@ -226,6 +256,21 @@ rosgraph_msgs_generate_messages_cpp/fast:
 .PHONY : rosgraph_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
+bot/CMakeFiles/repulsiveUCL.dir/rule:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f CMakeFiles/Makefile2 bot/CMakeFiles/repulsiveUCL.dir/rule
+.PHONY : bot/CMakeFiles/repulsiveUCL.dir/rule
+
+# Convenience name for target.
+repulsiveUCL: bot/CMakeFiles/repulsiveUCL.dir/rule
+
+.PHONY : repulsiveUCL
+
+# fast build rule for target.
+repulsiveUCL/fast:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/repulsiveUCL.dir/build.make bot/CMakeFiles/repulsiveUCL.dir/build
+.PHONY : repulsiveUCL/fast
+
+# Convenience name for target.
 bot/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
 	cd /home/botortank/botortank_ws/build && $(MAKE) -f CMakeFiles/Makefile2 bot/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
 .PHONY : bot/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
@@ -239,6 +284,21 @@ rosgraph_msgs_generate_messages_py: bot/CMakeFiles/rosgraph_msgs_generate_messag
 rosgraph_msgs_generate_messages_py/fast:
 	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make bot/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 .PHONY : rosgraph_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+bot/CMakeFiles/test_fsm_forward_domo.dir/rule:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f CMakeFiles/Makefile2 bot/CMakeFiles/test_fsm_forward_domo.dir/rule
+.PHONY : bot/CMakeFiles/test_fsm_forward_domo.dir/rule
+
+# Convenience name for target.
+test_fsm_forward_domo: bot/CMakeFiles/test_fsm_forward_domo.dir/rule
+
+.PHONY : test_fsm_forward_domo
+
+# fast build rule for target.
+test_fsm_forward_domo/fast:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/test_fsm_forward_domo.dir/build.make bot/CMakeFiles/test_fsm_forward_domo.dir/build
+.PHONY : test_fsm_forward_domo/fast
 
 # Convenience name for target.
 bot/CMakeFiles/roscpp_generate_messages_py.dir/rule:
@@ -376,6 +436,21 @@ roscpp_generate_messages_nodejs/fast:
 .PHONY : roscpp_generate_messages_nodejs/fast
 
 # Convenience name for target.
+bot/CMakeFiles/opponentUCL.dir/rule:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f CMakeFiles/Makefile2 bot/CMakeFiles/opponentUCL.dir/rule
+.PHONY : bot/CMakeFiles/opponentUCL.dir/rule
+
+# Convenience name for target.
+opponentUCL: bot/CMakeFiles/opponentUCL.dir/rule
+
+.PHONY : opponentUCL
+
+# fast build rule for target.
+opponentUCL/fast:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/opponentUCL.dir/build.make bot/CMakeFiles/opponentUCL.dir/build
+.PHONY : opponentUCL/fast
+
+# Convenience name for target.
 bot/CMakeFiles/bot_genlisp.dir/rule:
 	cd /home/botortank/botortank_ws/build && $(MAKE) -f CMakeFiles/Makefile2 bot/CMakeFiles/bot_genlisp.dir/rule
 .PHONY : bot/CMakeFiles/bot_genlisp.dir/rule
@@ -404,6 +479,51 @@ bot_generate_messages: bot/CMakeFiles/bot_generate_messages.dir/rule
 bot_generate_messages/fast:
 	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/bot_generate_messages.dir/build.make bot/CMakeFiles/bot_generate_messages.dir/build
 .PHONY : bot_generate_messages/fast
+
+# Convenience name for target.
+bot/CMakeFiles/trajectory.dir/rule:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f CMakeFiles/Makefile2 bot/CMakeFiles/trajectory.dir/rule
+.PHONY : bot/CMakeFiles/trajectory.dir/rule
+
+# Convenience name for target.
+trajectory: bot/CMakeFiles/trajectory.dir/rule
+
+.PHONY : trajectory
+
+# fast build rule for target.
+trajectory/fast:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/trajectory.dir/build.make bot/CMakeFiles/trajectory.dir/build
+.PHONY : trajectory/fast
+
+# Convenience name for target.
+bot/CMakeFiles/_bot_generate_messages_check_deps_lidar_array.dir/rule:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f CMakeFiles/Makefile2 bot/CMakeFiles/_bot_generate_messages_check_deps_lidar_array.dir/rule
+.PHONY : bot/CMakeFiles/_bot_generate_messages_check_deps_lidar_array.dir/rule
+
+# Convenience name for target.
+_bot_generate_messages_check_deps_lidar_array: bot/CMakeFiles/_bot_generate_messages_check_deps_lidar_array.dir/rule
+
+.PHONY : _bot_generate_messages_check_deps_lidar_array
+
+# fast build rule for target.
+_bot_generate_messages_check_deps_lidar_array/fast:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/_bot_generate_messages_check_deps_lidar_array.dir/build.make bot/CMakeFiles/_bot_generate_messages_check_deps_lidar_array.dir/build
+.PHONY : _bot_generate_messages_check_deps_lidar_array/fast
+
+# Convenience name for target.
+bot/CMakeFiles/opponent.dir/rule:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f CMakeFiles/Makefile2 bot/CMakeFiles/opponent.dir/rule
+.PHONY : bot/CMakeFiles/opponent.dir/rule
+
+# Convenience name for target.
+opponent: bot/CMakeFiles/opponent.dir/rule
+
+.PHONY : opponent
+
+# fast build rule for target.
+opponent/fast:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/opponent.dir/build.make bot/CMakeFiles/opponent.dir/build
+.PHONY : opponent/fast
 
 # Convenience name for target.
 bot/CMakeFiles/_bot_generate_messages_check_deps_quad.dir/rule:
@@ -481,21 +601,6 @@ bot_generate_messages_cpp/fast:
 .PHONY : bot_generate_messages_cpp/fast
 
 # Convenience name for target.
-bot/CMakeFiles/odometry.dir/rule:
-	cd /home/botortank/botortank_ws/build && $(MAKE) -f CMakeFiles/Makefile2 bot/CMakeFiles/odometry.dir/rule
-.PHONY : bot/CMakeFiles/odometry.dir/rule
-
-# Convenience name for target.
-odometry: bot/CMakeFiles/odometry.dir/rule
-
-.PHONY : odometry
-
-# fast build rule for target.
-odometry/fast:
-	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/odometry.dir/build.make bot/CMakeFiles/odometry.dir/build
-.PHONY : odometry/fast
-
-# Convenience name for target.
 bot/CMakeFiles/bot_gencpp.dir/rule:
 	cd /home/botortank/botortank_ws/build && $(MAKE) -f CMakeFiles/Makefile2 bot/CMakeFiles/bot_gencpp.dir/rule
 .PHONY : bot/CMakeFiles/bot_gencpp.dir/rule
@@ -525,47 +630,113 @@ bot_geneus/fast:
 	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/bot_geneus.dir/build.make bot/CMakeFiles/bot_geneus.dir/build
 .PHONY : bot_geneus/fast
 
-# Convenience name for target.
-bot/CMakeFiles/bot_generate_messages_py.dir/rule:
-	cd /home/botortank/botortank_ws/build && $(MAKE) -f CMakeFiles/Makefile2 bot/CMakeFiles/bot_generate_messages_py.dir/rule
-.PHONY : bot/CMakeFiles/bot_generate_messages_py.dir/rule
+src/attraction.o: src/attraction.cpp.o
 
-# Convenience name for target.
-bot_generate_messages_py: bot/CMakeFiles/bot_generate_messages_py.dir/rule
-
-.PHONY : bot_generate_messages_py
-
-# fast build rule for target.
-bot_generate_messages_py/fast:
-	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/bot_generate_messages_py.dir/build.make bot/CMakeFiles/bot_generate_messages_py.dir/build
-.PHONY : bot_generate_messages_py/fast
-
-src/odometry.o: src/odometry.cpp.o
-
-.PHONY : src/odometry.o
+.PHONY : src/attraction.o
 
 # target to build an object file
-src/odometry.cpp.o:
-	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/odometry.dir/build.make bot/CMakeFiles/odometry.dir/src/odometry.cpp.o
-.PHONY : src/odometry.cpp.o
+src/attraction.cpp.o:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/attraction.dir/build.make bot/CMakeFiles/attraction.dir/src/attraction.cpp.o
+.PHONY : src/attraction.cpp.o
 
-src/odometry.i: src/odometry.cpp.i
+src/attraction.i: src/attraction.cpp.i
 
-.PHONY : src/odometry.i
+.PHONY : src/attraction.i
 
 # target to preprocess a source file
-src/odometry.cpp.i:
-	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/odometry.dir/build.make bot/CMakeFiles/odometry.dir/src/odometry.cpp.i
-.PHONY : src/odometry.cpp.i
+src/attraction.cpp.i:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/attraction.dir/build.make bot/CMakeFiles/attraction.dir/src/attraction.cpp.i
+.PHONY : src/attraction.cpp.i
 
-src/odometry.s: src/odometry.cpp.s
+src/attraction.s: src/attraction.cpp.s
 
-.PHONY : src/odometry.s
+.PHONY : src/attraction.s
 
 # target to generate assembly for a file
-src/odometry.cpp.s:
-	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/odometry.dir/build.make bot/CMakeFiles/odometry.dir/src/odometry.cpp.s
-.PHONY : src/odometry.cpp.s
+src/attraction.cpp.s:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/attraction.dir/build.make bot/CMakeFiles/attraction.dir/src/attraction.cpp.s
+.PHONY : src/attraction.cpp.s
+
+src/opponent.o: src/opponent.cpp.o
+
+.PHONY : src/opponent.o
+
+# target to build an object file
+src/opponent.cpp.o:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/opponent.dir/build.make bot/CMakeFiles/opponent.dir/src/opponent.cpp.o
+.PHONY : src/opponent.cpp.o
+
+src/opponent.i: src/opponent.cpp.i
+
+.PHONY : src/opponent.i
+
+# target to preprocess a source file
+src/opponent.cpp.i:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/opponent.dir/build.make bot/CMakeFiles/opponent.dir/src/opponent.cpp.i
+.PHONY : src/opponent.cpp.i
+
+src/opponent.s: src/opponent.cpp.s
+
+.PHONY : src/opponent.s
+
+# target to generate assembly for a file
+src/opponent.cpp.s:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/opponent.dir/build.make bot/CMakeFiles/opponent.dir/src/opponent.cpp.s
+.PHONY : src/opponent.cpp.s
+
+src/opponentUCL.o: src/opponentUCL.cpp.o
+
+.PHONY : src/opponentUCL.o
+
+# target to build an object file
+src/opponentUCL.cpp.o:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/opponentUCL.dir/build.make bot/CMakeFiles/opponentUCL.dir/src/opponentUCL.cpp.o
+.PHONY : src/opponentUCL.cpp.o
+
+src/opponentUCL.i: src/opponentUCL.cpp.i
+
+.PHONY : src/opponentUCL.i
+
+# target to preprocess a source file
+src/opponentUCL.cpp.i:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/opponentUCL.dir/build.make bot/CMakeFiles/opponentUCL.dir/src/opponentUCL.cpp.i
+.PHONY : src/opponentUCL.cpp.i
+
+src/opponentUCL.s: src/opponentUCL.cpp.s
+
+.PHONY : src/opponentUCL.s
+
+# target to generate assembly for a file
+src/opponentUCL.cpp.s:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/opponentUCL.dir/build.make bot/CMakeFiles/opponentUCL.dir/src/opponentUCL.cpp.s
+.PHONY : src/opponentUCL.cpp.s
+
+src/repulsiveUCL.o: src/repulsiveUCL.cpp.o
+
+.PHONY : src/repulsiveUCL.o
+
+# target to build an object file
+src/repulsiveUCL.cpp.o:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/repulsiveUCL.dir/build.make bot/CMakeFiles/repulsiveUCL.dir/src/repulsiveUCL.cpp.o
+.PHONY : src/repulsiveUCL.cpp.o
+
+src/repulsiveUCL.i: src/repulsiveUCL.cpp.i
+
+.PHONY : src/repulsiveUCL.i
+
+# target to preprocess a source file
+src/repulsiveUCL.cpp.i:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/repulsiveUCL.dir/build.make bot/CMakeFiles/repulsiveUCL.dir/src/repulsiveUCL.cpp.i
+.PHONY : src/repulsiveUCL.cpp.i
+
+src/repulsiveUCL.s: src/repulsiveUCL.cpp.s
+
+.PHONY : src/repulsiveUCL.s
+
+# target to generate assembly for a file
+src/repulsiveUCL.cpp.s:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/repulsiveUCL.dir/build.make bot/CMakeFiles/repulsiveUCL.dir/src/repulsiveUCL.cpp.s
+.PHONY : src/repulsiveUCL.cpp.s
 
 src/speedcontroler.o: src/speedcontroler.cpp.o
 
@@ -594,6 +765,60 @@ src/speedcontroler.cpp.s:
 	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/speedcontroler.dir/build.make bot/CMakeFiles/speedcontroler.dir/src/speedcontroler.cpp.s
 .PHONY : src/speedcontroler.cpp.s
 
+src/test_fsm_forward_domo.o: src/test_fsm_forward_domo.cpp.o
+
+.PHONY : src/test_fsm_forward_domo.o
+
+# target to build an object file
+src/test_fsm_forward_domo.cpp.o:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/test_fsm_forward_domo.dir/build.make bot/CMakeFiles/test_fsm_forward_domo.dir/src/test_fsm_forward_domo.cpp.o
+.PHONY : src/test_fsm_forward_domo.cpp.o
+
+src/test_fsm_forward_domo.i: src/test_fsm_forward_domo.cpp.i
+
+.PHONY : src/test_fsm_forward_domo.i
+
+# target to preprocess a source file
+src/test_fsm_forward_domo.cpp.i:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/test_fsm_forward_domo.dir/build.make bot/CMakeFiles/test_fsm_forward_domo.dir/src/test_fsm_forward_domo.cpp.i
+.PHONY : src/test_fsm_forward_domo.cpp.i
+
+src/test_fsm_forward_domo.s: src/test_fsm_forward_domo.cpp.s
+
+.PHONY : src/test_fsm_forward_domo.s
+
+# target to generate assembly for a file
+src/test_fsm_forward_domo.cpp.s:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/test_fsm_forward_domo.dir/build.make bot/CMakeFiles/test_fsm_forward_domo.dir/src/test_fsm_forward_domo.cpp.s
+.PHONY : src/test_fsm_forward_domo.cpp.s
+
+src/trajectory.o: src/trajectory.cpp.o
+
+.PHONY : src/trajectory.o
+
+# target to build an object file
+src/trajectory.cpp.o:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/trajectory.dir/build.make bot/CMakeFiles/trajectory.dir/src/trajectory.cpp.o
+.PHONY : src/trajectory.cpp.o
+
+src/trajectory.i: src/trajectory.cpp.i
+
+.PHONY : src/trajectory.i
+
+# target to preprocess a source file
+src/trajectory.cpp.i:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/trajectory.dir/build.make bot/CMakeFiles/trajectory.dir/src/trajectory.cpp.i
+.PHONY : src/trajectory.cpp.i
+
+src/trajectory.s: src/trajectory.cpp.s
+
+.PHONY : src/trajectory.s
+
+# target to generate assembly for a file
+src/trajectory.cpp.s:
+	cd /home/botortank/botortank_ws/build && $(MAKE) -f bot/CMakeFiles/trajectory.dir/build.make bot/CMakeFiles/trajectory.dir/src/trajectory.cpp.s
+.PHONY : src/trajectory.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -605,12 +830,16 @@ help:
 	@echo "... list_install_components"
 	@echo "... install"
 	@echo "... install/local"
+	@echo "... attraction"
 	@echo "... speedcontroler"
 	@echo "... bot_genpy"
+	@echo "... bot_generate_messages_py"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... install/strip"
+	@echo "... repulsiveUCL"
 	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... test_fsm_forward_domo"
 	@echo "... roscpp_generate_messages_py"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... bot_generate_messages_eus"
@@ -620,24 +849,41 @@ help:
 	@echo "... bot_generate_messages_lisp"
 	@echo "... bot_generate_messages_nodejs"
 	@echo "... roscpp_generate_messages_nodejs"
+	@echo "... opponentUCL"
 	@echo "... bot_genlisp"
 	@echo "... test"
 	@echo "... bot_generate_messages"
+	@echo "... trajectory"
+	@echo "... _bot_generate_messages_check_deps_lidar_array"
+	@echo "... opponent"
 	@echo "... _bot_generate_messages_check_deps_quad"
 	@echo "... bot_gennodejs"
 	@echo "... _bot_generate_messages_check_deps_tetra"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... bot_generate_messages_cpp"
-	@echo "... odometry"
 	@echo "... bot_gencpp"
 	@echo "... bot_geneus"
-	@echo "... bot_generate_messages_py"
-	@echo "... src/odometry.o"
-	@echo "... src/odometry.i"
-	@echo "... src/odometry.s"
+	@echo "... src/attraction.o"
+	@echo "... src/attraction.i"
+	@echo "... src/attraction.s"
+	@echo "... src/opponent.o"
+	@echo "... src/opponent.i"
+	@echo "... src/opponent.s"
+	@echo "... src/opponentUCL.o"
+	@echo "... src/opponentUCL.i"
+	@echo "... src/opponentUCL.s"
+	@echo "... src/repulsiveUCL.o"
+	@echo "... src/repulsiveUCL.i"
+	@echo "... src/repulsiveUCL.s"
 	@echo "... src/speedcontroler.o"
 	@echo "... src/speedcontroler.i"
 	@echo "... src/speedcontroler.s"
+	@echo "... src/test_fsm_forward_domo.o"
+	@echo "... src/test_fsm_forward_domo.i"
+	@echo "... src/test_fsm_forward_domo.s"
+	@echo "... src/trajectory.o"
+	@echo "... src/trajectory.i"
+	@echo "... src/trajectory.s"
 .PHONY : help
 
 

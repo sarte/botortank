@@ -58,8 +58,8 @@ void trajectory()
         velocityX = k1*ftotX;
         velocityY = k2*ftotY;
 
-        velocityX = std::min(std::max(velocityX, -15.0), 15.0); //saturation
-        velocityY = std::min(std::max(velocityY, -15.0), 15.0); //saturation
+        velocityX = std::min(std::max(velocityX, -10.0), 10.0); //saturation
+        velocityY = std::min(std::max(velocityY, -10.0), 10.0); //saturation
 		
 		
 	//}
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
     ros::Subscriber sub1 = n.subscribe("force_att", 10, Callback1);
     ros::Subscriber sub2 = n.subscribe("force_rep", 10, Callback2);
     ros::Publisher pub = n.advertise<geometry_msgs::Twist>("velocity_ref",1);
-    ros::Rate loop_rate(100);
+    ros::Rate loop_rate(500);
 	
     geometry_msgs::Twist velocity_ref;
 	

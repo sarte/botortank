@@ -53,28 +53,36 @@ CMAKE_BINARY_DIR = /home/botortank/botortank_ws/build
 # Include the progress variables for this target.
 include bot/CMakeFiles/bot_generate_messages_py.dir/progress.make
 
+bot/CMakeFiles/bot_generate_messages_py: /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/_lidar_array.py
 bot/CMakeFiles/bot_generate_messages_py: /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/_tetra.py
 bot/CMakeFiles/bot_generate_messages_py: /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/_quad.py
 bot/CMakeFiles/bot_generate_messages_py: /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/__init__.py
 
 
+/home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/_lidar_array.py: /opt/ros/kinetic/lib/genpy/genmsg_py.py
+/home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/_lidar_array.py: /home/botortank/botortank_ws/src/bot/msg/lidar_array.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python from MSG bot/lidar_array"
+	cd /home/botortank/botortank_ws/build/bot && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/botortank/botortank_ws/src/bot/msg/lidar_array.msg -Ibot:/home/botortank/botortank_ws/src/bot/msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p bot -o /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg
+
 /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/_tetra.py: /opt/ros/kinetic/lib/genpy/genmsg_py.py
 /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/_tetra.py: /home/botortank/botortank_ws/src/bot/msg/tetra.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python from MSG bot/tetra"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python from MSG bot/tetra"
 	cd /home/botortank/botortank_ws/build/bot && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/botortank/botortank_ws/src/bot/msg/tetra.msg -Ibot:/home/botortank/botortank_ws/src/bot/msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p bot -o /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg
 
 /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/_quad.py: /opt/ros/kinetic/lib/genpy/genmsg_py.py
 /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/_quad.py: /home/botortank/botortank_ws/src/bot/msg/quad.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python from MSG bot/quad"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python from MSG bot/quad"
 	cd /home/botortank/botortank_ws/build/bot && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/botortank/botortank_ws/src/bot/msg/quad.msg -Ibot:/home/botortank/botortank_ws/src/bot/msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p bot -o /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg
 
 /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/__init__.py: /opt/ros/kinetic/lib/genpy/genmsg_py.py
+/home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/__init__.py: /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/_lidar_array.py
 /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/__init__.py: /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/_tetra.py
 /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/__init__.py: /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/_quad.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python msg __init__.py for bot"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Python msg __init__.py for bot"
 	cd /home/botortank/botortank_ws/build/bot && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg --initpy
 
 bot_generate_messages_py: bot/CMakeFiles/bot_generate_messages_py
+bot_generate_messages_py: /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/_lidar_array.py
 bot_generate_messages_py: /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/_tetra.py
 bot_generate_messages_py: /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/_quad.py
 bot_generate_messages_py: /home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/__init__.py

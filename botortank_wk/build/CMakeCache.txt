@@ -271,7 +271,7 @@ LSB_RELEASE_EXECUTABLE:FILEPATH=/usr/bin/lsb_release
 NOSETESTS:FILEPATH=/usr/bin/nosetests-2.7
 
 //The directory containing a CMake configuration file for OpenCV.
-OpenCV_DIR:PATH=/opt/ros/kinetic/share/OpenCV-3.3.1
+OpenCV_DIR:PATH=/opt/ros/kinetic/share/OpenCV-3.3.1-dev
 
 //Path to a program.
 PYTHON_EXECUTABLE:FILEPATH=/usr/bin/python
@@ -912,9 +912,6 @@ _CATKIN_GTEST_INCLUDE:FILEPATH=/usr/include/gtest/gtest.h
 //Path to a file.
 _CATKIN_GTEST_SRC:FILEPATH=/usr/src/gtest/src/gtest.cc
 
-//Path to a file.
-_file_name:FILEPATH=/home/botortank/botortank_ws/src/teleop_twist_joy/test/turbo_angular_enable_joy_with_rosparam_map.test
-
 //The directory containing a CMake configuration file for actionlib.
 actionlib_DIR:PATH=/opt/ros/kinetic/share/actionlib/cmake
 
@@ -938,12 +935,6 @@ cpp_common_DIR:PATH=/opt/ros/kinetic/share/cpp_common/cmake
 
 //The directory containing a CMake configuration file for cv_bridge.
 cv_bridge_DIR:PATH=/opt/ros/kinetic/share/cv_bridge/cmake
-
-//The directory containing a CMake configuration file for diagnostic_msgs.
-diagnostic_msgs_DIR:PATH=/opt/ros/kinetic/share/diagnostic_msgs/cmake
-
-//The directory containing a CMake configuration file for diagnostic_updater.
-diagnostic_updater_DIR:PATH=/opt/ros/kinetic/share/diagnostic_updater/cmake
 
 //The directory containing a CMake configuration file for gencpp.
 gencpp_DIR:PATH=/opt/ros/kinetic/share/gencpp/cmake
@@ -995,106 +986,100 @@ gtest_force_shared_crt:BOOL=OFF
 gtest_main_LIB_DEPENDS:STATIC=general;-lpthread;general;gtest;
 
 //Value Computed by CMake
-hector_compressed_map_transport_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam-catkin/hector_compressed_map_transport
+hector_compressed_map_transport_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam/hector_compressed_map_transport
 
 //Value Computed by CMake
-hector_compressed_map_transport_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam-catkin/hector_compressed_map_transport
+hector_compressed_map_transport_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam/hector_compressed_map_transport
 
 //Value Computed by CMake
-hector_geotiff_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam-catkin/hector_geotiff
+hector_geotiff_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam/hector_geotiff
 
 //The directory containing a CMake configuration file for hector_geotiff.
 hector_geotiff_DIR:PATH=/home/botortank/botortank_ws/devel/share/hector_geotiff/cmake
 
 //Value Computed by CMake
-hector_geotiff_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam-catkin/hector_geotiff
+hector_geotiff_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam/hector_geotiff
 
 //Value Computed by CMake
-hector_geotiff_plugins_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam-catkin/hector_geotiff_plugins
+hector_geotiff_plugins_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam/hector_geotiff_plugins
 
 //Dependencies for the target
 hector_geotiff_plugins_LIB_DEPENDS:STATIC=general;geotiff_writer;general;/usr/lib/arm-linux-gnueabihf/libQtGui.so;general;/usr/lib/arm-linux-gnueabihf/libQtCore.so;general;/usr/lib/arm-linux-gnueabihf/libtinyxml2.so;general;/opt/ros/kinetic/lib/libclass_loader.so;general;/usr/lib/libPocoFoundation.so;general;/usr/lib/arm-linux-gnueabihf/libdl.so;general;/opt/ros/kinetic/lib/libroslib.so;general;/opt/ros/kinetic/lib/librospack.so;general;/usr/lib/arm-linux-gnueabihf/libpython2.7.so;general;/usr/lib/arm-linux-gnueabihf/libboost_program_options.so;general;/usr/lib/arm-linux-gnueabihf/libtinyxml.so;general;/opt/ros/kinetic/lib/libroscpp.so;general;/usr/lib/arm-linux-gnueabihf/libboost_filesystem.so;general;/usr/lib/arm-linux-gnueabihf/libboost_signals.so;general;/opt/ros/kinetic/lib/librosconsole.so;general;/opt/ros/kinetic/lib/librosconsole_log4cxx.so;general;/opt/ros/kinetic/lib/librosconsole_backend_interface.so;general;/usr/lib/arm-linux-gnueabihf/liblog4cxx.so;general;/usr/lib/arm-linux-gnueabihf/libboost_regex.so;general;/opt/ros/kinetic/lib/libxmlrpcpp.so;general;/opt/ros/kinetic/lib/libroscpp_serialization.so;general;/opt/ros/kinetic/lib/librostime.so;general;/opt/ros/kinetic/lib/libcpp_common.so;general;/usr/lib/arm-linux-gnueabihf/libboost_system.so;general;/usr/lib/arm-linux-gnueabihf/libboost_thread.so;general;/usr/lib/arm-linux-gnueabihf/libboost_chrono.so;general;/usr/lib/arm-linux-gnueabihf/libboost_date_time.so;general;/usr/lib/arm-linux-gnueabihf/libboost_atomic.so;general;/usr/lib/arm-linux-gnueabihf/libpthread.so;general;/usr/lib/arm-linux-gnueabihf/libconsole_bridge.so;
 
 //Value Computed by CMake
-hector_geotiff_plugins_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam-catkin/hector_geotiff_plugins
+hector_geotiff_plugins_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam/hector_geotiff_plugins
 
 //Value Computed by CMake
-hector_imu_attitude_to_tf_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam-catkin/hector_imu_attitude_to_tf
+hector_imu_attitude_to_tf_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam/hector_imu_attitude_to_tf
 
 //Value Computed by CMake
-hector_imu_attitude_to_tf_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam-catkin/hector_imu_attitude_to_tf
+hector_imu_attitude_to_tf_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam/hector_imu_attitude_to_tf
 
 //Value Computed by CMake
-hector_imu_tools_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam-catkin/hector_imu_tools
+hector_imu_tools_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam/hector_imu_tools
 
 //Value Computed by CMake
-hector_imu_tools_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam-catkin/hector_imu_tools
+hector_imu_tools_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam/hector_imu_tools
 
 //Value Computed by CMake
-hector_map_server_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam-catkin/hector_map_server
+hector_map_server_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam/hector_map_server
 
 //Value Computed by CMake
-hector_map_server_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam-catkin/hector_map_server
+hector_map_server_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam/hector_map_server
 
 //Value Computed by CMake
-hector_map_tools_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam-catkin/hector_map_tools
+hector_map_tools_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam/hector_map_tools
 
 //The directory containing a CMake configuration file for hector_map_tools.
 hector_map_tools_DIR:PATH=/home/botortank/botortank_ws/devel/share/hector_map_tools/cmake
 
 //Value Computed by CMake
-hector_map_tools_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam-catkin/hector_map_tools
+hector_map_tools_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam/hector_map_tools
 
 //Value Computed by CMake
-hector_mapping_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam-catkin/hector_mapping
+hector_mapping_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam/hector_mapping
 
 //Value Computed by CMake
-hector_mapping_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam-catkin/hector_mapping
+hector_mapping_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam/hector_mapping
 
 //Value Computed by CMake
-hector_marker_drawing_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam-catkin/hector_marker_drawing
+hector_marker_drawing_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam/hector_marker_drawing
 
 //The directory containing a CMake configuration file for hector_marker_drawing.
 hector_marker_drawing_DIR:PATH=/home/botortank/botortank_ws/devel/share/hector_marker_drawing/cmake
 
 //Value Computed by CMake
-hector_marker_drawing_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam-catkin/hector_marker_drawing
+hector_marker_drawing_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam/hector_marker_drawing
 
 //Value Computed by CMake
-hector_nav_msgs_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam-catkin/hector_nav_msgs
+hector_nav_msgs_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam/hector_nav_msgs
 
 //The directory containing a CMake configuration file for hector_nav_msgs.
 hector_nav_msgs_DIR:PATH=/home/botortank/botortank_ws/devel/share/hector_nav_msgs/cmake
 
 //Value Computed by CMake
-hector_nav_msgs_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam-catkin/hector_nav_msgs
+hector_nav_msgs_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam/hector_nav_msgs
 
 //Value Computed by CMake
-hector_slam_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam-catkin/hector_slam
+hector_slam_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam/hector_slam
 
 //Value Computed by CMake
-hector_slam_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam-catkin/hector_slam
+hector_slam_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam/hector_slam
 
 //Value Computed by CMake
-hector_slam_launch_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam-catkin/hector_slam_launch
+hector_slam_launch_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam/hector_slam_launch
 
 //Value Computed by CMake
-hector_slam_launch_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam-catkin/hector_slam_launch
+hector_slam_launch_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam/hector_slam_launch
 
 //Value Computed by CMake
-hector_trajectory_server_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam-catkin/hector_trajectory_server
+hector_trajectory_server_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/hector_slam/hector_trajectory_server
 
 //Value Computed by CMake
-hector_trajectory_server_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam-catkin/hector_trajectory_server
+hector_trajectory_server_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/hector_slam/hector_trajectory_server
 
 //The directory containing a CMake configuration file for image_transport.
 image_transport_DIR:PATH=/opt/ros/kinetic/share/image_transport/cmake
-
-//Value Computed by CMake
-joy_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/joy
-
-//Value Computed by CMake
-joy_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/joy
 
 //The directory containing a CMake configuration file for kdl_conversions.
 kdl_conversions_DIR:PATH=/opt/ros/kinetic/share/kdl_conversions/cmake
@@ -1138,23 +1123,14 @@ rosgraph_DIR:PATH=/opt/ros/kinetic/share/rosgraph/cmake
 //The directory containing a CMake configuration file for rosgraph_msgs.
 rosgraph_msgs_DIR:PATH=/opt/ros/kinetic/share/rosgraph_msgs/cmake
 
-//The directory containing a CMake configuration file for roslaunch.
-roslaunch_DIR:PATH=/opt/ros/kinetic/share/roslaunch/cmake
-
 //The directory containing a CMake configuration file for roslib.
 roslib_DIR:PATH=/opt/ros/kinetic/share/roslib/cmake
-
-//The directory containing a CMake configuration file for roslint.
-roslint_DIR:PATH=/opt/ros/kinetic/share/roslint/cmake
 
 //The directory containing a CMake configuration file for rospack.
 rospack_DIR:PATH=/opt/ros/kinetic/share/rospack/cmake
 
 //The directory containing a CMake configuration file for rospy.
 rospy_DIR:PATH=/opt/ros/kinetic/share/rospy/cmake
-
-//The directory containing a CMake configuration file for rostest.
-rostest_DIR:PATH=/opt/ros/kinetic/share/rostest/cmake
 
 //The directory containing a CMake configuration file for rostime.
 rostime_DIR:PATH=/opt/ros/kinetic/share/rostime/cmake
@@ -1170,15 +1146,6 @@ sensor_msgs_DIR:PATH=/opt/ros/kinetic/share/sensor_msgs/cmake
 
 //The directory containing a CMake configuration file for std_msgs.
 std_msgs_DIR:PATH=/opt/ros/kinetic/share/std_msgs/cmake
-
-//Value Computed by CMake
-teleop_twist_joy_BINARY_DIR:STATIC=/home/botortank/botortank_ws/build/teleop_twist_joy
-
-//Dependencies for the target
-teleop_twist_joy_LIB_DEPENDS:STATIC=general;/opt/ros/kinetic/lib/libroscpp.so;general;/usr/lib/arm-linux-gnueabihf/libboost_filesystem.so;general;/usr/lib/arm-linux-gnueabihf/libboost_signals.so;general;/opt/ros/kinetic/lib/librosconsole.so;general;/opt/ros/kinetic/lib/librosconsole_log4cxx.so;general;/opt/ros/kinetic/lib/librosconsole_backend_interface.so;general;/usr/lib/arm-linux-gnueabihf/liblog4cxx.so;general;/usr/lib/arm-linux-gnueabihf/libboost_regex.so;general;/opt/ros/kinetic/lib/libxmlrpcpp.so;general;/opt/ros/kinetic/lib/libroscpp_serialization.so;general;/opt/ros/kinetic/lib/librostime.so;general;/opt/ros/kinetic/lib/libcpp_common.so;general;/usr/lib/arm-linux-gnueabihf/libboost_system.so;general;/usr/lib/arm-linux-gnueabihf/libboost_thread.so;general;/usr/lib/arm-linux-gnueabihf/libboost_chrono.so;general;/usr/lib/arm-linux-gnueabihf/libboost_date_time.so;general;/usr/lib/arm-linux-gnueabihf/libboost_atomic.so;general;/usr/lib/arm-linux-gnueabihf/libpthread.so;general;/usr/lib/arm-linux-gnueabihf/libconsole_bridge.so;
-
-//Value Computed by CMake
-teleop_twist_joy_SOURCE_DIR:STATIC=/home/botortank/botortank_ws/src/teleop_twist_joy
 
 //The directory containing a CMake configuration file for tf2.
 tf2_DIR:PATH=/opt/ros/kinetic/share/tf2/cmake
@@ -1338,7 +1305,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=19
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=17
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -1400,8 +1367,6 @@ GTEST_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 GTEST_MAIN_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: GTEST_MAIN_LIBRARY_DEBUG
 GTEST_MAIN_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//Have include linux/joystick.h
-HAVE_LINUX_JOYSTICK_H:INTERNAL=1
 //ADVANCED property for variable: PYTHON_EXECUTABLE
 PYTHON_EXECUTABLE-ADVANCED:INTERNAL=1
 //This needs to be in PYTHONPATH when 'setup.py install' is called.

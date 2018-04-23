@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/bot_generate_messages_cpp"
+  "/home/botortank/botortank_ws/devel/include/bot/lidar_array.h"
   "/home/botortank/botortank_ws/devel/include/bot/tetra.h"
   "/home/botortank/botortank_ws/devel/include/bot/quad.h"
 )

@@ -54,6 +54,7 @@ struct quad_
 
 
 
+
   typedef boost::shared_ptr< ::bot::quad_<ContainerAllocator> > Ptr;
   typedef boost::shared_ptr< ::bot::quad_<ContainerAllocator> const> ConstPtr;
 

@@ -4,7 +4,6 @@
 bot/CMakeFiles/speedcontroler.dir/src/speedcontroler.cpp.o
  /home/botortank/botortank_ws/devel/include/bot/quad.h
  /home/botortank/botortank_ws/src/bot/src/speedcontroler.cpp
- /home/botortank/botortank_ws/src/bot/src/structure.h
  /opt/ros/kinetic/include/ros/advertise_options.h
  /opt/ros/kinetic/include/ros/advertise_service_options.h
  /opt/ros/kinetic/include/ros/assert.h
@@ -61,6 +60,5 @@ bot/CMakeFiles/speedcontroler.dir/src/speedcontroler.cpp.o
  /opt/ros/kinetic/include/ros/wall_timer.h
  /opt/ros/kinetic/include/ros/wall_timer_options.h
  /opt/ros/kinetic/include/rosconsole/macros_generated.h
- /opt/ros/kinetic/include/std_msgs/String.h
  /opt/ros/kinetic/include/xmlrpcpp/XmlRpcDecl.h
  /opt/ros/kinetic/include/xmlrpcpp/XmlRpcValue.h

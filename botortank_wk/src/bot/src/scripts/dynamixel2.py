@@ -168,7 +168,7 @@ def bee_down():
 
 def ball():
     sleep(1)
-    instru_dyna(0x02, 0x05, 0x03, 0x20, 0x00, 0x03)
+    instru_dyna(ID_ball, 0x05, 0x03, 0x20, 0x00, 0x03)
     sleep(10)
 
 
@@ -193,35 +193,41 @@ def dynamixel2():
     rospy.Subscriber('dynamixel_cmd', Int8, callback, queue_size=1)
     # print('topic initiation: dynamixel_cmd')
     pub = rospy.Publisher('dyna_feedback', Int8, queue_size=1)
-    rate = rospy.Rate(1)
+    rate = rospy.Rate(10)
+    enable(ID_sorting)
+    sleep(0.1)
     enable(ID_bee)
     sleep(0.1)
+    enable(ID_ball)
+    sleep(0.1)
     bee_init()
+    sleep(0.1)
+    sorting_init()
     sleep(0.1)
     while not rospy.is_shutdown():
         feedback = 0
         if command == 1:  # 'sorting1':
             # print('enabling sorting \n starting 1')
-            enable(ID_sorting)
-            sleep(0.1)
-            sorting_init()
-            sleep(0.1)
+            # enable(ID_sorting)
+            # sleep(0.1)
+            # sorting_init()
+            # sleep(0.1)
             sorting1()
             sleep(0.1)
-            disable(ID_sorting)
-            sleep(0.1)
+            # disable(ID_sorting)
+            # sleep(0.1)
             feedback = 1
             pub.publish(feedback)
         elif command == 2:  # 'sorting2':
             # print('enabling sorting \n starting 2')
-            enable(ID_sorting)
-            sleep(0.1)
-            sorting_init()
-            sleep(0.1)
+            # enable(ID_sorting)
+            # sleep(0.1)
+            # sorting_init()
+            # sleep(0.1)
             sorting2()
             sleep(0.1)
-            disable(ID_sorting)
-            sleep(0.1)
+            # disable(ID_sorting)
+            # sleep(0.1)
             feedback = 2
             pub.publish(feedback)
         elif command == 3:  # 'bee':
@@ -231,7 +237,7 @@ def dynamixel2():
             feedback = 3
             sleep(0.1)
             pub.publish(feedback)
-            sleep(15)
+            sleep(1)
             bee_down()
             sleep(0.1)
             # disable(ID_bee)
@@ -241,8 +247,9 @@ def dynamixel2():
             # pub.publish(feedback)
         elif command == 4:  # 'ball':
             # print('starting ball sequence')
-            enable(ID_ball)
-            sleep(0.1)
+            # enable(ID_ball)
+            # sleep(0.1)
+            instru_dyna(0xFE, 0x05, 0x03, 0x18, 0x01, 0x01)
             ball()
             sleep(10)
             feedback = 4

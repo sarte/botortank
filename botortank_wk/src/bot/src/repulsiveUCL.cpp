@@ -43,8 +43,8 @@ double f_point = 0;
 double force_repX = 0;
 double force_repY = 0;
 
-double eta = 0.5;
-double rho = 0.5;
+double eta = 0.75;
+double rho = 0.8;
 
 void teamCallback(const std_msgs::Bool& team){
     teamchoice = team.data;
@@ -89,37 +89,22 @@ void forcerep()
         //Opponent
         for (int i = 0; i < iter; ++i)
         {
-            if(ennem_list[i][1] < rho){
+            if(ennem_list[i][1]>0.15 && ennem_list[i][1] < rho){
                 force = eta*((1/ennem_list[i][1])-(1/rho))*(1/ennem_list[i][1])*(1/ennem_list[i][1]);
-                forceX -= f_point*force*cos(ennem_list[i][0]-Thetao);
-                forceY -= f_point*force*sin(ennem_list[i][0]-Thetao);
+                forceX -= f_point*force*cos(ennem_list[i][0]);
+                forceY -= f_point*force*sin(ennem_list[i][0]);
             }
             else{
-                force = 0;
+                forceX -= 0;
+                forceY -= 0;
             }
 
         }
 
         force = sqrt((forceX*forceX)+(forceY*forceY));
-        angle = atan(forceY/forceX);
-
-        if(forceX<0 && forceY>0 && angle<0)
-        {
-            angle += M_PI;
-        }
-        if(forceX<0 && forceY<0 && angle>0)
-        {
-            angle -= M_PI;
-        }
-
-        if(force > 20)
-        {
-            force = 20;
-        }
-        if(force < -20)
-        {
-            force = -20;
-        }
+        force = std::min(std::max(force, -10.0), 10.0); //saturation
+        angle = atan2(forceY,forceX); //quadrant finder
+        printf("test3\nforce %f angle %f \nforceX %f forceY %f \n", force, angle, forceX, forceY);
 
         forceX = force*cos(angle);
         forceY = force*sin(angle);
@@ -154,8 +139,6 @@ void forcerep()
         {
             if(ennem_list[i][1]>0.15 && ennem_list[i][1]<rho){
                 force = eta*((1/ennem_list[i][1])-(1/rho))*(1/ennem_list[i][1])*(1/ennem_list[i][1]);
-//                forceX -= f_point*force*cos(ennem_list[i][0] - (Thetag * M_PI / 180));
-//                forceY -= f_point*force*sin(ennem_list[i][0] - (Thetag * M_PI / 180));
                 forceX -= f_point*force*cos(ennem_list[i][0] );
                 forceY -= f_point*force*sin(ennem_list[i][0] );
             }
@@ -167,7 +150,7 @@ void forcerep()
         }
 
         force = sqrt((forceX*forceX)+(forceY*forceY));
-        force = std::min(std::max(force, -10.0), 10.0); //saturation
+        force = std::min(std::max(force, -15.0), 15.0); //saturation
         angle = atan2(forceY,forceX); //quadrant finder
         printf("test3\nforce %f angle %f \nforceX %f forceY %f \n", force, angle, forceX, forceY);
 
@@ -211,7 +194,7 @@ int main(int argc, char **argv)
     ros::Subscriber sub3 = n.subscribe("origin_orange",1,orangeCallback);
     ros::Subscriber sub4 = n.subscribe("team",1,teamCallback);
     ros::Publisher pub = n.advertise<geometry_msgs::Point>("force_rep",10);
-    ros::Rate loop_rate(1);
+    ros::Rate loop_rate(500);
 	
     geometry_msgs::Point force;
 	

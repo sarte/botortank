@@ -1,8 +1,0 @@
-prefix=/home/botortank/botortank_ws/devel
-
-Name: joy
-Description: Description of joy
-Version: 1.11.0
-Cflags: 
-Libs: -L/home/botortank/botortank_ws/devel/lib 
-Requires: roscpp diagnostic_updater sensor_msgs

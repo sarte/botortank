@@ -40,6 +40,7 @@ struct GetSearchPositionResponse_
 
 
 
+
   typedef boost::shared_ptr< ::hector_nav_msgs::GetSearchPositionResponse_<ContainerAllocator> > Ptr;
   typedef boost::shared_ptr< ::hector_nav_msgs::GetSearchPositionResponse_<ContainerAllocator> const> ConstPtr;
 

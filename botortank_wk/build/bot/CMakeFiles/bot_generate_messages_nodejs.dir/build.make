@@ -53,21 +53,28 @@ CMAKE_BINARY_DIR = /home/botortank/botortank_ws/build
 # Include the progress variables for this target.
 include bot/CMakeFiles/bot_generate_messages_nodejs.dir/progress.make
 
+bot/CMakeFiles/bot_generate_messages_nodejs: /home/botortank/botortank_ws/devel/share/gennodejs/ros/bot/msg/lidar_array.js
 bot/CMakeFiles/bot_generate_messages_nodejs: /home/botortank/botortank_ws/devel/share/gennodejs/ros/bot/msg/tetra.js
 bot/CMakeFiles/bot_generate_messages_nodejs: /home/botortank/botortank_ws/devel/share/gennodejs/ros/bot/msg/quad.js
 
 
+/home/botortank/botortank_ws/devel/share/gennodejs/ros/bot/msg/lidar_array.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
+/home/botortank/botortank_ws/devel/share/gennodejs/ros/bot/msg/lidar_array.js: /home/botortank/botortank_ws/src/bot/msg/lidar_array.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Javascript code from bot/lidar_array.msg"
+	cd /home/botortank/botortank_ws/build/bot && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/botortank/botortank_ws/src/bot/msg/lidar_array.msg -Ibot:/home/botortank/botortank_ws/src/bot/msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p bot -o /home/botortank/botortank_ws/devel/share/gennodejs/ros/bot/msg
+
 /home/botortank/botortank_ws/devel/share/gennodejs/ros/bot/msg/tetra.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
 /home/botortank/botortank_ws/devel/share/gennodejs/ros/bot/msg/tetra.js: /home/botortank/botortank_ws/src/bot/msg/tetra.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Javascript code from bot/tetra.msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from bot/tetra.msg"
 	cd /home/botortank/botortank_ws/build/bot && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/botortank/botortank_ws/src/bot/msg/tetra.msg -Ibot:/home/botortank/botortank_ws/src/bot/msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p bot -o /home/botortank/botortank_ws/devel/share/gennodejs/ros/bot/msg
 
 /home/botortank/botortank_ws/devel/share/gennodejs/ros/bot/msg/quad.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
 /home/botortank/botortank_ws/devel/share/gennodejs/ros/bot/msg/quad.js: /home/botortank/botortank_ws/src/bot/msg/quad.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from bot/quad.msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Javascript code from bot/quad.msg"
 	cd /home/botortank/botortank_ws/build/bot && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/botortank/botortank_ws/src/bot/msg/quad.msg -Ibot:/home/botortank/botortank_ws/src/bot/msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p bot -o /home/botortank/botortank_ws/devel/share/gennodejs/ros/bot/msg
 
 bot_generate_messages_nodejs: bot/CMakeFiles/bot_generate_messages_nodejs
+bot_generate_messages_nodejs: /home/botortank/botortank_ws/devel/share/gennodejs/ros/bot/msg/lidar_array.js
 bot_generate_messages_nodejs: /home/botortank/botortank_ws/devel/share/gennodejs/ros/bot/msg/tetra.js
 bot_generate_messages_nodejs: /home/botortank/botortank_ws/devel/share/gennodejs/ros/bot/msg/quad.js
 bot_generate_messages_nodejs: bot/CMakeFiles/bot_generate_messages_nodejs.dir/build.make

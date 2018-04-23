@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/bot_generate_messages_py"
+  "/home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/_lidar_array.py"
   "/home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/_tetra.py"
   "/home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/_quad.py"
   "/home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot/msg/__init__.py"
