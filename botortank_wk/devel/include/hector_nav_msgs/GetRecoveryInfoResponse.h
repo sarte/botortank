@@ -52,6 +52,7 @@ struct GetRecoveryInfoResponse_
 
 
 
+
   typedef boost::shared_ptr< ::hector_nav_msgs::GetRecoveryInfoResponse_<ContainerAllocator> > Ptr;
   typedef boost::shared_ptr< ::hector_nav_msgs::GetRecoveryInfoResponse_<ContainerAllocator> const> ConstPtr;
 

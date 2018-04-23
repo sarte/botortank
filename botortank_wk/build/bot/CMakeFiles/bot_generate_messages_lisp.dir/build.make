@@ -53,21 +53,28 @@ CMAKE_BINARY_DIR = /home/botortank/botortank_ws/build
 # Include the progress variables for this target.
 include bot/CMakeFiles/bot_generate_messages_lisp.dir/progress.make
 
+bot/CMakeFiles/bot_generate_messages_lisp: /home/botortank/botortank_ws/devel/share/common-lisp/ros/bot/msg/lidar_array.lisp
 bot/CMakeFiles/bot_generate_messages_lisp: /home/botortank/botortank_ws/devel/share/common-lisp/ros/bot/msg/tetra.lisp
 bot/CMakeFiles/bot_generate_messages_lisp: /home/botortank/botortank_ws/devel/share/common-lisp/ros/bot/msg/quad.lisp
 
 
+/home/botortank/botortank_ws/devel/share/common-lisp/ros/bot/msg/lidar_array.lisp: /opt/ros/kinetic/lib/genlisp/gen_lisp.py
+/home/botortank/botortank_ws/devel/share/common-lisp/ros/bot/msg/lidar_array.lisp: /home/botortank/botortank_ws/src/bot/msg/lidar_array.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Lisp code from bot/lidar_array.msg"
+	cd /home/botortank/botortank_ws/build/bot && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/botortank/botortank_ws/src/bot/msg/lidar_array.msg -Ibot:/home/botortank/botortank_ws/src/bot/msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p bot -o /home/botortank/botortank_ws/devel/share/common-lisp/ros/bot/msg
+
 /home/botortank/botortank_ws/devel/share/common-lisp/ros/bot/msg/tetra.lisp: /opt/ros/kinetic/lib/genlisp/gen_lisp.py
 /home/botortank/botortank_ws/devel/share/common-lisp/ros/bot/msg/tetra.lisp: /home/botortank/botortank_ws/src/bot/msg/tetra.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Lisp code from bot/tetra.msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Lisp code from bot/tetra.msg"
 	cd /home/botortank/botortank_ws/build/bot && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/botortank/botortank_ws/src/bot/msg/tetra.msg -Ibot:/home/botortank/botortank_ws/src/bot/msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p bot -o /home/botortank/botortank_ws/devel/share/common-lisp/ros/bot/msg
 
 /home/botortank/botortank_ws/devel/share/common-lisp/ros/bot/msg/quad.lisp: /opt/ros/kinetic/lib/genlisp/gen_lisp.py
 /home/botortank/botortank_ws/devel/share/common-lisp/ros/bot/msg/quad.lisp: /home/botortank/botortank_ws/src/bot/msg/quad.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Lisp code from bot/quad.msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/botortank/botortank_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Lisp code from bot/quad.msg"
 	cd /home/botortank/botortank_ws/build/bot && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/botortank/botortank_ws/src/bot/msg/quad.msg -Ibot:/home/botortank/botortank_ws/src/bot/msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p bot -o /home/botortank/botortank_ws/devel/share/common-lisp/ros/bot/msg
 
 bot_generate_messages_lisp: bot/CMakeFiles/bot_generate_messages_lisp
+bot_generate_messages_lisp: /home/botortank/botortank_ws/devel/share/common-lisp/ros/bot/msg/lidar_array.lisp
 bot_generate_messages_lisp: /home/botortank/botortank_ws/devel/share/common-lisp/ros/bot/msg/tetra.lisp
 bot_generate_messages_lisp: /home/botortank/botortank_ws/devel/share/common-lisp/ros/bot/msg/quad.lisp
 bot_generate_messages_lisp: bot/CMakeFiles/bot_generate_messages_lisp.dir/build.make

@@ -45,6 +45,7 @@ struct GetDistanceToObstacleResponse_
 
 
 
+
   typedef boost::shared_ptr< ::hector_nav_msgs::GetDistanceToObstacleResponse_<ContainerAllocator> > Ptr;
   typedef boost::shared_ptr< ::hector_nav_msgs::GetDistanceToObstacleResponse_<ContainerAllocator> const> ConstPtr;
 

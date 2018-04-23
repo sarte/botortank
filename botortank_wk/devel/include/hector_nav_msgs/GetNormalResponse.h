@@ -40,6 +40,7 @@ struct GetNormalResponse_
 
 
 
+
   typedef boost::shared_ptr< ::hector_nav_msgs::GetNormalResponse_<ContainerAllocator> > Ptr;
   typedef boost::shared_ptr< ::hector_nav_msgs::GetNormalResponse_<ContainerAllocator> const> ConstPtr;
 

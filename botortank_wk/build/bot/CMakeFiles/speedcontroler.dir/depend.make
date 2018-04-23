@@ -3,7 +3,6 @@
 
 bot/CMakeFiles/speedcontroler.dir/src/speedcontroler.cpp.o: /home/botortank/botortank_ws/devel/include/bot/quad.h
 bot/CMakeFiles/speedcontroler.dir/src/speedcontroler.cpp.o: /home/botortank/botortank_ws/src/bot/src/speedcontroler.cpp
-bot/CMakeFiles/speedcontroler.dir/src/speedcontroler.cpp.o: /home/botortank/botortank_ws/src/bot/src/structure.h
 bot/CMakeFiles/speedcontroler.dir/src/speedcontroler.cpp.o: /opt/ros/kinetic/include/ros/advertise_options.h
 bot/CMakeFiles/speedcontroler.dir/src/speedcontroler.cpp.o: /opt/ros/kinetic/include/ros/advertise_service_options.h
 bot/CMakeFiles/speedcontroler.dir/src/speedcontroler.cpp.o: /opt/ros/kinetic/include/ros/assert.h
@@ -60,7 +59,6 @@ bot/CMakeFiles/speedcontroler.dir/src/speedcontroler.cpp.o: /opt/ros/kinetic/inc
 bot/CMakeFiles/speedcontroler.dir/src/speedcontroler.cpp.o: /opt/ros/kinetic/include/ros/wall_timer.h
 bot/CMakeFiles/speedcontroler.dir/src/speedcontroler.cpp.o: /opt/ros/kinetic/include/ros/wall_timer_options.h
 bot/CMakeFiles/speedcontroler.dir/src/speedcontroler.cpp.o: /opt/ros/kinetic/include/rosconsole/macros_generated.h
-bot/CMakeFiles/speedcontroler.dir/src/speedcontroler.cpp.o: /opt/ros/kinetic/include/std_msgs/String.h
 bot/CMakeFiles/speedcontroler.dir/src/speedcontroler.cpp.o: /opt/ros/kinetic/include/xmlrpcpp/XmlRpcDecl.h
 bot/CMakeFiles/speedcontroler.dir/src/speedcontroler.cpp.o: /opt/ros/kinetic/include/xmlrpcpp/XmlRpcValue.h
 

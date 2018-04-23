@@ -54,6 +54,7 @@ struct tetra_
 
 
 
+
   typedef boost::shared_ptr< ::bot::tetra_<ContainerAllocator> > Ptr;
   typedef boost::shared_ptr< ::bot::tetra_<ContainerAllocator> const> ConstPtr;
 

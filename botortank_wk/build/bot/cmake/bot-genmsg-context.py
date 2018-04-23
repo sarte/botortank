@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
-messages_str = "/home/botortank/botortank_ws/src/bot/msg/quad.msg;/home/botortank/botortank_ws/src/bot/msg/tetra.msg"
+messages_str = "/home/botortank/botortank_ws/src/bot/msg/quad.msg;/home/botortank/botortank_ws/src/bot/msg/tetra.msg;/home/botortank/botortank_ws/src/bot/msg/lidar_array.msg"
 services_str = ""
 pkg_name = "bot"
 dependencies_str = "geometry_msgs;std_msgs"

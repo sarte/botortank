@@ -36,6 +36,7 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/bot/msg" TYPE FILE FILES
     "/home/botortank/botortank_ws/src/bot/msg/quad.msg"
     "/home/botortank/botortank_ws/src/bot/msg/tetra.msg"
+    "/home/botortank/botortank_ws/src/bot/msg/lidar_array.msg"
     )
 endif()
 

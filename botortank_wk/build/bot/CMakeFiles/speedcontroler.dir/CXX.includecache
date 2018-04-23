@@ -25,8 +25,6 @@ ros/message_operations.h
 /home/botortank/botortank_ws/src/bot/src/speedcontroler.cpp
 ros/ros.h
 /home/botortank/botortank_ws/src/bot/src/ros/ros.h
-std_msgs/String.h
-/home/botortank/botortank_ws/src/bot/src/std_msgs/String.h
 bot/quad.h
 /home/botortank/botortank_ws/src/bot/src/bot/quad.h
 stdio.h
@@ -36,12 +34,6 @@ stdlib.h
 math.h
 -
 time.h
--
-structure.h
-/home/botortank/botortank_ws/src/bot/src/structure.h
-
-/home/botortank/botortank_ws/src/bot/src/structure.h
-stdlib.h
 -
 
 /opt/ros/kinetic/include/ros/advertise_options.h
@@ -689,22 +681,6 @@ ros/forwards.h
 /opt/ros/kinetic/include/ros/ros/forwards.h
 
 /opt/ros/kinetic/include/rosconsole/macros_generated.h
-
-/opt/ros/kinetic/include/std_msgs/String.h
-string
--
-vector
--
-map
--
-ros/types.h
--
-ros/serialization.h
--
-ros/builtin_message_traits.h
--
-ros/message_operations.h
--
 
 /opt/ros/kinetic/include/xmlrpcpp/XmlRpcDecl.h
 ros/macros.h
