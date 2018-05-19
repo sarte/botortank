@@ -33,8 +33,8 @@ def quaternion_to_euler_angle(w, x, y, z):
 
 
 def green(pose):
-    a = -1.3
-    b = 0.8
+    a = -1.5 + 0.135
+    b = 1 - 0.22 
     c = -90
     bot_pose_green = Pose2D()
     bot_pose_green.x = pose.y + a
@@ -42,11 +42,12 @@ def green(pose):
     bot_pose_green.theta = pose.theta + c
     pubg = rospy.Publisher('origin_green', Pose2D, queue_size=1)
     pubg.publish(bot_pose_green)
+    rospy.loginfo("origin_green x= %f y=%f theta=%f", bot_pose_green.x, bot_pose_green.y, bot_pose_green.theta)
      
 
 def orange(pose):
-    a = 1.3
-    b = 0.8
+    a = 1.5 - 0.135
+    b = 1 - 0.22 
     c = 90
     bot_pose_orange = Pose2D()
     bot_pose_orange.x = - pose.y + a
@@ -54,6 +55,7 @@ def orange(pose):
     bot_pose_orange.theta = pose.theta + c
     pubo = rospy.Publisher('origin_orange', Pose2D, queue_size=1)
     pubo.publish(bot_pose_orange)
+    rospy.loginfo("origin_orange x= %f y=%f theta=%f", bot_pose_orange.x, bot_pose_orange.y, bot_pose_orange.theta)
 
 
 def callback(cmd):
@@ -72,13 +74,13 @@ def referenceframe():
     rospy.Subscriber('slam_out_pose', PoseStamped, callback)
     pub = rospy.Publisher('slam_out', Pose2D, queue_size=1)
     out = Pose2D()
-    rate = rospy.Rate(10)
+    rate = rospy.Rate(100)
     while not rospy.is_shutdown():
         out.x = cmdx
         out.y = cmdy
         out.theta = cmdtheta
         pub.publish(out)
-        rospy.loginfo("From starting point: x= %f y=%f theta=%f", out.x, out.y, out.theta)
+        rospy.loginfo("origin x= %f y=%f theta=%f", out.x, out.y, out.theta)
         green(out)
         orange(out)
         rate.sleep()

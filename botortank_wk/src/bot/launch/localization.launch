@@ -1,7 +1,0 @@
-<launch>
-
-	<include file="$(find rplidar_ros)/launch/rplidar.launch" />
-	<include file="$(find rplidar_ros)/launch/hectormapping.launch" />
-	<node name="referenceframe" pkg="bot" type="referenceframe.py" />
-	
-</launch>

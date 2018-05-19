@@ -43,8 +43,8 @@ double f_point = 0;
 double force_repX = 0;
 double force_repY = 0;
 
-double eta = 0.75;
-double rho = 0.8;
+double eta = 0;
+double rho = 0;
 
 void teamCallback(const std_msgs::Bool& team){
     teamchoice = team.data;
@@ -104,7 +104,7 @@ void forcerep()
         force = sqrt((forceX*forceX)+(forceY*forceY));
         force = std::min(std::max(force, -10.0), 10.0); //saturation
         angle = atan2(forceY,forceX); //quadrant finder
-        printf("test3\nforce %f angle %f \nforceX %f forceY %f \n", force, angle, forceX, forceY);
+//        printf("test3\nforce %f angle %f \nforceX %f forceY %f \n", force, angle, forceX, forceY);
 
         forceX = force*cos(angle);
         forceY = force*sin(angle);
@@ -152,12 +152,12 @@ void forcerep()
         force = sqrt((forceX*forceX)+(forceY*forceY));
         force = std::min(std::max(force, -15.0), 15.0); //saturation
         angle = atan2(forceY,forceX); //quadrant finder
-        printf("test3\nforce %f angle %f \nforceX %f forceY %f \n", force, angle, forceX, forceY);
+//        printf("test3\nforce %f angle %f \nforceX %f forceY %f \n", force, angle, forceX, forceY);
 
         forceX = force*cos(angle);
         forceY = force*sin(angle);
 
-        printf("forceX %f forceY %f \n\n", forceX, forceY);
+//        printf("forceX %f forceY %f \n\n", forceX, forceY);
 
 
 
@@ -187,6 +187,7 @@ void forcerep()
 }
 int main(int argc, char **argv)
 {
+    int lr = 0;
     ros::init(argc, argv, "repulsive");
     ros::NodeHandle n;
     ros::Subscriber sub1 = n.subscribe("message_opp", 10, Callback1);
@@ -194,7 +195,16 @@ int main(int argc, char **argv)
     ros::Subscriber sub3 = n.subscribe("origin_orange",1,orangeCallback);
     ros::Subscriber sub4 = n.subscribe("team",1,teamCallback);
     ros::Publisher pub = n.advertise<geometry_msgs::Point>("force_rep",10);
-    ros::Rate loop_rate(500);
+
+    ros::NodeHandle nh_private("~");
+    nh_private.param<double>("eta", eta, 0.75);
+    nh_private.param<double>("rho", rho, 0.8);
+    nh_private.param<int>("loop_rate", lr, 100);
+    ros::Rate loop_rate(lr);
+
+    printf("repulsiveUCL eta: %f\n", eta);
+    printf("repulsiveUCL rho: %f\n", rho);
+    printf("repulsiveUCL lr : %i\n", lr);
 	
     geometry_msgs::Point force;
 	
@@ -203,6 +213,7 @@ int main(int argc, char **argv)
         forcerep();
         force.x = -forceX;
 		force.y = -forceY;
+        ROS_INFO("repulsiveUCL x: %f y: %f \n", force.x, force.y);
 //        printf("force x: %f\n", force.x);
 //        printf("force y: %f\n", force.y);
         pub.publish(force);

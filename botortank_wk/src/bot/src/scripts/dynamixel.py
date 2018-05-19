@@ -26,9 +26,9 @@ sleep(0.1)
 GPIO.output(MyARM_ResetPin, GPIO.LOW)
 sleep(0.1)
 
-ID_sorting = 0x01
-ID_bee = 0x06
-ID_ball = 0x02
+ID_bee = 0x01
+ID_sorting = 0x06
+ID_ball = 0x05
 sorting_speed = 57
 command = 0
 
@@ -69,107 +69,54 @@ def disable(ID):
 
 # sorting dynamixel initialization
 def sorting_init():
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x20, 0x00, 0x01)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x20, 0x00, 0x03)
+    sleep(0.1)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0xAE, 0x01)
 
 
 # 1st sorting sequence
 def sorting1():
     # first ball
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x99,
-                0x01)  # (ID, long, 0x03=write, changger angle,  angedeux premier bytes, angle dernier byte,
-    sleep(0.3)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
-    sleep(0.7)
-    # all other balls
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x99, 0x01)
-    sleep(0.3)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
-    sleep(0.7)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x99, 0x01)
-    sleep(0.3)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
-    sleep(0.7)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x99, 0x01)
-    sleep(0.3)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
-    sleep(0.7)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x99, 0x01)
-    sleep(0.3)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
-    sleep(0.7)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x99, 0x01)
-    sleep(0.3)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
-    sleep(0.7)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x99, 0x01)
-    sleep(0.3)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
-    sleep(0.7)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x99, 0x01)
-    sleep(0.3)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
-    sleep(0.7)
+    sleep(1.5)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x99, 0x00)  # (ID, long, 0x03=write, changger angle,  angedeux premier bytes, angle dernier byte,
+    sleep(1.5)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0xAE, 0x01)
 
 
 # 2nd sorting sequence
 def sorting2():
-    # first two balls
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x66, 0x02)
-    sleep(0.3)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
-    sleep(0.7)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x99, 0x01)
-    sleep(0.3)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
-    sleep(0.7)
-    # all other balls
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x66, 0x02)
-    sleep(0.3)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
-    sleep(0.7)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x99, 0x01)
-    sleep(0.3)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
-    sleep(0.7)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x66, 0x02)
-    sleep(0.3)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
-    sleep(0.7)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x99, 0x01)
-    sleep(0.3)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
-    sleep(0.7)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x66, 0x02)
-    sleep(0.3)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
-    sleep(0.7)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x99, 0x01)
-    sleep(0.3)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
-    sleep(0.7)
-    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x99, 0x01)
+    sleep(2)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x99, 0x00)
+    sleep(2)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0xAE, 0x01)
+    sleep(2)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x20, 0x03)
+    sleep(2)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0xAE, 0x01)
+    sleep(2)
 
 
 # bee dynamixel initialization
 def bee_init():
     instru_dyna(ID_bee, 0x05, 0x03, 0x20, 0x00, 0x02)
+    sleep(0.1)
+    instru_dyna(ID_sorting, 0x05, 0x03, 0x1E, 0x00, 0x02)
 
 
 # bee sequence
 def bee_up():
-    sleep(0.1)
-    instru_dyna(ID_bee, 0x05, 0x03, 0x1E, 0x66, 0x02)
+    sleep(1)
+    instru_dyna(ID_bee, 0x05, 0x03, 0x1E, 0x99, 0x02)
 
 
 def bee_down():
-    sleep(0.1)
+    sleep(1)
     instru_dyna(ID_bee, 0x05, 0x03, 0x1E, 0x00, 0x02)
 
 
 def ball():
-    sleep(1)
-    instru_dyna(0x02, 0x05, 0x03, 0x20, 0x00, 0x03)
-    sleep(10)
+    sleep(0.1)
+    instru_dyna(ID_ball, 0x05, 0x03, 0x20, 0x00, 0x03)
 
 
 # stop everything
@@ -183,78 +130,82 @@ def stop():
 def callback(data):
     global command
     command = data.data
+    rospy.loginfo(command)
 
 
 # the node definition itself
 def dynamixel():
     rospy.init_node('dynamixel', anonymous=True)
     # print('node initiation: dynamixel')
-    rospy.Subscriber('dynamixel_cmd', Int8, callback, queue_size=1000)
+    rospy.Subscriber('dynamixel_cmd', Int8, callback, queue_size=1)
     # print('topic initiation: dynamixel_cmd')
     pub = rospy.Publisher('dyna_feedback', Int8, queue_size=1)
-    # enable(ID_bee)
-    # sleep(0.01)
-    # bee_init()
-    # sleep(0.01)
-    # bee_up()
-    # sleep(10)
-    # bee_down()
-    # sleep(0.1)
-    # disable(ID_bee)
-    rate = rospy.Rate(100)
+    rate = rospy.Rate(1)
+    sleep(0.1)
+    enable(ID_sorting)
+    sleep(0.1)
+    enable(ID_bee)
+    sleep(0.1)
+    enable(ID_ball)
+    sleep(0.1)
+    bee_init()
+    sleep(0.1)
+    sorting_init()
+    sleep(0.1)
     while not rospy.is_shutdown():
         feedback = 0
         if command == 1:  # 'sorting1':
             # print('enabling sorting \n starting 1')
-            enable(ID_sorting)
-            sleep(0.1)
-            sorting_init()
-            sleep(0.1)
+            # enable(ID_sorting)
+            # sleep(0.1)
+            # sorting_init()
+            # sleep(0.1)
             sorting1()
             sleep(0.1)
-            disable(ID_sorting)
-            sleep(0.1)
+            # disable(ID_sorting)
+            # sleep(0.1)
             feedback = 1
             pub.publish(feedback)
         elif command == 2:  # 'sorting2':
             # print('enabling sorting \n starting 2')
-            enable(ID_sorting)
-            sleep(0.1)
-            sorting_init()
-            sleep(0.1)
+            # enable(ID_sorting)
+            # sleep(0.1)
+            # sorting_init()
+            # sleep(0.1)
             sorting2()
             sleep(0.1)
-            disable(ID_sorting)
-            sleep(0.1)
+            # disable(ID_sorting)
+            # sleep(0.1)
             feedback = 2
             pub.publish(feedback)
         elif command == 3:  # 'bee':
-            rospy.loginfo('blow me')
-            enable(ID_bee)
-            sleep(0.1)
-            bee_init()
-            sleep(0.1)
             bee_up()
-            sleep(10)
+            sleep(1)
+            feedback = 3
+            sleep(0.1)
+            pub.publish(feedback)
+            sleep(5)
             bee_down()
             sleep(0.1)
-            disable(ID_bee)
-            rospy.loginfo('no, blow me')
+            # disable(ID_bee)
             # print('enabling bee \n starting bee')
-            feedback = 3
-            pub.publish(feedback)
+            # feedback = 3
+            # pub.publish(feedback)
         elif command == 4:  # 'ball':
             # print('starting ball sequence')
-            enable(ID_ball)
-            sleep(0.1)
+            # enable(ID_ball)
+            # sleep(0.1)
+            # instru_dyna(0xFE, 0x05, 0x03, 0x18, 0x01, 0x01)
             ball()
-            sleep(10)
+            sleep(1)
             feedback = 4
             pub.publish(feedback)
         else:
-            print('Unknown command, stopping instead')	
+            # print('Unknown command, stopping instead')
+            pub.publish(feedback)
+            rospy.loginfo('%i',feedback)
             stop()
-        rate.sleep()
+            # rate.sleep()
     print('Shutting down: disabling dynamixels')
     stop()
     GPIO.cleanup()

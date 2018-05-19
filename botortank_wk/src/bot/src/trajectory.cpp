@@ -20,8 +20,8 @@ double ftotY = 0;
 double velocityX = 0;
 double velocityY = 0;
 
-double k1 = 1;
-double k2 = 1;
+double katt = 0;
+double krep = 0;
 
 
 // double X =0;
@@ -33,7 +33,7 @@ double k2 = 1;
 // double angle = 0; // angle force in ref frame
 // double xsi = 10;
 
-void Callback1(const geometry_msgs::Point& fatt)
+void Callback1(const geometry_msgs::Pose2D& fatt)
 {
 	force_att_X = fatt.x;
 	force_att_Y = fatt.y;
@@ -50,19 +50,12 @@ void Callback2(const geometry_msgs::Point& frep)
 
 void trajectory()
 {
-    //if(enable_move == 1){
 		
-		ftotX = force_att_X + force_rep_X;
-		ftotY = force_att_Y + force_rep_Y;
-        
-        velocityX = k1*ftotX;
-        velocityY = k2*ftotY;
+		ftotX = katt*force_att_X + krep*force_rep_X;
+		ftotY = katt*force_att_Y + krep*force_rep_Y;
 
-        velocityX = std::min(std::max(velocityX, -10.0), 10.0); //saturation
-        velocityY = std::min(std::max(velocityY, -10.0), 10.0); //saturation
-		
-		
-	//}
+        velocityX = std::min(std::max(ftotX, -10.0), 10.0); //saturation
+        velocityY = std::min(std::max(ftotY, -10.0), 10.0); //saturation
 	
 }
 
@@ -74,7 +67,14 @@ int main(int argc, char **argv)
     ros::Subscriber sub1 = n.subscribe("force_att", 10, Callback1);
     ros::Subscriber sub2 = n.subscribe("force_rep", 10, Callback2);
     ros::Publisher pub = n.advertise<geometry_msgs::Twist>("velocity_ref",1);
-    ros::Rate loop_rate(500);
+    ros::Rate loop_rate(100);
+
+    ros::NodeHandle nh_private("~");
+    nh_private.param<double>("katt", katt, 1);
+    nh_private.param<double>("krep", krep, 1);
+
+    printf("trajectory att coeff: %f\n", katt);
+    printf("trajectory rep coeff: %f\n", krep);
 	
     geometry_msgs::Twist velocity_ref;
 	
@@ -84,6 +84,7 @@ int main(int argc, char **argv)
         velocity_ref.linear.x = velocityX;
 		velocity_ref.linear.y = velocityY;
         pub.publish(velocity_ref);
+        ROS_INFO("trajectory x: %f y: %f \n", velocity_ref.linear.x, velocity_ref.linear.y);
         ros::spinOnce();
         loop_rate.sleep();
     }

@@ -1,17 +1,30 @@
 <launch>
-	<include file="$(find rplidar_ros)/launch/rplidar.launch" />
-	<include file="$(find rplidar_ros)/launch/hectormapping.launch" />
+
 	<node name="start" pkg="bot" type="start.py" />
 	<node name="encoder" pkg="bot" type="encoder.py" />
 	<node name="midlevel" pkg="bot" type="midlevel.py" />
-	<node name="speedcontroler" pkg="bot" type="speedcontroler" />
+	<node name="speedcontroler" pkg="bot" type="speedcontroler" output="log">
+	<param name="kp" type="double" value="0.0025"/>
+	<param name="ki" type="double" value="0.19"/>
+	</node>
 	<node name="driver" pkg="bot" type="driver.py" />
-	<node name="trajectory" pkg="bot" type="trajectory" />
-	<node name="repulsive" pkg="bot" type="repulsive" />
-	<node name="attraction" pkg="bot" type="attraction" />
-	<node name="dynamixel" pkg="bot" type="dynamixel.py" />
+	<node name="trajectory" pkg="bot" type="trajectory" output="log">
+	<param name="k1" type="double" value="1"/>
+	<param name="k2" type="double" value="1"/>
+	</node>
+	<node name="repulsiveUCL" pkg="bot" type="repulsiveUCL" output="log">
+	<param name="eta" type="double" value="2.75"/>
+	<param name="rho" type="double" value="0.4"/>
+	<param name="loop_rate" type="int" value="100"/>
+	</node>
+	<node name="attraction" pkg="bot" type="attraction">
+	<param name="xsi" type="double" value="5.5"/>
+	</node>
+	<!-- <node name="dynamixel" pkg="bot" type="dynamixel.py" /> -->
 	<node name="linesensor" pkg="bot" type="linesensor.py" />
 	<node name="referenceframe" pkg="bot" type="referenceframe.py" />
 	<!-- <node name="shooting_start" pkg="bot" type="shooting_start.py" /> -->
 	<node name="fsm_hardcore" pkg="bot" type="fsm_hardcore" />
+	<!-- <include file="$(find rplidar_ros)/launch/rplidar.launch" /> -->
+	<include file="$(find rplidar_ros)/launch/hectormapping.launch" />
 </launch>

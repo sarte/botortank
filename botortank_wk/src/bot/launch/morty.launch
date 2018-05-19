@@ -1,0 +1,36 @@
+<launch>
+
+	<!-- <node name="test_fsm" pkg="bot" type="test_fsm" output="screen"/> -->
+
+	<node name="start" pkg="bot" type="start.py" /> 
+	<node name="driver" pkg="bot" type="driver.py" /> 
+	<node name="encoder" pkg="bot" type="encoder.py" />
+	<node name="speedcontroler" pkg="bot" type="speedcontroler" output="log">
+	<param name="kp" type="double" value="0.0116309172826653"/>
+	<param name="ki" type="double" value="0.502316840702666"/>
+	</node>
+	<node name="trajectory" pkg="bot" type="trajectory" output="log">
+	<param name="katt" type="double" value="1.4"/>
+	<param name="krep" type="double" value="0.5"/>
+	</node>
+	<node name="attraction" pkg="bot" type="attraction">
+	<param name="xsi" type="double" value="5.5"/>
+	</node>
+	
+	<node name="midlevel" pkg="bot" type="midlevel.py" /> 
+	
+	<!-- <node name="linesensor" pkg="bot" type="linesensor.py" /> -->
+	<node name="opponentUCL" pkg="bot" type="opponentUCL" />
+	<node name="repulsiveUCL" pkg="bot" type="repulsiveUCL" output="log">
+	<param name="eta" type="double" value="2.75"/>
+	<param name="rho" type="double" value="0.4"/>
+	<param name="loop_rate" type="int" value="100"/>
+	</node>
+	
+	<node name="dynamixel" pkg="bot" type="dynamixel.py" />
+	<node name="shooting_start" pkg="bot" type="shooting_start.py" />
+
+	<!-- <node name="referenceframe" pkg="bot" type="referenceframe.py" output="log"/> -->
+	
+	
+</launch>

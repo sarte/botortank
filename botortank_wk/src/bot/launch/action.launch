@@ -1,3 +1,0 @@
-<launch>
-    <node name="dynamixel" pkg="bot" type="dynamixel" />
-</launch>
