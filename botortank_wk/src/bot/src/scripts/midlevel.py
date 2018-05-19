@@ -60,10 +60,10 @@ def midlevel():
             omega_ref.motor3 = ((vel_x + vel_y) / vel_norm) - rot_z
             omega_ref.motor4 = ((vel_x - vel_y) / vel_norm) - rot_z
         elif(move==2):
-            omega_ref.motor1 =  rotation*4
-            omega_ref.motor2 =  rotation*4
-            omega_ref.motor3 =  -rotation*4
-            omega_ref.motor4 =  -rotation*4
+            omega_ref.motor1 =  rotation*3
+            omega_ref.motor2 =  rotation*3
+            omega_ref.motor3 =  -rotation*3
+            omega_ref.motor4 =  -rotation*3
         elif (move==3):
             omega_ref.motor1 =  6
             omega_ref.motor2 =  6

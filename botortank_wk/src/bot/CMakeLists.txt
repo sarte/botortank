@@ -203,6 +203,10 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
+add_executable(test_fsm src/test_fsm.cpp)
+target_link_libraries(test_fsm ${catkin_LIBRARIES})
+add_dependencies(test_fsm bot_generate_messages_cpp)
+
 add_executable(speedcontroler src/speedcontroler.cpp)
 target_link_libraries(speedcontroler ${catkin_LIBRARIES})
 add_dependencies(speedcontroler bot_generate_messages_cpp)
@@ -219,13 +223,9 @@ add_executable(repulsiveUCL src/repulsiveUCL.cpp)
 target_link_libraries(repulsiveUCL ${catkin_LIBRARIES})
 add_dependencies(repulsiveUCL bot_generate_messages_cpp)
 
-#add_executable(test_fsm src/test_fsm.cpp)
-#target_link_libraries(test_fsm ${catkin_LIBRARIES})
-#add_dependencies(test_fsm bot_generate_messages_cpp)
-
-#add_executable(fsm_hardcore src/fsm_hardcore.cpp)
-#target_link_libraries(fsm_hardcore ${catkin_LIBRARIES})
-#add_dependencies(fsm_hardcore bot_generate_messages_cpp)
+add_executable(fsm_hardcore src/fsm_hardcore.cpp)
+target_link_libraries(fsm_hardcore ${catkin_LIBRARIES})
+add_dependencies(fsm_hardcore bot_generate_messages_cpp)
 
 add_executable(trajectory src/trajectory.cpp)
 target_link_libraries(trajectory ${catkin_LIBRARIES})

@@ -16,6 +16,8 @@ double omega_1 = 0;
 double omega_2 = 0;
 double omega_3 = 0;
 double omega_4 = 0;
+double kp = 0;
+double ki = 0;
 int ratio = 19;
 ros::Time old_time(0.0);
 //Struct* cvs;// = (Struct*)malloc(sizeof(Struct));
@@ -69,6 +71,7 @@ void refCallback(const bot::quad& omega_ref)
     omega_ref_2 = omega_ref.motor2 * ratio;
     omega_ref_3 = omega_ref.motor3 * ratio;
     omega_ref_4 = omega_ref.motor4 * ratio;
+    ROS_INFO("speedcontroler ref1: %f ref2: %f ref3: %f ref4: %f \n", omega_ref_1, omega_ref_2, omega_ref_3, omega_ref_4);
 }
 
 
@@ -78,6 +81,7 @@ void mesCallback(const bot::quad& omega_mes)
     omega_2 = omega_mes.motor2 * ratio;
     omega_3 = omega_mes.motor3 * ratio;
     omega_4 = omega_mes.motor4 * ratio;
+    ROS_INFO("speedcontroler mes1: %f mes2: %f mes3: %f mes4: %f \n", omega_1, omega_2, omega_3, omega_4);
 }
 
 void PIcontroller(Struct* cvs)
@@ -89,7 +93,7 @@ void PIcontroller(Struct* cvs)
     double error_2 = omega_ref_2 - omega_2;
     double error_3 = omega_ref_3 - omega_3;
     double error_4 = omega_ref_4 - omega_4; // right speed error
-    printf("\n error_4 = %f",error_4);
+//    printf("\n error_4 = %f",error_4);
     double int_error_1 = cvs->int_error_1; //left speed integrarion error
     double int_error_2 = cvs->int_error_2;
     double int_error_3 = cvs->int_error_3;
@@ -101,7 +105,7 @@ void PIcontroller(Struct* cvs)
     int_error_2 += dt*error_2;
     int_error_3 += dt*error_3;
     int_error_4 += dt*error_4;
-    printf("\n int_error_4 = %f",int_error_4);
+//    printf("\n int_error_4 = %f",int_error_4);
     old_time = current_time;
     cvs->int_error_1 = int_error_1;
     cvs->int_error_2 = int_error_2;
@@ -109,11 +113,11 @@ void PIcontroller(Struct* cvs)
     cvs->int_error_4 = int_error_4;
     
     //printf("int_error_1 = %f\n",cvs->int_error_1);
-    double v1 = 0.02*error_1 + 0.1*int_error_1; // voltage command in [-24;24]
-    double v2 = 0.02*error_2 + 0.1*int_error_2; // voltage command in [-24;24]
-    double v3 = 0.02*error_3 + 0.1*int_error_3; // voltage command in [-24;24]
-    double v4 = 0.02*error_4 + 0.1*int_error_4; // voltage command in [-24;24]
-    printf("\n v4 = %f",v4);
+    double v1 = kp*error_1 + ki*int_error_1; // voltage command in [-24;24]
+    double v2 = kp*error_2 + ki*int_error_2; // voltage command in [-24;24]
+    double v3 = kp*error_3 + ki*int_error_3; // voltage command in [-24;24]
+    double v4 = kp*error_4 + ki*int_error_4; // voltage command in [-24;24]
+//    printf("\n v4 = %f",v4);
     if (v1 > 0.9*24)
         v1 = 0.9*24;
     if (v1 < -0.9*24)
@@ -148,7 +152,7 @@ void PIcontroller(Struct* cvs)
     cvs->wheel_commands2 = v2;
     cvs->wheel_commands3 = v3;
     cvs->wheel_commands4 = v4;
-    printf("\n wheel_command1 = %f",cvs->wheel_commands1);
+//    printf("\n wheel_command1 = %f",cvs->wheel_commands1);
 }
 
 
@@ -161,18 +165,25 @@ int main(int argc, char **argv) {
     ros::Subscriber sub1 = n.subscribe("omega_ref", 1, refCallback);
     ros::Subscriber sub2 = n.subscribe("omega_mes", 1, mesCallback);
     ros::Publisher pub = n.advertise<bot::quad>("omega_cmd", 1);
-    ros::Rate loop_rate(1000);
+    ros::Rate loop_rate(100);
     bot::quad command;
-    
+
+    ros::NodeHandle nh_private("~");
+    nh_private.param<double>("kp", kp, 1);
+    nh_private.param<double>("ki", ki, 1);
+
+    printf("speedcontroler kp: %f\n", kp);
+    printf("speedcontroler ki: %f\n", ki);
 
     while (ros::ok())
     {
         PIcontroller(cvs);
+        //printf("%f \t %f\n",omega_ref_1,omega_1);
         command.motor1 = cvs->wheel_commands1;
         command.motor2 = cvs->wheel_commands2;
         command.motor3 = cvs->wheel_commands3;
         command.motor4 = cvs->wheel_commands4;
-        
+        ROS_INFO("speedcontroler cmd1: %f cmd2: %f cmd3: %f cmd4: %f \n", command.motor1, command.motor2, command.motor3, command.motor4);
         pub.publish(command);
         ros::spinOnce();
         loop_rate.sleep();

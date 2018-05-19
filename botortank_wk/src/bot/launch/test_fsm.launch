@@ -1,8 +1,57 @@
 <launch>
-	<node name="driver" pkg="bot" type="driver.py" />
-	<node name="encoder" pkg="bot" type="encoder.py" />
-	<node name="speedcontroler" pkg="bot" type="speedcontroler" />
-    <node name="midlevel" pkg="bot" type="midlevel.py" />
-    <!-- <node name="fsm_homologation" pkg="bot" type="fsm_homologation" /> -->
-    <node name="linesensor" pkg="bot" type="linesensor.py" />
+	<node name="test_fsm" pkg="bot" type="test_fsm" output="screen">
+	<param name="cntr1" type="int" value="11000"/>
+	<param name="cntr2" type="int" value="100"/>
+	<param name="cntr3" type="int" value="400"/>
+	<param name="cntr4" type="int" value="400"/>
+	<param name="cntr5" type="int" value="75"/>
+	<param name="cntr6" type="int" value="400"/>
+	<param name="cntr7" type="int" value="500"/>
+	<param name="cntr8" type="int" value="150"/>
+	<param name="cntr9" type="int" value="100"/>
+	<param name="cntr10" type="int" value="50"/>
+	<param name="cntr11" type="int" value="1000"/>
+	<param name="cntr12" type="int" value="700"/>
+	<param name="cntr13" type="int" value="50"/>
+	<param name="cntr14" type="int" value="35"/>
+	<param name="cntr15" type="int" value="200"/>
+	<param name="xtarg1" type="double" value="-0.42"/>
+	<param name="xtarg2" type="double" value="-0.37"/>
+	<param name="xtarg3" type="double" value="-1.3"/>
+	<param name="xtarg4" type="double" value="-1.20"/>
+	<param name="xtarg5" type="double" value="-1.34"/>
+	<param name="xtarg6" type="double" value="-0.8"/>
+	<param name="xtarg7" type="double" value="0.0"/>
+	<param name="xtarg8" type="double" value="0.0"/>
+	<param name="xtarg9" type="double" value="0.0"/>
+	<param name="ytarg1" type="double" value="0.75"/>
+	<param name="ytarg2" type="double" value="0.0"/>
+	<param name="ytarg3" type="double" value="-0.8"/>
+	<param name="ytarg4" type="double" value="-0.25"/>
+	<param name="ytarg5" type="double" value="-0.05"/>
+	<param name="ytarg6" type="double" value="-0.17"/>
+	<param name="ytarg7" type="double" value="0.0"/>
+	<param name="ytarg8" type="double" value="0.0"/>
+	<param name="ytarg9" type="double" value="0.0"/>
+
+	<param name="xtaro1" type="double" value="0.37"/>
+	<param name="xtaro2" type="double" value="0.37"/>
+	<param name="xtaro3" type="double" value="1.3"/>
+	<param name="xtaro4" type="double" value="1.28"/>
+	<param name="xtaro5" type="double" value="1.34"/>
+	<param name="xtaro6" type="double" value="0.8"/>
+	<param name="xtaro7" type="double" value="0.0"/>
+	<param name="xtaro8" type="double" value="0.0"/>
+	<param name="xtaro9" type="double" value="0.0"/>
+
+	<param name="ytaro1" type="double" value="0.75"/>
+	<param name="ytaro2" type="double" value="0.0"/>
+	<param name="ytaro3" type="double" value="-0.8"/>
+	<param name="ytaro4" type="double" value="-0.45"/>
+	<param name="ytaro5" type="double" value="-0.05"/>
+	<param name="ytaro6" type="double" value="-0.17"/>
+	<param name="ytaro7" type="double" value="0.0"/>
+	<param name="ytaro8" type="double" value="0.0"/>
+	<param name="ytaro9" type="double" value="0.0"/>
+	</node>
 </launch>

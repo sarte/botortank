@@ -1,4 +1,0 @@
-<launch>
-	<node name="encoder" pkg="bot" type="encoder.py" />
-	<node name="odometry" pkg="bot" type="odometry" />
-</launch>
