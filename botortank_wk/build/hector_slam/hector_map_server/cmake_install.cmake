@@ -1,8 +1,8 @@
-# Install script for directory: /home/botortank/botortank_ws/src/hector_slam/hector_map_server
+# Install script for directory: /home/sayri/botortank/botortank_wk/src/hector_slam/hector_map_server
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/botortank/botortank_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/sayri/botortank/botortank_wk/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,18 +33,18 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/botortank/botortank_ws/build/hector_slam/hector_map_server/catkin_generated/installspace/hector_map_server.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/sayri/botortank/botortank_wk/build/hector_slam/hector_map_server/catkin_generated/installspace/hector_map_server.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hector_map_server/cmake" TYPE FILE FILES
-    "/home/botortank/botortank_ws/build/hector_slam/hector_map_server/catkin_generated/installspace/hector_map_serverConfig.cmake"
-    "/home/botortank/botortank_ws/build/hector_slam/hector_map_server/catkin_generated/installspace/hector_map_serverConfig-version.cmake"
+    "/home/sayri/botortank/botortank_wk/build/hector_slam/hector_map_server/catkin_generated/installspace/hector_map_serverConfig.cmake"
+    "/home/sayri/botortank/botortank_wk/build/hector_slam/hector_map_server/catkin_generated/installspace/hector_map_serverConfig-version.cmake"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hector_map_server" TYPE FILE FILES "/home/botortank/botortank_ws/src/hector_slam/hector_map_server/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hector_map_server" TYPE FILE FILES "/home/sayri/botortank/botortank_wk/src/hector_slam/hector_map_server/package.xml")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
@@ -54,12 +54,12 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/hector_map_server/hector_map_server"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/hector_map_server" TYPE EXECUTABLE FILES "/home/botortank/botortank_ws/devel/lib/hector_map_server/hector_map_server")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/hector_map_server" TYPE EXECUTABLE FILES "/home/sayri/botortank/botortank_wk/devel/lib/hector_map_server/hector_map_server")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/hector_map_server/hector_map_server" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/hector_map_server/hector_map_server")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/hector_map_server/hector_map_server"
-         OLD_RPATH "/opt/ros/kinetic/lib:"
+         OLD_RPATH "/opt/ros/lunar/lib:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/hector_map_server/hector_map_server")

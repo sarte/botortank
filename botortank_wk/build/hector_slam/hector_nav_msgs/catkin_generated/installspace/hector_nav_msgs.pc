@@ -1,8 +1,8 @@
-prefix=/home/botortank/botortank_ws/install
+prefix=/home/sayri/botortank/botortank_wk/install
 
 Name: hector_nav_msgs
 Description: Description of hector_nav_msgs
 Version: 0.3.5
-Cflags: -I/home/botortank/botortank_ws/install/include
-Libs: -L/home/botortank/botortank_ws/install/lib 
+Cflags: -I/home/sayri/botortank/botortank_wk/install/include
+Libs: -L/home/sayri/botortank/botortank_wk/install/lib 
 Requires: nav_msgs geometry_msgs message_runtime

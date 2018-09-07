@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/botortank/botortank_ws/src/hector_slam/hector_imu_tools/src/pose_and_orientation_to_imu_node.cpp" "/home/botortank/botortank_ws/build/hector_slam/hector_imu_tools/CMakeFiles/pose_and_orientation_to_imu_node.dir/src/pose_and_orientation_to_imu_node.cpp.o"
+  "/home/sayri/botortank/botortank_wk/src/hector_slam/hector_imu_tools/src/pose_and_orientation_to_imu_node.cpp" "/home/sayri/botortank/botortank_wk/build/hector_slam/hector_imu_tools/CMakeFiles/pose_and_orientation_to_imu_node.dir/src/pose_and_orientation_to_imu_node.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -17,8 +17,8 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/opt/ros/kinetic/include"
-  "/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
+  "/opt/ros/lunar/include"
+  "/opt/ros/lunar/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   )
 
 # Targets to which this target links.

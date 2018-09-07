@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/geotiff_saver.dir/src/geotiff_saver.cpp.o"
-  "/home/botortank/botortank_ws/devel/lib/hector_geotiff/geotiff_saver.pdb"
-  "/home/botortank/botortank_ws/devel/lib/hector_geotiff/geotiff_saver"
+  "/home/sayri/botortank/botortank_wk/devel/lib/hector_geotiff/geotiff_saver.pdb"
+  "/home/sayri/botortank/botortank_wk/devel/lib/hector_geotiff/geotiff_saver"
 )
 
 # Per-language clean rules from dependency scanning.

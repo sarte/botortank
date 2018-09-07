@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/hector_mapping_generate_messages_eus"
-  "/home/botortank/botortank_ws/devel/share/roseus/ros/hector_mapping/msg/HectorDebugInfo.l"
-  "/home/botortank/botortank_ws/devel/share/roseus/ros/hector_mapping/msg/HectorIterData.l"
-  "/home/botortank/botortank_ws/devel/share/roseus/ros/hector_mapping/manifest.l"
+  "/home/sayri/botortank/botortank_wk/devel/share/roseus/ros/hector_mapping/msg/HectorIterData.l"
+  "/home/sayri/botortank/botortank_wk/devel/share/roseus/ros/hector_mapping/msg/HectorDebugInfo.l"
+  "/home/sayri/botortank/botortank_wk/devel/share/roseus/ros/hector_mapping/manifest.l"
 )
 
 # Per-language clean rules from dependency scanning.

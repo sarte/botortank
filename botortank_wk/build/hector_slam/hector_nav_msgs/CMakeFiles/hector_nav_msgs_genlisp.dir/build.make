@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/botortank/botortank_ws/src
+CMAKE_SOURCE_DIR = /home/sayri/botortank/botortank_wk/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/botortank/botortank_ws/build
+CMAKE_BINARY_DIR = /home/sayri/botortank/botortank_wk/build
 
 # Utility rule file for hector_nav_msgs_genlisp.
 
@@ -63,10 +63,10 @@ hector_slam/hector_nav_msgs/CMakeFiles/hector_nav_msgs_genlisp.dir/build: hector
 .PHONY : hector_slam/hector_nav_msgs/CMakeFiles/hector_nav_msgs_genlisp.dir/build
 
 hector_slam/hector_nav_msgs/CMakeFiles/hector_nav_msgs_genlisp.dir/clean:
-	cd /home/botortank/botortank_ws/build/hector_slam/hector_nav_msgs && $(CMAKE_COMMAND) -P CMakeFiles/hector_nav_msgs_genlisp.dir/cmake_clean.cmake
+	cd /home/sayri/botortank/botortank_wk/build/hector_slam/hector_nav_msgs && $(CMAKE_COMMAND) -P CMakeFiles/hector_nav_msgs_genlisp.dir/cmake_clean.cmake
 .PHONY : hector_slam/hector_nav_msgs/CMakeFiles/hector_nav_msgs_genlisp.dir/clean
 
 hector_slam/hector_nav_msgs/CMakeFiles/hector_nav_msgs_genlisp.dir/depend:
-	cd /home/botortank/botortank_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/botortank/botortank_ws/src /home/botortank/botortank_ws/src/hector_slam/hector_nav_msgs /home/botortank/botortank_ws/build /home/botortank/botortank_ws/build/hector_slam/hector_nav_msgs /home/botortank/botortank_ws/build/hector_slam/hector_nav_msgs/CMakeFiles/hector_nav_msgs_genlisp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sayri/botortank/botortank_wk/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sayri/botortank/botortank_wk/src /home/sayri/botortank/botortank_wk/src/hector_slam/hector_nav_msgs /home/sayri/botortank/botortank_wk/build /home/sayri/botortank/botortank_wk/build/hector_slam/hector_nav_msgs /home/sayri/botortank/botortank_wk/build/hector_slam/hector_nav_msgs/CMakeFiles/hector_nav_msgs_genlisp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : hector_slam/hector_nav_msgs/CMakeFiles/hector_nav_msgs_genlisp.dir/depend
 

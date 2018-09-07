@@ -101,8 +101,7 @@ double ytaro9=0.0;
 
 typedef enum States
 {
-	STANDBY, START, DOMO1, DOMO2, BALL1, BALL2, BALL3, TURN_BALL, LOQUET, BALL4, GO_SHOOT, TURN_SHOOT, SHOOT, GO_BEE1,GO_BEE2, TURN_BEE, BEE, PUSH_BEE, CAL_BEE
-	//STANDBY, START, CAL_X, CAL_Y, HOME, TARG, VIA1, VIA2
+	STANDBY, START, DOMO1, DOMO2, BALL1, BALL2, BALL3, TURN_BALL, LOQUET, BALL4, GO_SHOOT, TURN_SHOOT, SHOOT, GO_BEE1,GO_BEE2, TURN_BEE, BEE, PUSH_BEE, CAL_BEE, CAL_BEE1, CAL_BEE2,//STANDBY, START, CAL_X, CAL_Y, HOME, TARG, VIA1, VIA2
 } States;
 
 typedef struct Struct
@@ -393,7 +392,7 @@ void FSM(Struct* cvs)
 			{
 				cvs->move = 0;
 				cvs->prevstate = cvs->state;
-				cvs->state = CAL_BEE1;
+//				cvs->state = CAL_BEE1;
 			}
 			else
 			{
@@ -573,7 +572,7 @@ void FSM(Struct* cvs)
 				cnt = 0;
 				cvs->move = 0;
 				cvs->prevstate = cvs->state;
-				cvs->state = CALL_BEE2;
+				// cvs->state = CALL_BEE2;
 			}
 			else{
 				if(cvs->team){
@@ -587,25 +586,25 @@ void FSM(Struct* cvs)
 			cnt++;
 			break;
 
-		case CAL_BEE1 :
-			printf("CAL_BEE\n");
-			if(cnt > cntr5) {
-				cnt = 0;
-				cvs->move = 0;
-				cvs->prevstate = cvs->state;
-				cvs->state = BEE;
-			}
-			else{
-				if(cvs->team){
-					cvs->move = 4;
-				}
-				else{
-					cvs->move = 4;
-				}
-			}
-			t++;
-			cnt++;
-			break;
+		// case CAL_BEE1 :
+		// 	printf("CAL_BEE\n");
+		// 	if(cnt > cntr5) {
+		// 		cnt = 0;
+		// 		cvs->move = 0;
+		// 		cvs->prevstate = cvs->state;
+		// 		cvs->state = BEE;
+		// 	}
+		// 	else{
+		// 		if(cvs->team){
+		// 			cvs->move = 4;
+		// 		}
+		// 		else{
+		// 			cvs->move = 4;
+		// 		}
+		// 	}
+		// 	t++;
+		// 	cnt++;
+		// 	break;
 
 //		case CAL_BEE :
 //			printf("CAL_BEE\n");

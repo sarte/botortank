@@ -1,8 +1,8 @@
-prefix=/home/botortank/botortank_ws/install
+prefix=/home/sayri/botortank/botortank_wk/install
 
 Name: rplidar_ros
 Description: Description of rplidar_ros
 Version: 1.5.7
 Cflags: 
-Libs: -L/home/botortank/botortank_ws/install/lib 
+Libs: -L/home/sayri/botortank/botortank_wk/install/lib 
 Requires: 

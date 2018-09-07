@@ -1,8 +1,8 @@
-# Install script for directory: /home/botortank/botortank_ws/src/hector_slam/hector_geotiff_plugins
+# Install script for directory: /home/sayri/botortank/botortank_wk/src/hector_slam/hector_geotiff_plugins
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/botortank/botortank_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/sayri/botortank/botortank_wk/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,18 +33,18 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/botortank/botortank_ws/build/hector_slam/hector_geotiff_plugins/catkin_generated/installspace/hector_geotiff_plugins.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/sayri/botortank/botortank_wk/build/hector_slam/hector_geotiff_plugins/catkin_generated/installspace/hector_geotiff_plugins.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hector_geotiff_plugins/cmake" TYPE FILE FILES
-    "/home/botortank/botortank_ws/build/hector_slam/hector_geotiff_plugins/catkin_generated/installspace/hector_geotiff_pluginsConfig.cmake"
-    "/home/botortank/botortank_ws/build/hector_slam/hector_geotiff_plugins/catkin_generated/installspace/hector_geotiff_pluginsConfig-version.cmake"
+    "/home/sayri/botortank/botortank_wk/build/hector_slam/hector_geotiff_plugins/catkin_generated/installspace/hector_geotiff_pluginsConfig.cmake"
+    "/home/sayri/botortank/botortank_wk/build/hector_slam/hector_geotiff_plugins/catkin_generated/installspace/hector_geotiff_pluginsConfig-version.cmake"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hector_geotiff_plugins" TYPE FILE FILES "/home/botortank/botortank_ws/src/hector_slam/hector_geotiff_plugins/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hector_geotiff_plugins" TYPE FILE FILES "/home/sayri/botortank/botortank_wk/src/hector_slam/hector_geotiff_plugins/package.xml")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
@@ -54,12 +54,12 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libhector_geotiff_plugins.so"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/botortank/botortank_ws/devel/lib/libhector_geotiff_plugins.so")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/sayri/botortank/botortank_wk/devel/lib/libhector_geotiff_plugins.so")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libhector_geotiff_plugins.so" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libhector_geotiff_plugins.so")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libhector_geotiff_plugins.so"
-         OLD_RPATH "/home/botortank/botortank_ws/devel/lib:/opt/ros/kinetic/lib:"
+         OLD_RPATH "/home/sayri/botortank/botortank_wk/devel/lib:/opt/ros/lunar/lib:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libhector_geotiff_plugins.so")
@@ -68,6 +68,6 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hector_geotiff_plugins" TYPE FILE FILES "/home/botortank/botortank_ws/src/hector_slam/hector_geotiff_plugins/hector_geotiff_plugins.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hector_geotiff_plugins" TYPE FILE FILES "/home/sayri/botortank/botortank_wk/src/hector_slam/hector_geotiff_plugins/hector_geotiff_plugins.xml")
 endif()
 

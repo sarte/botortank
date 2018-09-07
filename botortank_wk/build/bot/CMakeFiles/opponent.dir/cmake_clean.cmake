@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/opponent.dir/src/opponent.cpp.o"
-  "/home/botortank/botortank_ws/devel/lib/bot/opponent.pdb"
-  "/home/botortank/botortank_ws/devel/lib/bot/opponent"
+  "/home/sayri/botortank/botortank_wk/devel/lib/bot/opponent.pdb"
+  "/home/sayri/botortank/botortank_wk/devel/lib/bot/opponent"
 )
 
 # Per-language clean rules from dependency scanning.

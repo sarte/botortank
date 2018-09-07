@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/attraction.dir/src/attraction.cpp.o"
-  "/home/botortank/botortank_ws/devel/lib/bot/attraction.pdb"
-  "/home/botortank/botortank_ws/devel/lib/bot/attraction"
+  "/home/sayri/botortank/botortank_wk/devel/lib/bot/attraction.pdb"
+  "/home/sayri/botortank/botortank_wk/devel/lib/bot/attraction"
 )
 
 # Per-language clean rules from dependency scanning.

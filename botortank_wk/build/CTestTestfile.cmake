@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /home/botortank/botortank_ws/src
-# Build directory: /home/botortank/botortank_ws/build
+# Source directory: /home/sayri/botortank/botortank_wk/src
+# Build directory: /home/sayri/botortank/botortank_wk/build
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

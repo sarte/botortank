@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/trajectory.dir/src/trajectory.cpp.o"
-  "/home/botortank/botortank_ws/devel/lib/bot/trajectory.pdb"
-  "/home/botortank/botortank_ws/devel/lib/bot/trajectory"
+  "/home/sayri/botortank/botortank_wk/devel/lib/bot/trajectory.pdb"
+  "/home/sayri/botortank/botortank_wk/devel/lib/bot/trajectory"
 )
 
 # Per-language clean rules from dependency scanning.

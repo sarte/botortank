@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/imu_attitude_to_tf_node.dir/src/imu_attitude_to_tf_node.cpp.o"
-  "/home/botortank/botortank_ws/devel/lib/hector_imu_attitude_to_tf/imu_attitude_to_tf_node.pdb"
-  "/home/botortank/botortank_ws/devel/lib/hector_imu_attitude_to_tf/imu_attitude_to_tf_node"
+  "/home/sayri/botortank/botortank_wk/devel/lib/hector_imu_attitude_to_tf/imu_attitude_to_tf_node.pdb"
+  "/home/sayri/botortank/botortank_wk/devel/lib/hector_imu_attitude_to_tf/imu_attitude_to_tf_node"
 )
 
 # Per-language clean rules from dependency scanning.

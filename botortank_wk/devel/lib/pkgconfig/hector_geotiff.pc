@@ -1,8 +1,8 @@
-prefix=/home/botortank/botortank_ws/devel
+prefix=/home/sayri/botortank/botortank_wk/devel
 
 Name: hector_geotiff
 Description: Description of hector_geotiff
 Version: 0.3.5
-Cflags: -I/home/botortank/botortank_ws/src/hector_slam/hector_geotiff/include -I/usr/include/eigen3
-Libs: -L/home/botortank/botortank_ws/devel/lib -lgeotiff_writer /usr/lib/arm-linux-gnueabihf/libQtGui.so /usr/lib/arm-linux-gnueabihf/libQtCore.so
+Cflags: -I/home/sayri/botortank/botortank_wk/src/hector_slam/hector_geotiff/include -I/usr/include/eigen3
+Libs: -L/home/sayri/botortank/botortank_wk/devel/lib -lgeotiff_writer /usr/lib/x86_64-linux-gnu/libQtGui.so /usr/lib/x86_64-linux-gnu/libQtCore.so
 Requires: hector_map_tools hector_nav_msgs nav_msgs pluginlib roscpp std_msgs

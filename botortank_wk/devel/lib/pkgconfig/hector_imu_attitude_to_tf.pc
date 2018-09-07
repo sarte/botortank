@@ -1,8 +1,8 @@
-prefix=/home/botortank/botortank_ws/devel
+prefix=/home/sayri/botortank/botortank_wk/devel
 
 Name: hector_imu_attitude_to_tf
 Description: Description of hector_imu_attitude_to_tf
 Version: 0.3.5
 Cflags: 
-Libs: -L/home/botortank/botortank_ws/devel/lib 
+Libs: -L/home/sayri/botortank/botortank_wk/devel/lib 
 Requires: 

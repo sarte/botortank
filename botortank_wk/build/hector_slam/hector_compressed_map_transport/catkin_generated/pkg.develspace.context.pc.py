@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "hector_compressed_map_transport"
-PROJECT_SPACE_DIR = "/home/botortank/botortank_ws/devel"
+PROJECT_SPACE_DIR = "/home/sayri/botortank/botortank_wk/devel"
 PROJECT_VERSION = "0.3.5"

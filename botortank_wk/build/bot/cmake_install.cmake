@@ -1,8 +1,8 @@
-# Install script for directory: /home/botortank/botortank_ws/src/bot
+# Install script for directory: /home/sayri/botortank/botortank_wk/src/bot
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/botortank/botortank_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/sayri/botortank/botortank_wk/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,56 +34,56 @@ endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/bot/msg" TYPE FILE FILES
-    "/home/botortank/botortank_ws/src/bot/msg/quad.msg"
-    "/home/botortank/botortank_ws/src/bot/msg/tetra.msg"
-    "/home/botortank/botortank_ws/src/bot/msg/lidar_array.msg"
+    "/home/sayri/botortank/botortank_wk/src/bot/msg/quad.msg"
+    "/home/sayri/botortank/botortank_wk/src/bot/msg/tetra.msg"
+    "/home/sayri/botortank/botortank_wk/src/bot/msg/lidar_array.msg"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/bot/cmake" TYPE FILE FILES "/home/botortank/botortank_ws/build/bot/catkin_generated/installspace/bot-msg-paths.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/bot/cmake" TYPE FILE FILES "/home/sayri/botortank/botortank_wk/build/bot/catkin_generated/installspace/bot-msg-paths.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/botortank/botortank_ws/devel/include/bot")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/sayri/botortank/botortank_wk/devel/include/bot")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/botortank/botortank_ws/devel/share/roseus/ros/bot")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/sayri/botortank/botortank_wk/devel/share/roseus/ros/bot")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/botortank/botortank_ws/devel/share/common-lisp/ros/bot")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/sayri/botortank/botortank_wk/devel/share/common-lisp/ros/bot")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/botortank/botortank_ws/devel/share/gennodejs/ros/bot")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/sayri/botortank/botortank_wk/devel/share/gennodejs/ros/bot")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  execute_process(COMMAND "/usr/bin/python" -m compileall "/home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot")
+  execute_process(COMMAND "/usr/bin/python" -m compileall "/home/sayri/botortank/botortank_wk/devel/lib/python2.7/dist-packages/bot")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages" TYPE DIRECTORY FILES "/home/botortank/botortank_ws/devel/lib/python2.7/dist-packages/bot")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages" TYPE DIRECTORY FILES "/home/sayri/botortank/botortank_wk/devel/lib/python2.7/dist-packages/bot")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/botortank/botortank_ws/build/bot/catkin_generated/installspace/bot.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/sayri/botortank/botortank_wk/build/bot/catkin_generated/installspace/bot.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/bot/cmake" TYPE FILE FILES "/home/botortank/botortank_ws/build/bot/catkin_generated/installspace/bot-msg-extras.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/bot/cmake" TYPE FILE FILES "/home/sayri/botortank/botortank_wk/build/bot/catkin_generated/installspace/bot-msg-extras.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/bot/cmake" TYPE FILE FILES
-    "/home/botortank/botortank_ws/build/bot/catkin_generated/installspace/botConfig.cmake"
-    "/home/botortank/botortank_ws/build/bot/catkin_generated/installspace/botConfig-version.cmake"
+    "/home/sayri/botortank/botortank_wk/build/bot/catkin_generated/installspace/botConfig.cmake"
+    "/home/sayri/botortank/botortank_wk/build/bot/catkin_generated/installspace/botConfig-version.cmake"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/bot" TYPE FILE FILES "/home/botortank/botortank_ws/src/bot/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/bot" TYPE FILE FILES "/home/sayri/botortank/botortank_wk/src/bot/package.xml")
 endif()
 

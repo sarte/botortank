@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/botortank/botortank_ws/src/rplidar_ros/src/client.cpp" "/home/botortank/botortank_ws/build/rplidar_ros/CMakeFiles/rplidarNodeClient.dir/src/client.cpp.o"
+  "/home/sayri/botortank/botortank_wk/src/rplidar_ros/src/client.cpp" "/home/sayri/botortank/botortank_wk/build/rplidar_ros/CMakeFiles/rplidarNodeClient.dir/src/client.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -17,10 +17,10 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/home/botortank/botortank_ws/src/rplidar_ros/./sdk/include"
-  "/home/botortank/botortank_ws/src/rplidar_ros/./sdk/src"
-  "/opt/ros/kinetic/include"
-  "/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
+  "/home/sayri/botortank/botortank_wk/src/rplidar_ros/./sdk/include"
+  "/home/sayri/botortank/botortank_wk/src/rplidar_ros/./sdk/src"
+  "/opt/ros/lunar/include"
+  "/opt/ros/lunar/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   )
 
 # Targets to which this target links.

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/botortank/botortank_ws/src
+CMAKE_SOURCE_DIR = /home/sayri/botortank/botortank_wk/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/botortank/botortank_ws/build
+CMAKE_BINARY_DIR = /home/sayri/botortank/botortank_wk/build
 
 # Utility rule file for bot_gennodejs.
 
@@ -63,10 +63,10 @@ bot/CMakeFiles/bot_gennodejs.dir/build: bot_gennodejs
 .PHONY : bot/CMakeFiles/bot_gennodejs.dir/build
 
 bot/CMakeFiles/bot_gennodejs.dir/clean:
-	cd /home/botortank/botortank_ws/build/bot && $(CMAKE_COMMAND) -P CMakeFiles/bot_gennodejs.dir/cmake_clean.cmake
+	cd /home/sayri/botortank/botortank_wk/build/bot && $(CMAKE_COMMAND) -P CMakeFiles/bot_gennodejs.dir/cmake_clean.cmake
 .PHONY : bot/CMakeFiles/bot_gennodejs.dir/clean
 
 bot/CMakeFiles/bot_gennodejs.dir/depend:
-	cd /home/botortank/botortank_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/botortank/botortank_ws/src /home/botortank/botortank_ws/src/bot /home/botortank/botortank_ws/build /home/botortank/botortank_ws/build/bot /home/botortank/botortank_ws/build/bot/CMakeFiles/bot_gennodejs.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sayri/botortank/botortank_wk/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sayri/botortank/botortank_wk/src /home/sayri/botortank/botortank_wk/src/bot /home/sayri/botortank/botortank_wk/build /home/sayri/botortank/botortank_wk/build/bot /home/sayri/botortank/botortank_wk/build/bot/CMakeFiles/bot_gennodejs.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : bot/CMakeFiles/bot_gennodejs.dir/depend
 

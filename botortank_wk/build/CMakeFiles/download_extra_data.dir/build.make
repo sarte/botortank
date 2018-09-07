@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/botortank/botortank_ws/src
+CMAKE_SOURCE_DIR = /home/sayri/botortank/botortank_wk/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/botortank/botortank_ws/build
+CMAKE_BINARY_DIR = /home/sayri/botortank/botortank_wk/build
 
 # Utility rule file for download_extra_data.
 
@@ -67,6 +67,6 @@ CMakeFiles/download_extra_data.dir/clean:
 .PHONY : CMakeFiles/download_extra_data.dir/clean
 
 CMakeFiles/download_extra_data.dir/depend:
-	cd /home/botortank/botortank_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/botortank/botortank_ws/src /home/botortank/botortank_ws/src /home/botortank/botortank_ws/build /home/botortank/botortank_ws/build /home/botortank/botortank_ws/build/CMakeFiles/download_extra_data.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sayri/botortank/botortank_wk/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sayri/botortank/botortank_wk/src /home/sayri/botortank/botortank_wk/src /home/sayri/botortank/botortank_wk/build /home/sayri/botortank/botortank_wk/build /home/sayri/botortank/botortank_wk/build/CMakeFiles/download_extra_data.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/download_extra_data.dir/depend
 

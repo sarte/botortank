@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/bot_generate_messages_lisp"
-  "/home/botortank/botortank_ws/devel/share/common-lisp/ros/bot/msg/lidar_array.lisp"
-  "/home/botortank/botortank_ws/devel/share/common-lisp/ros/bot/msg/tetra.lisp"
-  "/home/botortank/botortank_ws/devel/share/common-lisp/ros/bot/msg/quad.lisp"
+  "/home/sayri/botortank/botortank_wk/devel/share/common-lisp/ros/bot/msg/lidar_array.lisp"
+  "/home/sayri/botortank/botortank_wk/devel/share/common-lisp/ros/bot/msg/tetra.lisp"
+  "/home/sayri/botortank/botortank_wk/devel/share/common-lisp/ros/bot/msg/quad.lisp"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/botortank/botortank_ws/src
+CMAKE_SOURCE_DIR = /home/sayri/botortank/botortank_wk/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/botortank/botortank_ws/build
+CMAKE_BINARY_DIR = /home/sayri/botortank/botortank_wk/build
 
 # Utility rule file for geometry_msgs_generate_messages_nodejs.
 
@@ -63,10 +63,10 @@ hector_slam/hector_map_tools/CMakeFiles/geometry_msgs_generate_messages_nodejs.d
 .PHONY : hector_slam/hector_map_tools/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
 
 hector_slam/hector_map_tools/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/clean:
-	cd /home/botortank/botortank_ws/build/hector_slam/hector_map_tools && $(CMAKE_COMMAND) -P CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/cmake_clean.cmake
+	cd /home/sayri/botortank/botortank_wk/build/hector_slam/hector_map_tools && $(CMAKE_COMMAND) -P CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/cmake_clean.cmake
 .PHONY : hector_slam/hector_map_tools/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/clean
 
 hector_slam/hector_map_tools/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/depend:
-	cd /home/botortank/botortank_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/botortank/botortank_ws/src /home/botortank/botortank_ws/src/hector_slam/hector_map_tools /home/botortank/botortank_ws/build /home/botortank/botortank_ws/build/hector_slam/hector_map_tools /home/botortank/botortank_ws/build/hector_slam/hector_map_tools/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sayri/botortank/botortank_wk/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sayri/botortank/botortank_wk/src /home/sayri/botortank/botortank_wk/src/hector_slam/hector_map_tools /home/sayri/botortank/botortank_wk/build /home/sayri/botortank/botortank_wk/build/hector_slam/hector_map_tools /home/sayri/botortank/botortank_wk/build/hector_slam/hector_map_tools/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : hector_slam/hector_map_tools/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/depend
 

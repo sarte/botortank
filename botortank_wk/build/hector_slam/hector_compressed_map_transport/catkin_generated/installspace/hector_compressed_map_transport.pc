@@ -1,8 +1,8 @@
-prefix=/home/botortank/botortank_ws/install
+prefix=/home/sayri/botortank/botortank_wk/install
 
 Name: hector_compressed_map_transport
 Description: Description of hector_compressed_map_transport
 Version: 0.3.5
 Cflags: 
-Libs: -L/home/botortank/botortank_ws/install/lib 
+Libs: -L/home/sayri/botortank/botortank_wk/install/lib 
 Requires: 

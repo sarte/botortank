@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/botortank/botortank_ws/src
+CMAKE_SOURCE_DIR = /home/sayri/botortank/botortank_wk/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/botortank/botortank_ws/build
+CMAKE_BINARY_DIR = /home/sayri/botortank/botortank_wk/build
 
 # Utility rule file for doxygen.
 
@@ -67,6 +67,6 @@ CMakeFiles/doxygen.dir/clean:
 .PHONY : CMakeFiles/doxygen.dir/clean
 
 CMakeFiles/doxygen.dir/depend:
-	cd /home/botortank/botortank_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/botortank/botortank_ws/src /home/botortank/botortank_ws/src /home/botortank/botortank_ws/build /home/botortank/botortank_ws/build /home/botortank/botortank_ws/build/CMakeFiles/doxygen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sayri/botortank/botortank_wk/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sayri/botortank/botortank_wk/src /home/sayri/botortank/botortank_wk/src /home/sayri/botortank/botortank_wk/build /home/sayri/botortank/botortank_wk/build /home/sayri/botortank/botortank_wk/build/CMakeFiles/doxygen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/doxygen.dir/depend
 

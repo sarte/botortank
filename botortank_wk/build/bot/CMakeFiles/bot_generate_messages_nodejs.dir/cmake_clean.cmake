@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/bot_generate_messages_nodejs"
-  "/home/botortank/botortank_ws/devel/share/gennodejs/ros/bot/msg/lidar_array.js"
-  "/home/botortank/botortank_ws/devel/share/gennodejs/ros/bot/msg/tetra.js"
-  "/home/botortank/botortank_ws/devel/share/gennodejs/ros/bot/msg/quad.js"
+  "/home/sayri/botortank/botortank_wk/devel/share/gennodejs/ros/bot/msg/lidar_array.js"
+  "/home/sayri/botortank/botortank_wk/devel/share/gennodejs/ros/bot/msg/tetra.js"
+  "/home/sayri/botortank/botortank_wk/devel/share/gennodejs/ros/bot/msg/quad.js"
 )
 
 # Per-language clean rules from dependency scanning.
